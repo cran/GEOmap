@@ -92,3 +92,11 @@ DOTOPOMAPI(TOPO=ETOPO5, themap=worldmap, shiftlon=180,  DOCONT=TRUE, DOIMG=TRUE,
                      USAmap= USAmap,
                      usacity=usacity,
                      worldcity=worldcity)
+
+
+######### not run: #########
+#########
+#########  library(ETOPO); data(ETOPO2)
+#########  DOTOPOMAPI(TOPO=ETOPO2, themap=worldmap, shiftlon=180)
+#########
+

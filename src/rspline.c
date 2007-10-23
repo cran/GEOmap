@@ -1,7 +1,18 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-#include <malloc.h>
+
+
+/*
+  #ifdef MAC
+  #include <sys/malloc.h>
+  #else
+  #include <malloc.h>
+  #endif
+*/
+
+
 
 #define   NRANSI
 
