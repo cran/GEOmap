@@ -1,52 +1,9 @@
-`GEOTOPO` <-
-function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
+TOPOCOL<- function(IZ, calcol)
   {
+    ######  source("/home/lees/Progs/R_PAX/GEOmap/R/TOPOCOL.R")
 
-
-    if(missing(calcol)) {  calcol = settopocol() }
-    if(missing(npoints)) { npoints=500  }
-
-
-     if(is.null(calcol)) {  calcol = settopocol() }
-
+    if(!is.list(IZ)) { IZ = list(z=IZ) }
     
-    ZZ2 = subsetTOPO(TOPO, PLOC)
-    d = dim(ZZ2$z)
-    
-    G = setplotmat(ZZ2$x,ZZ2$y)
-
-    ######  image(ZZ2)
-
-######    DOTOPOMAPI(TOPO=ETOPO5, worldmap=worldmap, shiftlon=0, ALOC=PLOC)
-
-    
-### read in the topo information from the GLOBE database
-    
-### first:  jtop = scan(file='jap.topo', list(lon=0, lat=0, z=0))
-
-    jlon = unique(ZZ2$x)
-    jlat = unique(ZZ2$y)
-
-
-
-
-    GXY  = GLOB.XY(G$y, G$x , PROJ  )
-    
-    
-    xo = seq(from=range(GXY$x)[1], to=range(GXY$x)[2], length=npoints)
-    yo = seq(from=range(GXY$y)[1], to=range(GXY$y)[2], length=npoints)
-
-    IZ = interp(x=GXY$x , y=GXY$y,  z=t(ZZ2$z)  , xo=xo, yo=yo, extrap=FALSE)
-
-
-    ##  image(IZ, col=rainbow(100) )
-    
-    ##   H = setplotmat(IZ$x,IZ$y)
-    ##  points(H$x[is.na(IZ$z)] , H$y[is.na(IZ$z)], pch=2)
-    
-    ##  jz = matrix(ZZ2$z, ncol=length(jx), nrow=length(jy), byrow=TRUE)
-    
-
     UZ = IZ$z
     UZ[IZ$z>= .001 ] = NA
 
@@ -55,14 +12,6 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 
     blues = shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
 
-    ##  image(x=xo, y=yo,   z=UZ, col=blues, asp=TRUE , axes=FALSE, xlab="", ylab="" )
-
-    ##  image(x=xo, y=yo,   z=AZ, col=topo.colors(100), asp=TRUE , axes=FALSE, xlab="", ylab="", add=TRUE )
-
-    ##  plotGEOmapXY(japmap, PROJ=PROJ,CZ LIM=c(A$LON[1], A$LAT[1],A$LON[2], A$LAT[2] ) , add=TRUE)
-
-
-    
     CZ = AZ
    ########  TZ[TZ<0] = NA
 
@@ -150,14 +99,8 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     Mollist = matrix(data=C2, ncol=dz[2], nrow=dz[1])
     
     dMOL = dim(Mollist)       
-    
-    
-    PMAT = persp(xo, yo, IZ$z, theta = 0, phi = 90, r=4000, col=Mollist[1:(dMOL[1]-1), 1:(dMOL[2]-1)] , scale = FALSE,
-      ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
-    
 
-    
-    
-    invisible(PMAT)
+    attr(Mollist, 'dMOL') <- dMOL
+    invisible(Mollist)
+
   }
-

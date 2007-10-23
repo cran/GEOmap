@@ -2,6 +2,7 @@
 \alias{linesGEOmapXY}
 \alias{pointsGEOmapXY}
 \alias{textGEOmapXY}
+\alias{rectGEOmapXY}
 
 \title{Add lines, points or text to GEOmap projected plot}
 \description{

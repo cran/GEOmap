@@ -1,0 +1,77 @@
+\name{TOPOCOL}
+\alias{TOPOCOL}
+
+\title{Create Topography ColorMAP}
+\description{
+ Given an x-y-Z create a matrix of colors for plotting in persp
+}
+\usage{
+TOPOCOL(IZ, calcol)
+}
+
+\arguments{
+  \item{IZ}{Matrix of values}
+  \item{calcol}{Color mapping of elevations to rgb colors}
+}
+\details{
+  colors are interpolated between boundaries in the color map
+}
+\value{
+ Matrix of colors suitable for insertion to persp
+}
+
+\author{Jonathan M. Lees<jonathan.lees.edu>}
+
+\seealso{persp}
+\examples{
+
+colk1 = 50
+colk2 = 210
+colk3 = 220
+colk4 = 250
+BWpal2 = list(z1=c(-3000, 0, 2000, 3500),
+r1=c(0,colk1, colk3, colk4),
+g1=c(0,colk1, colk3, colk4),
+b1=c(0,colk1, colk3, colk4),
+z2=c(0, 2000, 3500, 5000),
+r2=c(0,colk2,colk4,255),
+g2=c(0,colk2,colk4,255),
+b2=c(0,colk2,colk4,255),
+note=c("black, black", "grey, grey", "white, white", "white, white")
+)
+
+
+data(volcano)
+
+MYCOLL = TOPOCOL(volcano, BWpal2)
+
+   z <- 2 * volcano        # Exaggerate the relief
+     x <- 10 * (1:nrow(z))   # 10 meter spacing (S to N)
+     y <- 10 * (1:ncol(z))   # 10 meter spacing (E to W)
+     ## Don't draw the grid lines :  border = NA
+     par(bg = "slategray")
+dMOL = attr(  MYCOLL , "dMOL")
+
+     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(dMOL[1]-1), 1:(dMOL[2]-1)], scale = FALSE,
+           ltheta = -120, shade = 0.75, border = NA, box = FALSE)
+
+
+calcol=settopocol()
+MYCOLL = TOPOCOL(volcano, calcol$calcol)
+
+dMOL = attr(  MYCOLL , "dMOL")
+
+  K <- 8 *volcano
+
+MYCOLL = TOPOCOL(K, calcol$calcol)
+
+     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(dMOL[1]-1), 1:(dMOL[2]-1)], scale = FALSE,
+           ltheta = -120, shade = 0.75, border = NA,  box = FALSE)
+
+
+
+
+}
+
+
+\keyword{misc}

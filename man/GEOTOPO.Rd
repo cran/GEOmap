@@ -7,7 +7,7 @@
   plot using the persp program.
 }
 \usage{
-GEOTOPO(TOPO, PLOC, PROJ, calcol)
+GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 }
 
 \arguments{
@@ -15,6 +15,7 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol)
   \item{PLOC}{Location list, includes vectors LON and Lat}
   \item{PROJ}{projection}
   \item{calcol}{color table for coloring elevations above sea level}
+   \item{npoints}{number of points in x-y grid, default=500}
 }
 \details{
   The return matrix PMAT is a rotation matrix used for adding
