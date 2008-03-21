@@ -6,7 +6,7 @@
 Add Lat-Lon points using projection
 }
 \usage{
-addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL, col = gray(0.7), GRID = TRUE, GRIDcol = 1, LABS = NULL, LABcol = 1, BORDER = NULL, TICS = c(1, 1))
+addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL, col = gray(0.7), GRID = TRUE, GRIDcol = 1, LABS = NULL, LABcol = 1, BORDER = NULL, TICS = c(1, 1), xpd=TRUE)
 }
 
 \arguments{
@@ -21,6 +21,7 @@ addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL, col = gray(0.7), GRID = TRUE, GRID
   \item{LABcol}{color for labels}
   \item{BORDER}{add border}
   \item{TICS}{tick marks}
+    \item{xpd}{logical, expand plotting region (see par)}
 }
 
 \value{

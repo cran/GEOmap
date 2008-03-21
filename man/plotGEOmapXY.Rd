@@ -7,7 +7,9 @@
  High Level plot of GEO map
 }
 \usage{
-plotGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(), PMAT = NULL, add = TRUE, GRID = NULL, GRIDcol = 1, MAPcol = NULL, cenlon = 0, shiftlon = 0, linelty = 1, linelwd = 1, NUMB = FALSE, ...)
+plotGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(), PMAT=NULL,
+add = TRUE,  SEL=NULL , GRID = NULL, GRIDcol = 1,
+MAPcol = NULL, cenlon = 0, shiftlon = 0, linelty = 1, linelwd = 1, NUMB = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +18,7 @@ plotGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(), PMAT = NULL, add =
   \item{PROJ}{Projection list }
   \item{PMAT}{Perspective matrix conversion}
   \item{add}{logical, TRUE= add to existing plot}
+  \item{SEL}{Index vector of strokes to be used in plotting,default=NULL(use all that pass other tests) }
   \item{GRID}{logical, TRUE=add grid lines}
   \item{GRIDcol}{color for grid lines}
   \item{MAPcol}{color for maps}

@@ -1,13 +1,14 @@
 `plotGEOmapXY` <-
-function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE, GRID=NULL,
+function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL=NULL, GRID=NULL,
                         GRIDcol=1, MAPcol=NULL, cenlon=0, shiftlon=0, linelty=1, linelwd=1, NUMB=FALSE, ...)
 {
   ###  NUMB = add a number on the stroke to show which stroke it is for later modification
-  ######   MAPcol will override the color in teh map data base.  Good for making BW figures
+  ######   MAPcol will override the color in the map data base.  Good for making BW figures
   if(missing(cenlon)) { cenlon=0 }
   if(missing(GRID)) { GRID=NULL }
     if(missing(GRIDcol)) { GRIDcol=1 }
   if(missing(PMAT)) { PMAT=NULL }
+  if(missing(SEL)) {  SEL=NULL }
   if(missing(linelty)) { linelty=1 }
   if(missing(NUMB)) { NUMB=FALSE }
   if(missing(linelwd)) { linelwd=1 }
@@ -17,14 +18,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE, GRID
 
    PROJ = setPROJ(type=2, LAT0=median(MAP$POINTS$lat), LON0=median(MAP$POINTS$lon-shiftlon) , LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
 
-
-  
-
   }
 
-
-
-  
  ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
 
   if(missing(LIM))
@@ -163,6 +158,19 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE, GRID
 
     }
 
+
+##########    for selecting parts of the map
+  if(!is.null(SEL))
+    {
+
+      slin = which(IN %in% SEL)
+      if(length(slin)>=1)
+        { IN = IN[slin] }
+    }
+ 
+
+  
+
   minx=Inf; maxx=-Inf; miny=Inf; maxy=-Inf;
   
   ##  print(IN)
@@ -262,20 +270,41 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE, GRID
           
           xd = abs(diff(c(x, x[1])))
           ww = which(xd>0.9*xrange)
-          if(!is.null(ww) & length(ww)>0 )
+
+          yd = abs(diff(c(y, y[1])))
+          wwy = which(yd>0.80*yrange)
+
+          
+          if( (!is.null(ww) & length(ww)>0) | (!is.null(wwy) & length(wwy)>0) )
             {
-              print(paste(sep=' ', "################", i, length(x), length(ww)))
-              print(x)
-              ##  print(ww)
-              wdi = c(0, ww, length(x))
+             ## print(paste(sep=' ', "################", i, length(x), length(ww)))
               
-              print(wdi)
-              for(j in 1:(length(wdi)-1))
+              ##  print(ww)
+              if(length(ww)>0)
                 {
-                  if((wdi[j+1])<(wdi[j]+1)) next
-                  ind = seq(from=(wdi[j]+1), to=(wdi[j+1]), by=1)
-                  lines(x[ind], y[ind], col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
+                  zy = insertNA(y, ww)
+                  zx = insertNA(x, ww)
+                 lines(zx, zy, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
+
+                 ### lines(zx, zy, col='blue' , lty=linelty, lwd=linelwd)
+            
+
                 }
+
+
+              if(length(wwy)>0)
+                {
+                  zy = insertNA(y, wwy)
+                  zx = insertNA(x, wwy)
+                       lines(zx, zy, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
+
+                 ###  lines(zx, zy, col='blue' , lty=linelty, lwd=linelwd)
+                  
+                }
+
+
+
+              
 
               
             }
@@ -283,6 +312,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE, GRID
             {
               x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
               y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+              ##   lines(x, y, col='blue' )
               
               lines(x, y, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
             } 

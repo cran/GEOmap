@@ -16,7 +16,12 @@ function(  phi,  lam, PROJ.DATA )
     
     aa = atan( a/b)
     ww = which(b<0)
-    aa[ww] = aa[ww]+sign(a[ww])*pi
+
+      si = sign(a[ww])
+      si[si==0] = 1
+    aa[ww] = aa[ww]+si*pi
+
+   ## aa[phi== 0.0 &   ww ] = aa[phi== 0.0 & ww]+ pi
     
     y = R.MAPK * k0* ( aa  - DEG2RAD*PROJ.DATA$LAT0 );
 

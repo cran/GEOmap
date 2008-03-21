@@ -17,8 +17,8 @@ function(TOPO=TOPO, themap=NULL, shiftlon=0, ALOC=NULL, DOCONT=TRUE, DOIMG=TRUE,
     
     if(missing(TOPO))
       {
-        require(geomapdata)
-        data(ETOPO5)
+        require('geomapdata')
+        data(package='geomapdata',  'ETOPO5')
         TOPO=ETOPO5
 ### 
 ###     fn5 = "/home/bourbon/BATHYM/ETOPO5.DOS"
@@ -26,8 +26,8 @@ function(TOPO=TOPO, themap=NULL, shiftlon=0, ALOC=NULL, DOCONT=TRUE, DOIMG=TRUE,
       }
     if(missing(themap))
       {
-        require(geomapdata)
-        data(worldmap)
+        require('geomapdata')
+        data(package='geomapdata', 'worldmap')
         
         themap=worldmap
 ###  fn = "/home/lees/Site/World/world.leesmap"
@@ -51,7 +51,7 @@ function(TOPO=TOPO, themap=NULL, shiftlon=0, ALOC=NULL, DOCONT=TRUE, DOIMG=TRUE,
     if(missing(usacity)) {  usacity=NULL}
     if(missing(worldcity)) {  worldcity=NULL}
 
-    require(akima)
+    require('akima')
     
     
 

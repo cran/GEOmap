@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.9.27)  28 FEB 2008 09:31
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.9.27)  24 MAR 2008 16:51
 entering extended mode
 **GEOmap.tex
 (./GEOmap.tex
@@ -326,29 +326,72 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 55.
 (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+aett on input line 94.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 95.
 
 (/usr/share/texmf/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1
 
-{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (./GEOma
-p.aux) ) 
+{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <gmap-003.pdf, id=23
+, 433.62pt x 433.62pt>
+File: gmap-003.pdf Graphic file (type pdf)
+
+<use gmap-003.pdf> [2] <gmap-004.pdf, id=33, 433.62pt x 433.62pt>
+File: gmap-004.pdf Graphic file (type pdf)
+
+<use gmap-004.pdf> [3 <./gmap-003.pdf>] [4 <./gmap-004.pdf>]
+<gmap-005.pdf, id=50, 433.62pt x 433.62pt>
+File: gmap-005.pdf Graphic file (type pdf)
+ <use gmap-005.pdf> [5 <./gmap-005.pdf>] <gmap-007.pdf, id=57, 433.62pt x 433.6
+2pt>
+File: gmap-007.pdf Graphic file (type pdf)
+ <use gmap-007.pdf> [6] [7 <./gmap-007.pdf>] <gmap-011.pdf, id=70, 433.62pt x 4
+33.62pt>
+File: gmap-011.pdf Graphic file (type pdf)
+ <use gmap-011.pdf>
+[8] <gmap-012.pdf, id=74, 433.62pt x 433.62pt>
+File: gmap-012.pdf Graphic file (type pdf)
+ <use gmap-012.pdf> [9 <./gmap-011.pdf>] [10 <./gmap-012.pdf>] <gmap-014.pdf, i
+d=91, 433.62pt x 433.62pt>
+File: gmap-014.pdf Graphic file (type pdf)
+
+<use gmap-014.pdf> [11 <./gmap-014.pdf>] [12]
+<gmap-018.pdf, id=106, 433.62pt x 433.62pt>
+File: gmap-018.pdf Graphic file (type pdf)
+ <use gmap-018.pdf>
+<gmap-019.pdf, id=107, 433.62pt x 433.62pt>
+File: gmap-019.pdf Graphic file (type pdf)
+ <use gmap-019.pdf> [13 <./gmap-018.pdf>] <gmap-020.pdf, id=117, 433.62pt x 433
+.62pt>
+File: gmap-020.pdf Graphic file (type pdf)
+ <use gmap-020.pdf> [14 <./gmap-019.pdf>] [15 <./gmap-020.pdf>] <gmap-022.pdf, 
+id=134, 433.62pt x 433.62pt>
+File: gmap-022.pdf Graphic file (type pdf)
+
+<use gmap-022.pdf> [16] [17 <./gmap-022.pdf>]
+<gmap-023.pdf, id=147, 433.62pt x 433.62pt>
+File: gmap-023.pdf Graphic file (type pdf)
+ <use gmap-023.pdf>
+<gmap-024.pdf, id=148, 433.62pt x 433.62pt>
+File: gmap-024.pdf Graphic file (type pdf)
+ <use gmap-024.pdf> [18 <./gmap-023.pdf>] [19 <./gmap-024.pdf>] (./GEOmap.aux) 
+) 
 Here is how much of TeX's memory you used:
- 3235 strings out of 94500
- 40062 string characters out of 1176766
+ 3302 strings out of 94500
+ 41099 string characters out of 1176766
  85184 words of memory out of 1000000
- 6329 multiletter control sequences out of 10000+50000
- 28745 words of font info for 69 fonts, out of 500000 for 2000
+ 6381 multiletter control sequences out of 10000+50000
+ 28913 words of font info for 70 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
- 35i,6n,24p,242b,282s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 35i,6n,24p,242b,284s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 34 PDF objects out of 300000
+ 166 PDF objects out of 300000
  0 named destinations out of 131072
- 1 words of extra memory for PDF output out of 65536
-</usr/share/texmf/fonts/type1/bluesky/cm/cmsltt10.pfb></usr/share/texmf
-/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmbx
-12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf/font
-s/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb
-></usr/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb>
-Output written on GEOmap.pdf (4 pages, 68117 bytes).
+ 66 words of extra memory for PDF output out of 65536
+</usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/share/texmf/fonts/ty
+pe1/bluesky/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsltt10.pfb
+></usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/typ
+e1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></us
+r/share/texmf/fonts/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bl
+uesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb>
+Output written on GEOmap.pdf (19 pages, 10176524 bytes).

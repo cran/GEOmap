@@ -1,5 +1,5 @@
 `addLLXY` <-
-function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, LABS=NULL, LABcol=1, BORDER=NULL, TICS=c(1,1))
+function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, LABS=NULL, LABcol=1, BORDER=NULL, TICS=c(1,1), xpd=TRUE )
   {
 
     if(missing(col)) {col=gray(0.7)}
@@ -10,6 +10,8 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
     
     if(missing(BORDER)) { BORDER=NULL }
     if(missing(TICS)) { TICS=NULL }
+    if(missing(xpd)) { xpd=TRUE }
+    
 
 
     HL = 0
@@ -30,7 +32,7 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
                 xy$y = tem$y
               }
 
-            lines(xy$x, xy$y, col=GRIDcol, lty=2, lwd=.4, xpd=TRUE )
+            lines(xy$x, xy$y, col=GRIDcol, lty=2, lwd=.4, xpd=xpd )
             HL = HL +1
             tpoints[[HL]] = xy
                     
@@ -48,7 +50,7 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
                 xy$y = tem$y
               }
 
-            lines(xy$x, xy$y,  col=GRIDcol, lty=2, lwd=.4, xpd=TRUE )
+            lines(xy$x, xy$y,  col=GRIDcol, lty=2, lwd=.4, xpd=xpd )
             HL = HL +1
             tpoints[[HL]] = xy
 
@@ -99,13 +101,13 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
             
             if(mins[k]==0)
               {
-                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=TRUE, pos=1, col=col)
+                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=1, col=col)
                 
                 
               }
             else
               {
-                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=TRUE, pos=1, col=col)
+                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=1, col=col)
 
               }
           }
@@ -127,11 +129,11 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
           {
             if(mins[k]==0)
               {
-               text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=TRUE, pos=2, col=col)
+               text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=2, col=col)
               }
             else
               {
-                 text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=TRUE, pos=2, col=col)
+                 text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=2, col=col)
                 
               }
           }
