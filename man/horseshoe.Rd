@@ -24,9 +24,7 @@ sn = 0), col = "black", lwd = lwd, fill=FALSE)
   \item{fill}{logical, TRUE=fill}
   
 }
-\details{
-  
-}
+
 \value{
  Grapical Side Effect
 }

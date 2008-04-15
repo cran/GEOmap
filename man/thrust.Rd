@@ -19,9 +19,7 @@ thrust(x, y, h = 1, N=1, REV = FALSE, endtol=0.1, col = "black", ...)
   \item{col}{color of teeth and line}
   \item{\dots}{graphical parameters}
 }
-\details{
- 
-}
+
 \value{
  Graphical Side effect
 }

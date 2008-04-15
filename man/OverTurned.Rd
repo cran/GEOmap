@@ -24,9 +24,7 @@ OverTurned(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2, h1 = 0.5, 
   \item{col}{color of teeth and line}
   \item{\dots}{graphical parameters}
 }
-\details{
- 
-}
+
 \value{
  Graphical Side effect
 }
