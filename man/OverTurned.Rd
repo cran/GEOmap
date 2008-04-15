@@ -28,7 +28,7 @@ OverTurned(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2, h1 = 0.5, 
 \value{
  Graphical Side effect
 }
-\references{}
+
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
 \seealso{PointsAlong}

@@ -30,7 +30,7 @@
 data(NSWath)
 for(i in 1:length(NSWath))
 {
-get(getOption("device"))()
+dev.new()
 LAB = attr(NSWath[[i]], "LAB")
 
 XSECwin( NSWath[[i]] , iseclab=i, xLAB=LAB , labs=NULL, demo=TRUE  )   

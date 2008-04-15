@@ -18,19 +18,30 @@ function(MAP, NEGLON=FALSE)
       j1 = MAP$STROKES$index[i]+1
       j2 = j1+MAP$STROKES$num[i]-1
 
-      blon  = range(MAP$POINTS$lon[j1:j2])
-      blat  = range(MAP$POINTS$lat[j1:j2])
-      LAT1[i] = blat[1]
-      LAT2[i] = blat[2]
-      LON1[i] = blon[1]
-      LON2[i] = blon[2]
+      lon=MAP$POINTS$lon[j1:j2]
+      lat=MAP$POINTS$lat[j1:j2]
+
+      
+      proj = setPROJ(type = 2, LAT0 =lat[1] , LON0 =lon[1] )
+
+      xy = GLOB.XY(lat, lon, proj)
+      xr = range(xy$x)
+      yr = range(xy$y)
+      LL =  XY.GLOB(xr[1], yr[1], proj)
+      UR =  XY.GLOB(xr[2], yr[2], proj)
+      
+      LAT1[i] = LL$lat
+      LAT2[i] = UR$lat
+      LON1[i] = LL$lon
+      LON2[i] = UR$lon
       
     }
 
  MAP$STROKES$LAT1=LAT1
  MAP$STROKES$LAT2=LAT2
- MAP$STROKES$LON1=LON1
- MAP$STROKES$LON2=LON2
+  
+ MAP$STROKES$LON1=fmod( LON1, 360)
+ MAP$STROKES$LON2=fmod(LON2, 360)
 
   if(NEGLON==FALSE)
     {

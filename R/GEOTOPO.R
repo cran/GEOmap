@@ -158,6 +158,6 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 
     
     
-    invisible(PMAT)
+    invisible(list(PMAT=PMAT, xo=xo, yo=yo, IZ=IZ , Mollist=Mollist, dMOL=dMOL))
   }
 

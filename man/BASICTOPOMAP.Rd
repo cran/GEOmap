@@ -32,9 +32,8 @@ BASICTOPOMAP(xo, yo, DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON, PROJ = PROJ, 
 }
 
 \author{Jonathan M. Lees<jonathan.lees.edu>}
-\note{ 
-}
-\seealso{}
+
+\seealso{DOTOPOMAPI, GEOTOPO}
 \examples{
 
 library(geomapdata)

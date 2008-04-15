@@ -13,8 +13,7 @@ insertNA(y, ind)
 }
 \details{
   The vector is parsed out and NA values are inserted where
-  after the index values provided.  An NA is also inserted at the end
-  of the vector.
+  after the index values provided.  
 }
 \value{
   \item{v}{new vector with NA's}

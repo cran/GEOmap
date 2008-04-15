@@ -29,8 +29,5 @@ lcgc(phiorg, lamorg, ex, why)
 
 
 \seealso{gclc}
-\examples{
-
-}
 
 \keyword{misc}

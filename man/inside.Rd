@@ -23,8 +23,7 @@ inside(A, POK)
 }
 
 \author{Jonathan M. Lees <jonathan.lees@unc.edu>}
-\note{
-}
+
 \seealso{Lintersect, ccw, inpoly}
 \examples{
 

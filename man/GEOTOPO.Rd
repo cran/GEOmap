@@ -23,13 +23,21 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 }
 \value{
  
-  \item{PMAT}{Matrix from persp, used for adding other geographic information}
+  \item{PMAT}{Matrix from persp, used for adding other geographic
+    information}
+  \item{xo}{x-coordinates}
+  \item{ yo}{y-coordinates}
+   \item{IZ}{interpolated elevations}
+   \item{Mollist}{matrix of RGB Colors}
+   \item{dMOL}{dimensions of Mollist}
+
+  
+  
  
 }
 
 \author{Jonathan M. Lees<jonathan.lees.edu>}
-\note{
-}
+
 \seealso{subsetTOPO,  settopocol,  subsetTOPO, persp, DOTOPOMAPI}
 \examples{
 
@@ -43,6 +51,15 @@ PLOC=list(LON=c(137.008, 141.000),LAT=c(34.000, 36.992),
  PROJ = setPROJ(type=2, LAT0=mean(PLOC$y) , LON0=mean(PLOC$x) )
 COLS = settopocol()
 JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol)
+
+############  this plot can be duplicated by using the output or GEOTOPO
+
+
+ PMAT = persp(JMAT$xo, JMAT$yo, JMAT$IZ$z, theta = 0, phi = 90, r=4000,
+col=JMAT$Mollist[1:(JMAT$dMOL[1]-1), 1:(JMAT$dMOL[2]-1)] , scale = FALSE,
+      ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
+
+
 
 }
 

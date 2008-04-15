@@ -21,7 +21,7 @@ SETPOLIMAP()
 
   
 }
-\references{}
+
 \author{Jonathan M. Lees<jonathan.lees.edu>}
 
 \seealso{selectPOLImap}

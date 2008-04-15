@@ -68,7 +68,7 @@ function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
     {
       ###screens(2)
       cdev = dev.cur()
-      get(getOption("device"))()
+      dev.new()
       plot(RX, LZ, type='l', xlab="m", ylab="m", ylim=range(jz, na.rm=TRUE), asp=asp)
       points( c(pnt1, pnt2), c(LZ[px1], LZ[px2] ), pch=c(6,8), col=c(2,4) )
 

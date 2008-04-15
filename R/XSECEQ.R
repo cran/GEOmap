@@ -238,7 +238,9 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             
             SW[[iseclab]]$proj = PROJ
             
-            get(getOption("device"))()
+           #### get(getOption("device"))()
+            dev.new()
+            
             xlabs=c("DONE","REFRESH", "PS" )
             XSECwin( SW[[iseclab]] , iseclab, LAB , xlabs, demo=FALSE  )   
             
@@ -293,8 +295,8 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
 
                 SW[[iseclab]]$proj = PROJ
                 
-                 get(getOption("device"))()
-                
+              ####   get(getOption("device"))()
+                dev.new()
                 xlabs=c("DONE","REFRESH", "PS" )
                 XSECwin( SW[[iseclab]] , iseclab, LAB , xlabs, demo=TRUE  )   
                 

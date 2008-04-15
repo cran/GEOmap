@@ -33,7 +33,7 @@ geoLEGEND(names, shades, zx, zy, nx, ny)
   of user coordinates.
  
 }
-\seealso{}
+
 \examples{
 
 \dontrun{

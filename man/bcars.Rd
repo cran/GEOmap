@@ -27,7 +27,7 @@ bcars(x, y, h1 = 1, h2 = 0.3, rot, col = "black", border = "black")
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
-\seealso{}
+
 \examples{
 G=list()
 G$x=c(-1.0960,-0.9942,-0.8909,-0.7846,-0.6738,-0.5570,-0.4657,-0.3709,

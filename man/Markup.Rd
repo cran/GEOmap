@@ -21,8 +21,7 @@ Markup(MM = list(), sel = 1, cex = 1, ...)
 }
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
-\note{
-}
+
 \seealso{setMarkup, plotGEOmapXY}
 \examples{
 

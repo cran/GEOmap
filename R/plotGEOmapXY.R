@@ -135,22 +135,44 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
 
   if(TRUE)
     {
-      y1 = MAP$STROKES$LAT1
-      y2 = MAP$STROKES$LAT2
-      x1 =   fmod(MAP$STROKES$LON1, 360)
-      x2 =   fmod(MAP$STROKES$LON2, 360)
+ ###     y1 = MAP$STROKES$LAT1
+ ###     y2 = MAP$STROKES$LAT2
+ ###     x1 =   fmod(MAP$STROKES$LON1, 360)
+ ###     x2 =   fmod(MAP$STROKES$LON2, 360)
       
       
-      y3 = LIM[2]
-      y4 = LIM[4]
-      x3 =  fmod(LIM[1], 360)
-      x4 =  fmod(LIM[3], 360)
+ ###      y3 = LIM[2]
+ ###      y4 = LIM[4]
+ ###      x3 =  fmod(LIM[1], 360)
+ ###      x4 =  fmod(LIM[3], 360)
+
+
+ ###  STRKXYLL = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
+ ###      STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
+
       
-      
-      
+      y1 = MAP$STROKES$y1
+      y2 = MAP$STROKES$y2
+      x1 = MAP$STROKES$x1
+      x2 = MAP$STROKES$x2
+
+       XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
+      LLlim$x = XYLIM$x
+      LLlim$y = XYLIM$y
+
+ y3 =XYLIM$y[1]
+   y4 =XYLIM$y[2]
+ x3 =XYLIM$x[1]
+   x4 = XYLIM$x[2]
+     
       OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
       
       IN = which(!OUT)
+
+
+
+
+      
     }
   else
     {
@@ -193,8 +215,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
           JEC = j1:j2
           x = MAP$POINTS$x[JEC]
           y = MAP$POINTS$y[JEC]
-          x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
-          y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+          x[x<LLlim$x[1] |  x>LLlim$x[2] ] = NA
+          y[y<LLlim$y[1] |  y>LLlim$y[2] ] = NA
           minx = min(c(minx,x), na.rm=TRUE)
           maxx = max(c(maxx,x), na.rm=TRUE)
           miny = min(c(miny,y), na.rm=TRUE)
@@ -310,8 +332,13 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
             }
           else
             {
-              x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
-              y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+             ## x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
+             ## y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+              x[MAP$POINTS$x[JEC]<LLlim$x[1] |  MAP$POINTS$x[JEC]>LLlim$x[2] ] = NA
+              y[MAP$POINTS$y[JEC]<LLlim$y[1] |  MAP$POINTS$y[JEC]>LLlim$y[2] ] = NA
+
+
+              
               ##   lines(x, y, col='blue' )
               
               lines(x, y, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)

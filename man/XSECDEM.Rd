@@ -31,7 +31,7 @@ XSECDEM(Data, labs, demo=FALSE)
 \value{
   No return values
 }
-\references{  } 
+
 \author{Jonathan M. Lees <jonathan.lees@unc.edu>}
 \note{
   This code is designed as an example of how to set up a Really Poor

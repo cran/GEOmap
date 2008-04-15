@@ -23,7 +23,7 @@ vector of members of a list
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
-\seealso{ }
+
 \examples{
 
 z = list()

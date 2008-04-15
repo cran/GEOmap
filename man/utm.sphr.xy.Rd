@@ -30,8 +30,5 @@ utm.sphr.xy(phi, lam, PROJ.DATA)
 \author{Jonathan M. Lees<jonathan.lees.edu>}
 
 \seealso{GLOB.XY, setPROJ}
-\examples{
-
-}
 
 \keyword{misc}
