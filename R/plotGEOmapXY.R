@@ -22,6 +22,10 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
 
  ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
 
+  ###  LIM can be a vector (lon1, lat1, lon2, lat2)
+  ###  or LIM can be a list: list(lon=c(lon1, lon2), lat=c(lat1, lat2))
+
+  
   if(missing(LIM))
     {
       lon = fmod(MAP$POINTS$lon-shiftlon, 360)
@@ -53,12 +57,6 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
   LLlim = list(lat=LIM[c(2,4)], lon=LIM[c(1,3)])
   
   if(missing(add)) { add=FALSE }
-
-
-  if(exists("PROJ.DATA")==FALSE)
-    {
-      setPROJ(type=2, LAT0=median(MAP$POINTS$lat), LON0=median(MAP$POINTS$lon-shiftlon) , LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
-    }
 
   if(is.null(MAP$POINTS$z))
      {

@@ -6,7 +6,7 @@
   vector of areas of polygons in map
 }
 \usage{
-geoarea(MAP, proj, ncut=10)
+geoarea(MAP, proj=NULL, ncut=10)
 }
 
 \arguments{
@@ -16,7 +16,11 @@ geoarea(MAP, proj, ncut=10)
   
 }
 \details{
-  Uses splancs function
+  Uses splancs function.  If proj is NULL then the project is
+  reset to UTM spherical for each element seperately to calculate the
+  area in km.
+  ncut is used to eliminate area calculations with strokes less than the
+  specified number.
 }
 \value{
  vector of areas

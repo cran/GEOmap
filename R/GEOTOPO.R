@@ -36,6 +36,7 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     xo = seq(from=range(GXY$x)[1], to=range(GXY$x)[2], length=npoints)
     yo = seq(from=range(GXY$y)[1], to=range(GXY$y)[2], length=npoints)
 
+    ##########   here we transpose the topo data to fit the next programs
     IZ = interp(x=GXY$x , y=GXY$y,  z=t(ZZ2$z)  , xo=xo, yo=yo, extrap=FALSE)
 
 

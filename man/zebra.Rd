@@ -6,7 +6,8 @@
   Plot a zebra style horizontal scale on a projected map.
 }
 \usage{
-zebra(x, y, Dx, dx, dy, lab = "", units = "", col = c("black", "white"), cex = 1, PMAT = NULL)
+zebra(x, y, Dx, dx, dy, lab = "", units = "", col = c("black", "white"),
+cex = 1, xpd=TRUE, PMAT = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +20,7 @@ zebra(x, y, Dx, dx, dy, lab = "", units = "", col = c("black", "white"), cex = 1
   \item{units}{units}
   \item{col}{color}
   \item{cex}{character expansion}
+  \item{xpd}{logical, graphic parameter for clipping (see par) }
   \item{PMAT}{3D projection matrix from persp}
 }
 \details{

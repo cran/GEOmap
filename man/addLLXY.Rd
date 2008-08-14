@@ -30,7 +30,7 @@ addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL, col = gray(0.7), GRID = TRUE, GRID
 
 \author{Jonathan M. Lees<jonathan.lees.edu>}
 
-\seealso{plotGEOmapXY}
+\seealso{plotGEOmapXY, sqrTICXY}
 \examples{
 
 library(geomapdata)
@@ -39,18 +39,25 @@ library(geomapdata)
 data(fujitopo)
 data(japmap)
 
-PLOC=list(LON=range(fujitopo$lon), x=range(fujitopo$lon), LAT=range(fujitopo$lat), y=range(fujitopo$lat))
+PLOC=list(LON=range(c( japmap$STROKES$LON1,japmap$STROKES$LON2) ),
+LAT=range(c( japmap$STROKES$LAT1,japmap$STROKES$LAT2) ))
+PLOC$x = PLOC$LON
+PLOC$y = PLOC$LAT
+
 PROJ = setPROJ(type=2, LAT0=mean(PLOC$y) , LON0=mean(PLOC$x) )
 
-plotGEOmapXY(japmap, PROJ=PROJ, add=FALSE)
+plotGEOmapXY(japmap, PROJ=PROJ, add=FALSE, axes=FALSE, xlab="", ylab="")
 A = PLOC
 
    PLAT =  pretty(A$LAT)
     PLAT = c(min(A$LAT),  PLAT[PLAT>min(A$LAT) & PLAT<max(A$LAT)],max(A$LAT)) 
   PLON  = pretty(A$LON)
         PLON = c(min(A$LON), PLON[PLON>min(A$LON) & PLON<max(A$LON)], max(A$LON))
-     
+
+
 addLLXY(PLAT,  PLON, PROJ=PROJ, LABS=TRUE, PMAT=NULL, TICS=c(.1,.1) )
+
+###############
 
 
 }
