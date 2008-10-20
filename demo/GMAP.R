@@ -66,6 +66,6 @@ readline("Hit Return>")
 PMAT =GEOTOPO(ETOPO5, PLOC, PROJ, calcol$calcol)
 
 
-plotGEOmapXY(japmap, PROJ=PROJ, LIM=c(PLOC$LON[1], PLOC$LAT[1],PLOC$LON[2], PLOC$LAT[2] ) , PMAT=PMAT, add=TRUE)
+plotGEOmapXY(japmap, PROJ=PROJ, LIM=c(PLOC$LON[1], PLOC$LAT[1],PLOC$LON[2], PLOC$LAT[2] ) , PMAT=PMAT$PMAT , add=TRUE)
 
 

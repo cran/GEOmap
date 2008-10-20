@@ -12,8 +12,8 @@ Topographic and Geologic Mapping
 \tabular{ll}{
 Package: \tab GEOmap\cr
 Type: \tab Package\cr
-Version: \tab 1.2-0\cr
-Date: \tab 2008-08-14\cr
+Version: \tab 1.3-0\cr
+Date: \tab 2008-10-20\cr
 License: \tab GPL\cr
 }
 Set of routines for making Map Projections (forward and inverse), Topographic Maps, Perspective plots, geologi
@@ -39,6 +39,11 @@ GEOsymbols
 locworld
 plotGEOmap
 plotGEOmapXY
+linesGEOmapXY
+rectGEOmapXY
+textGEOmapXY
+pointsGEOmapXY
+insideGEOmapXY
 plotusa
 plotUTM
 plotworldmap
@@ -67,7 +72,9 @@ SynAnticline
 SSfault}
 
 \item{Data manipulation:}{
+getGEOmap
 boundGEOmap
+SELGEOmap
 geoarea
 GEOTOPO
 getGEOperim
@@ -82,6 +89,7 @@ settopocol
 subsetTOPO}
 
 \item{Misc:}{
+getgreatarc
 ccw
 difflon
 DUMPLOC

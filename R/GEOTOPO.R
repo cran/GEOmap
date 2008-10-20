@@ -154,9 +154,9 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     
     
     PMAT = persp(xo, yo, IZ$z, theta = 0, phi = 90, r=4000, col=Mollist[1:(dMOL[1]-1), 1:(dMOL[2]-1)] , scale = FALSE,
-      ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
+      ltheta = 120, lphi=30, shade = 0.75, border = NA, expand=0.001, box = FALSE )
     
-
+  
     
     
     invisible(list(PMAT=PMAT, xo=xo, yo=yo, IZ=IZ , Mollist=Mollist, dMOL=dMOL))
