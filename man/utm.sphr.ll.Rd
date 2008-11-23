@@ -6,6 +6,7 @@
 \alias{merc.sphr.ll}
 \alias{stereo.sphr.ll}
 \alias{utm.elps.ll}
+\alias{utm.wgs84.ll}
 
 \title{Map projection}
 \description{

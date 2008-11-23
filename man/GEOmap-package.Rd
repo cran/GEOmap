@@ -12,7 +12,7 @@ Topographic and Geologic Mapping
 \tabular{ll}{
 Package: \tab GEOmap\cr
 Type: \tab Package\cr
-Version: \tab 1.4-0\cr
+Version: \tab 1.4-2\cr
 Date: \tab 2008-11-23\cr
 License: \tab GPL\cr
 }
@@ -97,7 +97,7 @@ difflon
 DUMPLOC
 fmod
 getmem
-getspline
+getsplineG
 ilocator
 inpoly
 inside

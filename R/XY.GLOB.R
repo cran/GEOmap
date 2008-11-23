@@ -32,6 +32,10 @@ function(x, y, PROJ.DATA)
       {
         LL = equid.cyl.ll(PROJ.DATA$LON0 ,PROJ.DATA$LAT0 , x , y)
       }
+    if(PROJ.DATA$type==7)
+      {
+        LL = utm.wgs84.ll( x , y, PROJ.DATA)
+      }
     
     if(PROJ.DATA$type==99)
       {

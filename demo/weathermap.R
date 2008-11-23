@@ -31,7 +31,7 @@ js1$x=c(-2264.91,-1959.38,-1719.32,-1102.81, -808.19, -480.83, -104.38,  272.08,
 js1$y=c(1803.45,1594.03,1357.04,1125.57, 883.07, 602.00, 249.27, 199.67, 276.83, 453.19, 684.66, 965.74,1197.21,1312.95)
 
 
-jetstream  =getspline(js1$x, js1$y, kdiv=20)
+jetstream  =getsplineG(js1$x, js1$y, kdiv=20)
 
 
 ###  after clicking on the screen for the cold front
@@ -39,7 +39,7 @@ c1=list()
 c1$x=c(-508.113,  26.566, 326.641, 490.318)
 c1$y=c( 673.64,1037.39,1384.60,1753.85)
 
-coldfront =   getspline(c1$x, c1$y, kdiv=20)
+coldfront =   getsplineG(c1$x, c1$y, kdiv=20)
 
 ###  after clicking on the screen for the warm front1
 
@@ -47,7 +47,7 @@ w1=list()
 w1$x=c( 499.668, 614.244, 824.299, 996.162,1101.190,1153.704,1210.992,1249.184)
 w1$y=c(1758.352,1657.081,1406.314,1150.725, 986.761, 885.490, 750.462, 678.125)
 
-warmfront =   getspline(w1$x, w1$y, kdiv=20)
+warmfront =   getsplineG(w1$x, w1$y, kdiv=20)
 
 
 #####  make plot of usa, projected with UTM parameters provided above:
@@ -94,7 +94,7 @@ LOW$x=c(554.03313,618.79783,595.66758,387.49533,211.70544,234.83568,373.61718, 5
 LOW$y=c(1841.8045,1916.5726,2024.0517,2052.0898,1967.9757,1832.4585,1771.7095, 1841.8045)
 
 
-lowp =   getspline(LOW$x, LOW$y, kdiv=20)
+lowp =   getsplineG(LOW$x, LOW$y, kdiv=20)
 
 
 sk = 1.3

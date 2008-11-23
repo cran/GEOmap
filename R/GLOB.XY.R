@@ -31,6 +31,14 @@ function(LAT, LON, PROJ.DATA)
       {
         XY = equid.cyl.xy(PROJ.DATA$LON0 ,PROJ.DATA$LAT0 , LAT, LON )
       }
+    if(PROJ.DATA$type==7)
+      {
+        XY = utm.wgs84.xy( LAT, LON, PROJ.DATA)
+      }
+
+
+
+    
      if(PROJ.DATA$type==99)
       {
         XY =  gclc(PROJ.DATA$LAT0, PROJ.DATA$LON0, LAT, LON)

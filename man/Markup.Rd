@@ -26,10 +26,15 @@ Markup(MM = list(), sel = 1, cex = 1, ...)
 \examples{
 
 \dontrun{
-dumplot()
+
+   plot(c(0, 1), c(0, 1), main = "this is a test", sub = "sutitle",
+        xlab = "this is x", ylab = "this is y")
+
 LABS = c("this is", "a", "test")
 
 MUP = setMarkup(LABS)
+
+
 }
 
 

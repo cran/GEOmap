@@ -21,7 +21,7 @@ getgreatarc(lat1, lon1, lat2, lon2, num)
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
-
+\seealso{getgreatarc, distaz}
 \examples{
 PARIS = c(48.8666666666667, 2.33333333333333)
 RIODEJANEIRO =c( -22.9,  -43.2333333333333)

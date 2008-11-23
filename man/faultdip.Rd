@@ -23,14 +23,14 @@ faultdip(x, y, rot = 0, h = 1, lab = "")
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
-\seealso{perpen, PointsAlong, getspline}
+\seealso{perpen, PointsAlong, getsplineG}
 \examples{
 
 ff=list()
 ff$x=c(-4.850,-4.700,-3.934,-2.528, 0.603, 2.647, 3.861, 2.626)
 ff$y=c(-4.045,-2.087,-0.710, 0.172, 1.291, 2.087,-0.753,-4.131)
 
-G =getspline(ff$x, ff$y, kdiv=20)
+G =getsplineG(ff$x, ff$y, kdiv=20)
 g = PointsAlong(G$x, G$y, N=5)
 
 

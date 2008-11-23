@@ -15,8 +15,8 @@ function(type=1, LAT0=0, LON0=0 ,LAT1=0,  LAT2=0,LATS=NULL, LONS=NULL, DLAT=NULL
     if(missing(FE)) { FE=0}	
     if(missing(FN)) { FN=0}
 
-    types = c("none", "merc.sphr", "utm.sphr", "lambert.cc", "stereo.sphr", "utm.elps", "equid.cyl" , "OLDGCLC" )
-    typnums = c(0,1,2,3,4,5,6,99 )
+    types = c("none", "merc.sphr", "utm.sphr", "lambert.cc", "stereo.sphr", "utm.elps", "equid.cyl" , "utm.wgs84", "OLDGCLC" )
+    typnums = c(0,1,2,3,4,5,6, 7, 99 )
     
     if(is.character(type))
       {
@@ -32,8 +32,15 @@ function(type=1, LAT0=0, LON0=0 ,LAT1=0,  LAT2=0,LATS=NULL, LONS=NULL, DLAT=NULL
     
     
     name = types[ itype]
-    
-    LON0=fmod(LON0, 360)
+
+    if(type==7)
+      {
+        LON0=LON0
+      }
+    else
+      {
+        LON0=fmod(LON0, 360)
+      }
     
     MAPconstants()
     
