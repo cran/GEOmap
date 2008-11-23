@@ -1,5 +1,5 @@
 `plotGEOmap` <-
-function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SEL=NULL, MAPcol=NULL, PLOT=TRUE, ...)
+function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SEL=NULL, MAPcol=NULL, MAPstyle=NULL, border=NA,  PLOT=TRUE, PRINT=FALSE, BB=FALSE, ...)
 {
   if(missing(add)) { add=FALSE }
   if(missing(NUMB)) { NUMB=FALSE }
@@ -7,7 +7,10 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SE
   if(missing(SEL)) {  SEL=NULL }
   if(missing(PLOT)) {  PLOT=TRUE }
   if(missing(MAPcol)) { MAPcol=NULL  }
-  
+  if(missing(MAPstyle)) { MAPstyle=NULL  }
+  if(missing(border)) { border=NA  }
+   if(missing(PRINT)) {  PRINT=FALSE }
+   if(missing(BB)) {  BB=FALSE }
   
   if(missing(LIM))
     {
@@ -35,14 +38,19 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SE
     }
   
 if(!is.null(MAPcol)) {  MAP$STROKES$col = rep(MAPcol, length(MAP$STROKES$col))  }
+if(!is.null(MAPstyle)) {  MAP$STROKES$style = rep(MAPstyle, length(MAP$STROKES$style))  }
+
+
+###   cat(paste(sep=" ", "###### plotGEOmap", paste(collapse=" ",LIMP) ) , sep="\n" )
+  
 ###  determine stroke inclusion
 
 ###  (x2>=x3)&&(x4>=x1)&& (y2>=y3)&&(y4>=y1)
 
   y1 = MAP$STROKES$LAT1
   y2 = MAP$STROKES$LAT2
-  x1 = fmod(MAP$STROKES$LON1, 360)
-  x2 = fmod(MAP$STROKES$LON2, 360)
+  x1 = fmod(MAP$STROKES$LON1-shiftlon, 360)
+  x2 = fmod(MAP$STROKES$LON2-shiftlon, 360)
 
   y3 = LIM[2]
   y4 = LIM[4]
@@ -99,7 +107,16 @@ if(!is.null(MAPcol)) {  MAP$STROKES$col = rep(MAPcol, length(MAP$STROKES$col))  
 
   if(length(IN)<1) return(0)
 
-  ###  print(IN)
+  ###
+
+  if(PRINT)
+    {
+     ### print(IN)
+      print(paste(collapse=",", IN))
+ 
+     ### print(sep="", "C(",  paste(collapse=",", IN), ")")
+
+    }
 
      for(i in IN)
     {
@@ -109,31 +126,87 @@ if(!is.null(MAPcol)) {  MAP$STROKES$col = rep(MAPcol, length(MAP$STROKES$col))  
       j2 = j1+MAP$STROKES$num[i]-1
 
       LONS = fmod(MAP$POINTS$lon[j1:j2]-shiftlon, 360)
-
+      LATS = MAP$POINTS$lat[j1:j2]
        if(NUMB==TRUE)
         {
-          points(LONS[1], MAP$POINTS$lat[j1], pch='.', col="red")
-          text( LONS[1], MAP$POINTS$lat[j1], labels=i, pos=3)
+
+          
+          numblats = length(LATS)
+          points(LONS[1], LATS[1], pch=1, col="red")
+          points(LONS[numblats], LATS[numblats], pch=6, col="blue")
+          
+          text( LONS[numblats], LATS[numblats] , labels=i, pos=3)
+          text( LONS[1], LATS[1], labels=i, pos=4)
+          ##  cat(paste(sep=" ",i,",") )
         }
+
+      
 
 
       if(MAP$STROKES$style[i]==1)
         {
-          points(LONS, MAP$POINTS$lat[j1:j2], col=MAP$STROKES$col[i])
+          points(LONS, LATS, col=MAP$STROKES$col[i])
         }
+       if(BB==TRUE)
+        {
+          rect(x1[i], y1[i], x2[i], y2[i], col=grey(.7) )
 
+        }
       
       if(MAP$STROKES$style[i]==2)
         {
           mline = LONS
           dline = c(0, abs(diff(mline)))
           mline[dline>100] = NA
-          lines( mline, MAP$POINTS$lat[j1:j2], col=MAP$STROKES$col[i])
+          lines( mline, LATS, col=MAP$STROKES$col[i])        
         }
 
       if(MAP$STROKES$style[i]==3)
         {
-          polygon(LONS, MAP$POINTS$lat[j1:j2], border=FALSE, col=MAP$STROKES$col[i])
+
+          mline = LONS
+           dline = abs(diff(mline))
+
+          ww  = which(dline>100)
+         ##  mline[dline>100] = NA
+          if(any(dline>100))
+            {
+            ##   print(paste('plotGEOmap', i, "wrapping", length(ww)  ))
+              
+         ## MM = fixCoastwrap(list(x=LONS, y=LATS), 100)
+              if(MAP$STROKES$nam[i]=="ANTARCMAP")
+                {
+                  u = par("usr")
+                  MM = fixCoastwrap(list(x=LONS, y=LATS), 100)
+                  polygon(MM$x, MM$y, border=border, col=MAP$STROKES$col[i])
+                  
+                }
+              else
+                {
+
+              
+              xshift = LONS[1]
+              v = fmod(LONS-xshift, 360)
+              x = v+xshift
+              polygon(x, LATS,border=border, col=MAP$STROKES$col[i] )
+              wv = which.max(x)
+              xshift = (LONS[wv])
+              v = x-x[wv]+LONS[wv]
+              polygon(v,LATS,border=border, col=MAP$STROKES$col[i] )
+              
+            }
+         
+            }
+          else
+            {
+              MM = list(x=LONS, y=LATS)
+              polygon(MM$x, MM$y, border=border, col=MAP$STROKES$col[i])
+            }
+          
+          
+          
+          
+          
         }
 
 

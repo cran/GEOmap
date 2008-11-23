@@ -16,9 +16,8 @@ getGEOmap(fn)
   Files are stored as a pair:  rootname.strks and rootname.pnts
 }
 \value{
-  GEOmapobject:
-  \item{ STROKES}{List of stroke information:
-    \item{nam}{name of stroke}
+  \item{STROKES}{List of stroke information:}
+  \item{nam}{name of stroke}
   \item{num}{number of points}
   \item{index}{index where points start}
   \item{col}{color}
@@ -28,8 +27,7 @@ getGEOmap(fn)
   \item{LAT2}{bounding box upper right Lat}
   \item{LON1}{bounding box lower left Lon}
   \item{LON2}{bounding box upper right  Lon}
-}
-  \item{POINTS}{List of point LL coordinates, list(lat, lon) }
+  \item{POINTS}{List of point LL coordinates, list(lat, lon)}
   \item{PROJ}{optional projection parameters}
 }
 

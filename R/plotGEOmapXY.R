@@ -1,6 +1,6 @@
 `plotGEOmapXY` <-
 function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL=NULL, GRID=NULL,
-                        GRIDcol=1, MAPcol=NULL, cenlon=0, shiftlon=0, linelty=1, linelwd=1, NUMB=FALSE, ...)
+                        GRIDcol=1, MAPcol=NULL, MAPstyle=NULL, border=NA, cenlon=0, shiftlon=0, linelty=1, linelwd=1, NUMB=FALSE, ...)
 {
   ###  NUMB = add a number on the stroke to show which stroke it is for later modification
   ######   MAPcol will override the color in the map data base.  Good for making BW figures
@@ -13,6 +13,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
   if(missing(NUMB)) { NUMB=FALSE }
   if(missing(linelwd)) { linelwd=1 }
   if(missing(MAPcol)) { MAPcol=NULL }
+  if(missing(MAPstyle)) { MAPstyle=NULL }
+  if(missing(border)) { border=NA  }
   if(missing(shiftlon)) {  shiftlon=0 }
   if(missing(PROJ)) {
 
@@ -69,6 +71,9 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
     {
       MAPXY = GLOB.XY(MAP$POINTS$lat ,  fmod( MAP$POINTS$lon-shiftlon, 360) , PROJ )
 
+
+      MAXDISTX = max( MAPXY$x) - min(MAPXY$x)
+      
       if(is.null(PMAT))
         {
           MAP$POINTS$x = MAPXY$x
@@ -233,6 +238,12 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
       MAP$STROKES$col = rep(MAPcol, length=length(MAP$STROKES$col))
 
     }
+  if(!is.null(MAPstyle))
+    {
+
+      MAP$STROKES$style = rep(MAPstyle, length=length(MAP$STROKES$style))
+
+    }
 
   ##############
 
@@ -349,11 +360,17 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
           x = MAP$POINTS$x[JEC]
           y = MAP$POINTS$y[JEC]
 
-         ##### x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
-         ##### y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
 
+          x = c(x, x[1])
+          y = c(y, y[1])
+
+          x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
+          y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+
+           polygon(x, y, border=border, col=MAP$STROKES$col[i])
           
-          polygon(x, y, border=FALSE, col=MAP$STROKES$col[i])
+        ##   MM = fixCoastwrap(list(x=x, y=y), MAXDISTX )
+        ##   polygon(MM$x, MM$y, border=border, col=MAP$STROKES$col[i])
 
 
 

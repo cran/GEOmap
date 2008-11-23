@@ -8,13 +8,13 @@
 \usage{data(NSWath)}
 \format{
   list of cross sections each conists of a list of form:
+  \describe{
 \item{r}{r-distance along cross section (x-coordinate)}
   \item{dh}{distance from cross seection}
   \item{depth}{depth in cross section (y-coordinate) }
   \item{flag}{index vector of which earthquakes fell in swath and depth range}
-    \item{InvBox}{coordinates of swath for plotting on map}
-
-
+  \item{InvBox}{coordinates of swath for plotting on map}
+  }
 }
 
 

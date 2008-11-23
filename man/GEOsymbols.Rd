@@ -11,7 +11,7 @@ GEOsymbols()
 
 \details{
   Currently the choices in symbols are:
-\begin{verbatim}
+\itemize{
 contact
 anticline
 syncline
@@ -24,7 +24,7 @@ dextral
 sinestral
 detachment
 bcars
-\end{verbatim}
+}
 
 
   }

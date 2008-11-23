@@ -7,9 +7,11 @@
 }
 \usage{data(EHB.LLZ)}
 \format{
+  \describe{
  \item{lat}{Latitude}
   \item{lon}{Longitude}
   \item{z}{depth in km}
+  }
 
 }
 

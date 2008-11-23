@@ -12,8 +12,8 @@ Topographic and Geologic Mapping
 \tabular{ll}{
 Package: \tab GEOmap\cr
 Type: \tab Package\cr
-Version: \tab 1.3-0\cr
-Date: \tab 2008-10-20\cr
+Version: \tab 1.4-0\cr
+Date: \tab 2008-11-23\cr
 License: \tab GPL\cr
 }
 Set of routines for making Map Projections (forward and inverse), Topographic Maps, Perspective plots, geologi
@@ -30,6 +30,8 @@ Lees, J. M., Geotouch: Software for Three and Four Dimensional GIS in the Earth 
 
 }
 \note{
+
+  \describe{
 
 \item{High level plotting:}{
 BASICTOPOMAP
@@ -130,6 +132,7 @@ stereo.sphr.ll
 stereo.sphr.xy
 equid.cyl.ll
 equid.cyl.xy}
+}
 
 
   

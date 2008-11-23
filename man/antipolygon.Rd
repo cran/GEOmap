@@ -1,22 +1,25 @@
 \name{antipolygon}
 \alias{antipolygon}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Fill the complement of a polygon}
 \description{
  Fill a plot with a color outside the confines of a polygon.
 }
 \usage{
-antipolygon(x, y, col = 0)
+antipolygon(x, y, col = 0, corner=1)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{x coordinates of polygon}
   \item{y}{y coordinates of polygon}
   \item{col}{Fill color}
+  \item{corner}{Corner on the plot to connect to at the end: 1 = LowerLeft(default) ; 2:UpperLeft 3 = UpperRight; 4=LowerRight}
+  
 }
 \details{
   antipolygon uses par("usr") to determine the external bounds of
   plotting region.
+  Corners are labels from bottom left  counter-clockwise, 1-4.
+  
   
 }
 \value{
@@ -29,14 +32,12 @@ antipolygon(x, y, col = 0)
 }
 \seealso{polygon, par}
 \examples{
-
-
-#########  some data points to plot:
 x = runif(100)
 y = runif(100)
 
-plot(x,y)
+#########  some data points to plot:
 
+plot(x,y)
 ###########   create polygon:
 pp =list(x=c(0.231,0.316,0.169,0.343,0.311,0.484,0.757,
          0.555,0.800,0.563,0.427,0.412,0.203),
@@ -46,6 +47,11 @@ pp =list(x=c(0.231,0.316,0.169,0.343,0.311,0.484,0.757,
 polygon(pp)
 
 antipolygon(x=pp$x, y=pp$y,col='blue')
+####  where as this does not look so good
+plot(x,y)
+antipolygon(x=pp$x, y=pp$y,col='blue', corner=2)
+
+
 
 }
 
