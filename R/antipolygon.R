@@ -1,7 +1,15 @@
 `antipolygon` <-
-  function(x,y,col=0, corner=1)
+  function(x,y,col=0, corner=1, pct=.4)
 {
   if(missing(corner)) { corner=1 }
+
+  if(missing(pct)) { pct=.4 }
+
+
+  if(pct>1) { pct = pct/100 }
+
+  
+  
   ##  use the polygon in x,y to blank out (mask) the image on the screen
   ## useful for plotting contour plots and images
   ##  antipolygon(POL$x, POL$y, col=rgb(1,1,1) )
@@ -20,8 +28,8 @@ if( identical(tolower(corner), "lowerright") | identical(tolower(corner), "botto
   
   u <- par("usr")
 
-  dxu = 0.2*(u[2]-u[1])
-  dyu = 0.2*(u[4]-u[3])
+  dxu = pct*(u[2]-u[1])
+  dyu = pct*(u[4]-u[3])
 
   if(corner==1)
     {

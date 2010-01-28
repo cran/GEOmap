@@ -13,7 +13,15 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
     if(missing(xpd)) { xpd=TRUE }
     
 
+   typefaces  =  c("serif","sans serif", "script", "gothic english", "serif symbol" , "sans serif symbol")
 
+    fontindeces = c("plain", "italic", "bold", "bold italic", "cyrillic")
+
+    typeface = typefaces[1]
+    fontindex = fontindeces[1]
+
+    vfont = c(typeface, fontindex)
+    
     HL = 0
     tpoints = as.list(NA)
     
@@ -101,13 +109,18 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
             
             if(mins[k]==0)
               {
-                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=1, col=col)
-                
+                alab = paste(sep="", degs[k], "\\de")
+                ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=1, col=col)
+                text(xy$x[k], xy$y[k], labels=alab  , xpd=xpd,  vfont=vfont, pos=1, col=col)
                 
               }
             else
               {
-                text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=1, col=col)
+
+                alab = paste(sep="", degs[k], "\\de", mins[k], "\\mi")
+               ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=1, col=col)
+                text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont , xpd=xpd, pos=1, col=col)
+                
 
               }
           }
@@ -129,11 +142,16 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
           {
             if(mins[k]==0)
               {
-               text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=2, col=col)
+                alab = paste(sep="", degs[k], "\\de")
+              ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=2, col=col)
+                text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont  , xpd=xpd, pos=2, col=col)
               }
             else
               {
-                 text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=2, col=col)
+                alab = paste(sep="", degs[k], "\\de", mins[k], "\\mi")
+                ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=2, col=col)
+                 text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont , xpd=xpd, pos=2, col=col)
+                
                 
               }
           }

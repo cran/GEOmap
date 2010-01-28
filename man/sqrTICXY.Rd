@@ -4,12 +4,14 @@
 \description{Lat-Lon Tick marks and grid for Square plot
 }
 \usage{
-sqrTICXY(prsurf, proj, side = c(1, 2, 3, 4), LLgrid = TRUE, col = "black", colt = "black", font=2, cex=1, lty=2, lwd=1, pcex=1, TICS=NULL)
+sqrTICXY(prsurf, proj, side = c(1, 2, 3, 4), PMAT=NULL, LLgrid = TRUE, col = "black", colt = "black", font=5, cex=1, lty=2, lwd=1, pcex=1, TICS=NULL)
 }
 \arguments{
   \item{prsurf}{list with x, y}
   \item{proj}{projection}
-  \item{side}{vector, which sides to plot, 1=bottom, 2=left, 3=top, 4=right}
+  \item{side}{vector, which sides to plot, 1=bottom, 2=left, 3=top,
+    4=right}
+    \item{PMAT}{ projection matrix from persp  }
   \item{LLgrid}{logical, whether to add grid}
   \item{col}{color for grid}
   \item{colt}{color for text}

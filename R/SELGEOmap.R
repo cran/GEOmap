@@ -1,7 +1,7 @@
 SELGEOmap<-function (MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL) 
 {
   if (missing(ncut)) 
-    ncut = 3
+    ncut = 0
   if (missing(proj)) 
     proj = NULL
   if (missing(acut)) 
@@ -63,6 +63,10 @@ SELGEOmap<-function (MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
       OKarea = FALSE
       OKnum = FALSE
       INside = FALSE
+      if (is.null(acut)) {OKarea = TRUE }
+      if (is.null(ncut)) {OKnum = TRUE }
+
+
       
       if (MAP$STROKES$num[i] > ncut)
         {

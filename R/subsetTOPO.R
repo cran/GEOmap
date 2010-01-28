@@ -2,7 +2,7 @@
 function(TOPO, ALOC)
 {
   
-
+#################   extract topographic information from ETOPO5 data base
   nn = names(ALOC)
 
   if(length(nn)<1)

@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Finder intersection of lines}
 \description{
-Determines interection points of 2D vectors
+Determines intersection points of 2D vectors
 }
 \usage{
 Lintersect(l1, l2)

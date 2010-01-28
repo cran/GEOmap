@@ -5,20 +5,25 @@
  Fill a plot with a color outside the confines of a polygon.
 }
 \usage{
-antipolygon(x, y, col = 0, corner=1)
+antipolygon(x, y, col = 0, corner=1, pct=.4)
 }
 
 \arguments{
   \item{x}{x coordinates of polygon}
   \item{y}{y coordinates of polygon}
   \item{col}{Fill color}
-  \item{corner}{Corner on the plot to connect to at the end: 1 = LowerLeft(default) ; 2:UpperLeft 3 = UpperRight; 4=LowerRight}
+  \item{corner}{Corner on the plot to connect to at the end: 1 =
+    LowerLeft(default) ; 2:UpperLeft 3 = UpperRight; 4=LowerRight}
+  \item{pct}{Decimal percent of usr coordinates to expand beyond the polygon}
+
+  
   
 }
 \details{
   antipolygon uses par("usr") to determine the external bounds of
   plotting region.
   Corners are labels from bottom left  counter-clockwise, 1-4.
+  
   
   
 }

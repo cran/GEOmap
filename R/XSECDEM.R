@@ -8,6 +8,10 @@ XSECDEM<-function(Data, labs, demo=FALSE)
   ###  this needs to be defined
     #####  rainbow.colors<-function(n){ return( rainbow(n) ) }
 
+    if(missing(labs)) {
+      labs = c("DONE", "REFRESH","CONT",
+     "XSEC","PS" )
+    }
 
     nx = dim(Data)[1]
     ny = dim(Data)[2]
@@ -19,12 +23,26 @@ XSECDEM<-function(Data, labs, demo=FALSE)
     iseclab  = 0
     secmat = NULL
     ncol = 100
-    TPALS = c("rainbow", "topo", "terrain")
+
+    mycol.colors<-function(n)
+      {
+        n2 = floor(n/2)
+        return(c(topo.colors(n2), terrain.colors(n2) ))   
+      }
+
+    
+ TPALS =    c("rainbow", "topo.colors", "terrain.colors", "heat.colors", "tomo.colors", "mycol.colors")
+    APALS = c("rainbow", "topo",         "terrain",        "heat",       "tomo",        "mycol" )
+    labs = c(labs,APALS)
+
+    
+  ##  TPALS = c("rainbow", "topo", "terrain", "tomo",  "mycol")
     colabs = rep(1, length=length(labs))
     pchlabs = rep(0,length(labs))
-    FUN = match.fun(TPALS[1])
-    pal = FUN(ncol)
-
+ ##    FUN = match.fun(TPALS[1])
+##     pal = FUN(ncol)
+    pal = Gcols(plow=0, phi=0,  N=100, pal=TPALS[1])
+    
     image(jx, jy, Data, col=pal , asp=1)
     buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
     NLABS = length(labs)
@@ -58,30 +76,17 @@ XSECDEM<-function(Data, labs, demo=FALSE)
             zloc = list(x=NULL, y=NULL)
           }
 
-        ################   choose a different palette to plot image
-        if(K[Nclick] == match(TPALS[1], labs, nomatch = NOLAB))
+        
+        if( length(which(K[Nclick] == match(APALS, labs, nomatch = NOLAB)))>0 )
           {
-            apal = paste(sep=".", TPALS[1], "colors")
-            FUN = match.fun(apal)
-            pal = FUN(ncol)
-            zloc = list(x=NULL, y=NULL)
-          }
-
-        ################   choose a different palette to plot image
-        if(K[Nclick] == match(TPALS[2], labs, nomatch = NOLAB))
-          {
-            apal = paste(sep=".", TPALS[2], "colors")
-            FUN = match.fun(apal)
-            pal = FUN(ncol)
-            zloc = list(x=NULL, y=NULL)
-          }
-
-        ################   choose a different palette to plot image
-        if(K[Nclick] == match(TPALS[3], labs, nomatch = NOLAB))
-          {
-            apal = paste(sep=".", TPALS[3], "colors")
-            FUN = match.fun(apal)
-            pal = FUN(ncol)
+            J = match(labs[K[Nclick]] ,  APALS   )
+            
+            ##  FUN = match.fun(TPALS[J])
+             ##  pal = FUN(NCOL)
+            
+            pal = Gcols(plow=0, phi=0,  N=100, pal=TPALS[J])
+          
+        
             zloc = list(x=NULL, y=NULL)
           }
 
@@ -103,6 +108,12 @@ XSECDEM<-function(Data, labs, demo=FALSE)
         if(K[Nclick] == match("XSEC", labs, nomatch = NOLAB))
           {
             n = length(zloc$x)
+            if(n<3) {
+              print("Need 2 locations on the plot to take the cross section:")
+              print("Please try again")
+              zloc = list(x=NULL, y=NULL)
+              next
+            }
             x1 = zloc$x[n-2]
             y1 = zloc$y[n-2]
             x2 = zloc$x[n-1]

@@ -1,7 +1,8 @@
-sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", colt="black", font=2, cex=1, lty=2, lwd=1, pcex=1, TICS=NULL)
+sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col="black", colt="black", font=5, cex=1, lty=2, lwd=1, pcex=1, TICS=NULL)
   {
    
     ########  prsurf is any structure with a list of list(x=0, y=0)
+    ##########   input is in km not LAT-LON
     ########   proj is a projection from GEOmap
     ########   LLgrid=TRUE  put grid on map
 ####### col = color of lines
@@ -11,13 +12,22 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
     if(missing(col))  col="black"
     if(missing(colt))  colt="black"
     if(missing(side))  side=c(1,2,3,4)
-    if(missing(font)) font=2
+    if(missing(font)) font=5
     if(missing(cex))cex=1
     if(missing(lty))lty=2
     if(missing(lwd))lwd=1
     if(missing(pcex))pcex=1    
     if(missing(TICS)) TICS==NULL   
     
+
+    typefaces  =  c("serif","sans serif", "script", "gothic english", "serif symbol" , "sans serif symbol")
+
+    fontindeces = c("plain", "italic", "bold", "bold italic", "cyrillic")
+
+    typeface = typefaces[1]
+    fontindex = fontindeces[1]
+
+    vfont = c(typeface, fontindex)
     
       JNUM = 100000
 
@@ -39,7 +49,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
       #############  left side of plot:
     if(is.null(TICS))
       {
-        BLATleft = pretty(c(B1$lat, B2$lat))
+        BLATleft = pretty(c(B1$lat, B2$lat, B3$lat, B4$lat))
       }
     else
       {
@@ -62,13 +72,43 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
 
       if(any(side==2))
         {
-          points(MYLEFT[,2], MYLEFT[,3], pch=3, xpd=TRUE, cex=pcex)
+
+          if(!is.null(PMAT))
+            {
+              tem1 = trans3d(MYLEFT[,2], MYLEFT[,3], rep(0, length(MYLEFT[,3])) , PMAT)
+            }
+          else
+            {
+              tem1 = list(x=MYLEFT[,2] , y=MYLEFT[,3])
+
+            }
+
+
+
+          
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
 
           if(!is.null(colt))
             {
               for(j in 1:length(xleft[Fbeesleft]))
                 {
-                  text(MYLEFT[j,2], MYLEFT[j,3], labels=bquote(.(MYLEFT[j,1])*degree) , pos=2, xpd=TRUE, font=font, cex=cex, col=colt)
+
+                  if(!is.null(PMAT))
+                    {
+                      tem1 = trans3d(MYLEFT[j,2], MYLEFT[j,3], rep(0, length(MYLEFT[,3])) , PMAT)
+                    }
+                  else
+                    {
+                      tem1 = list(x=MYLEFT[j,2] , y=MYLEFT[j,3])
+                      
+                    }
+
+                  alab = paste(sep="", MYLEFT[j,1], "\\de")
+                  
+                 ## text(tem1$x, tem1$y, labels=bquote(.(MYLEFT[j,1])*degree) , pos=2, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
+                  text(tem1$x, tem1$y, labels=alab , pos=2, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
+
+                  
                   
                 }
             }
@@ -79,7 +119,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
 
      if(is.null(TICS))
       {
-      BLATright = pretty(c(B3$lat, B4$lat))
+      BLATright = pretty(c(B1$lat, B2$lat, B3$lat, B4$lat))
       }
     else
       {
@@ -104,13 +144,43 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
       
       if(any(side==4))
         {
-          points(MYRIGHT[,2], MYRIGHT[,3], pch=3, xpd=TRUE, cex=pcex)
+
+
+          if(!is.null(PMAT))
+            {
+              tem1 = trans3d(MYRIGHT[,2], MYRIGHT[,3], rep(0, length(MYRIGHT[,3])) , PMAT)
+            }
+          else
+            {
+              tem1 = list(x=MYRIGHT[,2] , y=MYRIGHT[,3])
+              
+            }
+                  
+          
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
 
           if(!is.null(colt))
             {
               for(j in 1:length(xright[Fbeesright]))
                 {
-                  text(MYRIGHT[j,2], MYRIGHT[j,3], labels=bquote(.(MYRIGHT[j,1])*degree) , pos=4, xpd=TRUE, font=font, cex=cex, col=colt)
+
+                  if(!is.null(PMAT))
+                    {
+                      tem1 = trans3d(MYRIGHT[j,2], MYRIGHT[j,3], rep(0, length(MYRIGHT[,3])) , PMAT)
+                    }
+                  else
+                    {
+                      tem1 = list(x=MYRIGHT[j,2] , y=MYRIGHT[j,3])
+                      
+                    }
+                  
+
+                   alab = paste(sep="", MYRIGHT[j,1], "\\de")
+                  
+                
+                  text(tem1$x, tem1$y, labels=alab , pos=4, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
+
+                ##   text(tem1$x, tem1$y, labels=bquote(.(MYRIGHT[j,1])*degree) , pos=4, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
                   
                 }
             }
@@ -144,13 +214,46 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
 
       if(any(side==1))
         {
-          points(MYBOT[,2], MYBOT[,3], pch=3, xpd=TRUE, cex=pcex)
+
+
+          if(!is.null(PMAT))
+            {
+              tem1 = trans3d(MYBOT[,2], MYBOT[,3], rep(0, length(MYBOT[,3])) , PMAT)
+            }
+          else
+            {
+              tem1 = list(x=MYBOT[,2] , y=MYBOT[,3])
+              
+            }
+                
+
+
+          
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
 
            if(!is.null(colt))
             {
           for(j in 1:length(MYBOT[,2]))
             {
-              text(MYBOT[j,2], MYBOT[j,3], labels=bquote(.(MYBOT[j,1])*degree), pos=1, xpd=TRUE, font=font, cex=cex, col=colt)
+
+
+              if(!is.null(PMAT))
+                {
+              tem1 = trans3d(MYBOT[j,2], MYBOT[j,3], rep(0, length(MYBOT[j,3])) , PMAT)
+            }
+              else
+                {
+                  tem1 = list(x=MYBOT[j,2] , y=MYBOT[j,3])
+              
+                }
+              
+              alab = paste(sep="", MYBOT[j,1], "\\de")
+              
+              
+              text(tem1$x, tem1$y, labels=alab , pos=1, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
+              
+              
+              ## text(tem1$x, tem1$y, labels=bquote(.(MYBOT[j,1])*degree), pos=1, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
             }
         }
         }
@@ -182,14 +285,39 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
 
       if(any(side==3))
         {
+
+ if(!is.null(PMAT))
+            {
+              tem1 = trans3d(MYTOP[,2], MYTOP[,3], rep(0, length(MYTOP[,3])) , PMAT)
+            }
+          else
+            {
+              tem1 = list(x=MYTOP[,2] , y=MYTOP[,3])
+              
+            }
           
-          points(MYTOP[,2], MYTOP[,3], pch=3, xpd=TRUE, cex=pcex)
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
 
            if(!is.null(colt))
             {
           for(j in 1:length(MYTOP[,2]))
             {
-              text(MYTOP[j,2], MYTOP[j,3], labels=bquote(.(MYTOP[j,1])*degree), pos=3, xpd=TRUE, font=font, cex=cex, col=colt)
+
+
+
+ if(!is.null(PMAT))
+            {
+              tem1 = trans3d(MYTOP[j,2], MYTOP[j,3], rep(0, length(MYTOP[j,3])) , PMAT)
+            }
+          else
+            {
+              tem1 = list(x=MYTOP[j,2] , y=MYTOP[j,3])
+              
+            }
+          
+               alab = paste(sep="", MYTOP[j,1], "\\de")
+              
+              text(tem1$x, tem1$y, labels=alab, pos=3, xpd=TRUE, vfont=vfont, cex=cex, col=colt)
             }
         }
         }
@@ -247,8 +375,21 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
 
              gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
              gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
+
+
+
+          if(!is.null(PMAT))
+            {
+              tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
+            }
+          else
+            {
+              tem1 = gxy
+              
+            }
             
-            lines(gxy$x, gxy$y,  col=col, lty=lty, lwd=lwd)
+            
+            lines(tem1$x, tem1$y,  col=col, lty=lty, lwd=lwd)
             
           }
 
@@ -287,8 +428,17 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4),  LLgrid=TRUE, col="black", co
          ##    gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
           ##   gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
             
+            if(!is.null(PMAT))
+            {
+              tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
+            }
+          else
+            {
+              tem1 = gxy
+              
+            }
             
-            lines(gxy$x, gxy$y, col=col, lty=lty, lwd=lwd)
+            lines(tem1$x, tem1$y, col=col, lty=lty, lwd=lwd)
           }
         
 
