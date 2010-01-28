@@ -136,10 +136,59 @@ The internal structure of a GEOmap objection consists of
 three elements which are lists themselves.
 The raw XY coordinates are stored as long vectors
 on the POINTS list.  These are all the geographic coordinates of the 
-points int he map structure.  
+points in the map structure.  
 The STROKES structure contains the meta data that allows one to 
 access the POINTS and perform tasks and create graphical output.
 The STROKES structure includes a set of vectors which have the following structure:
+
+\begin{itemize}
+\item{STROKES}
+\item{POINTS}
+\end{itemize}
+
+
+\subsection{POINTS}
+The POINTS is a list consisting of two vectors:
+\begin{itemize}
+\item{lat}
+\item{lon}
+\end{itemize}
+These are a concatenation of all the stroke points in the map.
+
+
+\subsection{STROKES}
+The STROKES list is the meta data for the lat-lon pairs stored in POINTS:
+
+\begin{description}
+\item[nam] Name for the stroke
+\item[num] Number of points in the stroke
+\item[index] Index of where the stroke begins in the POINTS vector
+\item[col] Color for the stroke
+\item[style] Style: 1=points, 2=lines, 3=polygons
+\item[code] Index code (optional) 
+\end{description}
+
+The Index code used in early versions:
+\begin{description}
+          \item[a]  major coasts  islands  lakes
+          \item[b]  intermediate coasts islands lakes
+          \item[c]  minor coasts islands lakes
+          \item[d]   very minor coasts islands lakes
+          \item[e]   major rivers
+          \item[f]   intermediate rivers
+          \item[g]   minor rivers
+          \item[h]   very minor rivers
+          \item[i]  political borders
+          \item[j]  major faults
+          \item[k]  minor faults
+          \item[l]  geology formation
+          \item[m]  major high ways
+          \item[n]  minor roads
+          \item[p]  plates
+          \item[0]  generic
+\end{description}
+
+
 
 \section{Geologic Example}
 
