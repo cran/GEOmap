@@ -3,6 +3,7 @@
 \alias{pointsGEOmapXY}
 \alias{textGEOmapXY}
 \alias{rectGEOmapXY}
+\alias{polyGEOmapXY}
 
 \title{Add lines, points or text to GEOmap projected plot}
 \description{
@@ -13,7 +14,8 @@
 linesGEOmapXY(lat = 0, lon = 0, PROJ = NULL, PMAT = NULL, ...)
 textGEOmapXY(lat = 0, lon = 0, labels = NULL, PROJ = NULL, PMAT = NULL, ...)
 pointsGEOmapXY(lat = 0, lon = 0, PROJ = NULL, PMAT = NULL, ...)
-
+rectGEOmapXY(lat=0, lon=0, PROJ=NULL, PMAT=NULL, ... )
+polyGEOmapXY(lat = 0, lon = 0, PROJ = NULL, PMAT = NULL, ...)
 
 }
 %- maybe also 'usage' for other objects documented here.

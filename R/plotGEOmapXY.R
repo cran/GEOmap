@@ -24,7 +24,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   if(missing(shiftlon)) {  shiftlon=0 }
 
   
-
+  pctexp = 0.01
  ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
 
   ###  LIM can be a vector (lon1, lat1, lon2, lat2)
@@ -35,31 +35,34 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
     {
       lon = fmod(MAP$POINTS$lon-shiftlon, 360)
       
-      LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
-      LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+     ###  LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
+
+      RLON = expandbound( range(fmod(MAP$POINTS$lon, 360)), pctexp) 
+      RLAT = expandbound( range(MAP$POINTS$lat), pctexp) 
+
+      
+      LIM=c( RLON[1], RLAT[1], RLON[2] , RLAT[2] )
+
+    
     }
   else
     {
-
-
       if(is.null(LIM))
         {
-          lon = fmod(MAP$POINTS$lon-shiftlon, 360)
-          LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
-          LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+          RLON = expandbound( range(fmod(MAP$POINTS$lon, 360)), pctexp) 
+          RLAT = expandbound( range(MAP$POINTS$lat), pctexp) 
+          
+          LIM=c( RLON[1], RLAT[1], RLON[2] , RLAT[2] )
+
         }
 
       
-      if(!is.list(LIM))
+      if(is.list(LIM))
         {
-          LIMP=LIM
-        }
-      else
-        {
-
+         
           lon = fmod(LIM$lon-shiftlon, 360)
           lat = LIM$lat
-          LIMP=c( min(lon), min(lat), max(lon), max(lat))
+         ###  LIMP=c( min(lon), min(lat), max(lon), max(lat))
           LIM=c( min(fmod(lon, 360)), min(lat), max(fmod(lon, 360)), max(lat))
           
         }
@@ -162,9 +165,16 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
  ##  print(LIM)
 
 
+      XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
+      LLlim$x = XYLIM$x
+      LLlim$y = XYLIM$y
+
   
-  xrange = diff(range(MAP$POINTS$x, na.rm=TRUE))
-  yrange = diff(range(MAP$POINTS$y, na.rm=TRUE))
+  xrange = abs( diff(range(LLlim$x, na.rm=TRUE)) ) 
+  yrange = abs( diff(range(LLlim$y, na.rm=TRUE)) )
+
+ ## print(c(xrange, yrange))
+  
 
   Kstroke = length(MAP$STROKES$num)
 
@@ -184,33 +194,11 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   if(FORCE==FALSE)
     {
- 
-
-      XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
-      LLlim$x = XYLIM$x
-      LLlim$y = XYLIM$y
-
-     ## y3 =XYLIM$y[1]
-     ## y4 =XYLIM$y[2]
-     ## x3 =XYLIM$x[1]
-     ## x4 = XYLIM$x[2]
-      
-     ##  OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
-      
-      ##  IN = which(!OUT)
-
       IN = KINOUT(MAP, LLlim , projtype=2)
-
-      
     }
   else
     {
-
-      XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
-      LLlim$x = XYLIM$x
-      LLlim$y = XYLIM$y
-
-      
+      ###########  plot all the strokes  
       IN = 1:length(MAP$STROKES$num)
 
     }
@@ -341,23 +329,27 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
           y = MAP$POINTS$y[JEC]
 
          
-          
+          ###############################  this code is meant to
+          ###############################  to avoid wraparound
           xd = abs(diff(c(x, x[1])))
-          ww = which(xd>0.9*xrange)
+          wwx = which(xd>0.9*xrange)
 
           yd = abs(diff(c(y, y[1])))
           wwy = which(yd>0.80*yrange)
 
+          ###  print(wwx) 
+          ###  print(wwy) 
+
           
-          if( (!is.null(ww) & length(ww)>0) | (!is.null(wwy) & length(wwy)>0) )
+          if( (!is.null(wwx) & length(wwx)>0) | (!is.null(wwy) & length(wwy)>0) )
             {
              ## print(paste(sep=' ', "################", i, length(x), length(ww)))
               
               ##  print(ww)
-              if(length(ww)>0)
+              if(length(wwx)>0)
                 {
-                  zy = insertNA(y, ww)
-                  zx = insertNA(x, ww)
+                  zy = insertNA(y, wwx)
+                  zx = insertNA(x, wwx)
                  lines(zx, zy, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
 
                  ### lines(zx, zy, col='blue' , lty=linelty, lwd=linelwd)
@@ -386,12 +378,19 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
             {
              ## x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
              ## y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
+
+            ##  print(LLlim)
+              
+             ## print(cbind(x,y)) 
+              
               x[MAP$POINTS$x[JEC]<LLlim$x[1] |  MAP$POINTS$x[JEC]>LLlim$x[2] ] = NA
               y[MAP$POINTS$y[JEC]<LLlim$y[1] |  MAP$POINTS$y[JEC]>LLlim$y[2] ] = NA
 
 
               
               ##   lines(x, y, col='blue' )
+
+            ##  print(cbind(x,y)) 
               
               lines(x, y, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
             } 

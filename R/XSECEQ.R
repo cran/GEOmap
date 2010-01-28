@@ -5,7 +5,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     if(missing(pch)) { pch="." }
     if(missing(XSECS)) { XSECS=NULL}
     if(missing(kmaxes)) { kmaxes=TRUE}
-    if(missing(labs)) { labs=c("DONE","REFRESH", "XSEC", "MSEC",  "KMAXES", "COLZ", "CONT", "width", "PS" ) }
+    if(missing(labs)) { labs=c("DONE","REFRESH", "XSEC", "MSEC",  "KLEAN", "KMAXES", "COLZ", "CONT", "width", "PS" ) }
 
 
     polycol = 'blue'
@@ -15,7 +15,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     
 ##### source("/home/lees/XSECEQ.R")
 
-    ###  labs=c("DONE","REFRESH", "XSEC", "MSEC",  "KMAXES", "CONT", "width", "PS" )
+    ###  labs=c("DONE","REFRESH", "XSEC", "MSEC",  "KMAXES", "CONT", "width", "DIST", "PS" )
     
   ### XSECEQ(  MAP, EQ , labs, demo=FALSE  )   
     #####  
@@ -29,6 +29,8 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     pchlabs = rep(0,length(labs))
     FUN = match.fun(TPALS[1])
     pal = FUN(ncol)
+
+    WINWIDTH = 8
     CONT.FLAG = FALSE
     XSEC.FLAG = FALSE
     PS.FLAG =  FALSE
@@ -41,7 +43,13 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     GRIDcol=1
 
 
-    Abound = XY.GLOB(XYLIM$x, XYLIM$y, PROJ)
+    ur = par("usr")
+    urx = expandbound(ur[1:2], -.05)
+    ury = expandbound(ur[3:4], -.05)
+
+    
+    
+    Abound = XY.GLOB(urx , ury, PROJ)
     
     PLAT =  pretty( Abound$lat)
     PLAT = c(min(Abound$lat),  PLAT[PLAT>min(Abound$lat) & PLAT<max(Abound$lat)],max(Abound$lat))
@@ -73,7 +81,10 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
       }
     else
       {
-        addLLXY(PLAT, PLON,  GRIDcol=GRIDcol, LABS=0, BORDER=0 , PROJ=PROJ )
+       # addLLXY(PLAT, PLON,  GRIDcol=GRIDcol, LABS=0, BORDER=0 , PROJ=PROJ )
+        print("sqrtix")
+        sqrTICXY(XYLIM, proj=PROJ)
+        
       }
     
     for(i in 2:length(MAP)) {
@@ -102,6 +113,8 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
   if(!is.null(XSECS))
     {
       XSEC.FLAG = TRUE
+      dev1 = dev.cur()
+      
       for(i in 1:length(XSECS))
         {
           iseclab =  iseclab +1
@@ -109,17 +122,42 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
           secmat = rbind(secmat, attr(SW[[iseclab]], "xsec" ))
           polygon(SW[[iseclab]]$InvBox, border=polycol)
           seclabs = attr(SW[[iseclab]],"LAB")
-           segments(secmat[iseclab,1],secmat[iseclab,2],secmat[iseclab,3],secmat[iseclab,4], col=linecol)
+          segments(secmat[iseclab,1],secmat[iseclab,2],secmat[iseclab,3],secmat[iseclab,4], col=linecol)
 
           ang = (180/pi)*atan2(secmat[iseclab,4]-secmat[iseclab,2], secmat[iseclab,3]-  secmat[iseclab,1] )
           
           text(secmat[iseclab,1],secmat[iseclab,2], labels= seclabs, pos=3, srt=ang)
           text(secmat[iseclab,3],secmat[iseclab,4], labels= paste(sep="",seclabs, "'") , pos=3, srt=ang)
+
+          
           
         }
+      for(i in 1:length(SW))
+        {
+          rr = range(SW[[i]]$r)
+          rdep = range(SW[[i]]$depth)
+          dr = abs(diff(rr))
+          ddep = abs(diff(rdep))
+          ##  rat = diff(rr)/diff(rdep)
+
+          if(dr>0 & ddep>0)
+            {
+              wid = WINWIDTH
+              hei = wid*ddep/dr
+             ##  print(paste(i, wid, hei, dr, ddep))
+              dev.new(width=wid, height=hei)
+               seclabs = attr(SW[[i]],"LAB")
+              XSECwin( SW[[i]] , i, xLAB = seclabs,   demo=TRUE  )
+            }
+        }
+      dev.set(dev1)
+
+      
     }
 
     if(demo==TRUE)  return(NULL)
+
+    
     cdev = dev.cur()
     
     buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
@@ -151,6 +189,17 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             
             break;
           }
+        if(K[Nclick] == match("DIST", labs, nomatch = NOLAB))
+          {
+
+            zen = length(zloc$x)
+            if(zen > 3)
+              {
+            LEN = sqrt( (zloc$x[zen-1] - zloc$x[zen-2])^2+(zloc$y[zen-1] - zloc$y[zen-2])^2)
+            print(paste("Length=", LEN, "km"))
+          }
+            
+          }
 
         ###########   refresh the screen
         if(K[Nclick] == match("REFRESH", labs, nomatch = NOLAB))
@@ -181,6 +230,30 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
         if(K[Nclick] == match("KMAXES", labs, nomatch = NOLAB))
           {
             kmaxis = !kmaxis
+            zloc = list(x=NULL, y=NULL)
+          }
+
+ ################  
+       
+
+
+
+        
+        if(K[Nclick] == match("KLEAN", labs, nomatch = NOLAB))
+          {
+           kdev = dev.cur()
+           devall = dev.list()
+           
+           for(i in 1:length(devall))
+             {
+               if(devall[i]==kdev) next()
+               dev.off(which = devall[i])
+               
+             }
+           SW = list()
+           secmat = NULL
+           XSEC.FLAG = FALSE
+           iseclab = 0
             zloc = list(x=NULL, y=NULL)
           }
 
@@ -239,12 +312,31 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             SW[[iseclab]]$proj = PROJ
             
            #### get(getOption("device"))()
-            dev.new()
+
+
+            rr = range(SW[[iseclab]]$r)
+            rdep = range(SW[[iseclab]]$depth)
+            dr = abs(diff(rr))
+            ddep = abs(diff(rdep))
+            
+            if(dr>0 & ddep>0)
+              {
+                wid = WINWIDTH
+                hei = wid*ddep/dr
+                if(hei<4) hei=4
+              }
+            else
+              {
+                wid = WINWIDTH
+                hei = 4
+              }
+            
+            dev.new(width=wid, height=hei)
             
             xlabs=c("DONE","REFRESH", "PS" )
             XSECwin( SW[[iseclab]] , iseclab, LAB , xlabs, demo=FALSE  )   
             
-          ####   plot(SW[[iseclab]]$r , -SW[[iseclab]]$depth,  main=paste( iseclab, LAB) , xlab="km", ylab="Depth", asp=1)
+####   plot(SW[[iseclab]]$r , -SW[[iseclab]]$depth,  main=paste( iseclab, LAB) , xlab="km", ylab="Depth", asp=1)
 
             
         
@@ -296,7 +388,33 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
                 SW[[iseclab]]$proj = PROJ
                 
               ####   get(getOption("device"))()
-                dev.new()
+
+
+
+                rr = range(SW[[iseclab]]$r)
+                rdep = range(SW[[iseclab]]$depth)
+                dr = abs(diff(rr))
+                ddep = abs(diff(rdep))
+                
+                if(dr>0 & ddep>0)
+                  {
+                    wid = WINWIDTH
+                    hei = wid*ddep/dr
+                  }
+                else
+                  {
+                    wid = WINWIDTH
+                    hei = 4
+                  }
+
+    
+                  if(hei<4)  hei = 4
+
+                
+                
+                dev.new(width=wid, height=hei)
+                
+                
                 xlabs=c("DONE","REFRESH", "PS" )
                 XSECwin( SW[[iseclab]] , iseclab, LAB , xlabs, demo=TRUE  )   
                 
@@ -338,8 +456,17 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
               }
             else
               {
-                addLLXY(PLAT, PLON,  GRIDcol=GRIDcol, LABS=0, BORDER=0 , PROJ=PROJ )
-      }
+                u = par("usr")
+                
+                ## print("sqrtix")
+
+
+                ##  XYLIM
+                sqrTICXY(list(x=u[1:2], y=u[3:4] ) , proj=PROJ)
+        
+                ##  addLLXY(PLAT, PLON,  GRIDcol=GRIDcol, LABS=TRUE, BORDER=0 , PROJ=PROJ )
+                
+              }
             
             for(i in 2:length(MAP)) {
               

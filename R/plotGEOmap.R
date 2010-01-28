@@ -56,6 +56,11 @@ if(!is.null(MAPstyle)) {  MAP$STROKES$style = rep(MAPstyle, length(MAP$STROKES$s
 
 ###  (x2>=x3)&&(x4>=x1)&& (y2>=y3)&&(y4>=y1)
 
+if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
+
+
+
+  
   y1 = MAP$STROKES$LAT1
   y2 = MAP$STROKES$LAT2
   x1 = fmod(MAP$STROKES$LON1-shiftlon, 360)

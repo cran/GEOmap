@@ -3,8 +3,8 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
     if(missing(demo)) { demo = FALSE }
     if(missing(width)) { width=10 }
     if(missing(labs)) { labs=c("DONE","REFRESH", "PS" ) }
- if(missing(xLAB)) { xLAB="A" }
- if(missing(iseclab))  {  iseclab=1 }
+    if(missing(xLAB)) { xLAB="A" }
+    if(missing(iseclab))  {  iseclab=1 }
     
 
 
@@ -29,104 +29,186 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
     pal = FUN(ncol)
 
     ##########  xsec plotting  function:
+    YNreplot<-function(global.vars)
+    {
 
-  plot(SW$r , -SW$depth,  main=paste( iseclab, xLAB) , xlab="km", ylab="Depth", asp=1)
-           
+      r = global.vars$SW$r
+      depth = global.vars$SW$depth
+      iseclab = global.vars$iseclab
+      xLAB = global.vars$xLAB
+      plot(r , -depth,  main=paste( iseclab, xLAB) , xlab="km", ylab="Depth", asp=1)
+      a1 = range(r, ns.rm=TRUE)
+      mtext(xLAB, side=3, at=a1[1])
+      mtext(paste(sep="", xLAB, "'") , side=3, at=a1[2])
+      
+    }
 
- a1 = range(SW$r, na.rm=TRUE)
-            mtext(xLAB, side=3, at=a1[1])
-            mtext(paste(sep="", xLAB, "'") , side=3, at=a1[2])
-          
-    if(demo==TRUE)  return(NULL)
-           
-    cdev = dev.cur()
- buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+  
+   
     NLABS = length(labs)
     NOLAB = NLABS +1000  ## some large number
     
     
-    iloc = locator(1, type='p')
-    zloc = iloc
+    BLABS = labs
 
-    Nclick = length(iloc$x)
-    if(is.null(zloc$x)) { return(NULL) }
-    K =  whichbutt(zloc , buttons)
-    sloc = zloc
+    ilocstyle = -1
     CONT.FLAG = FALSE
     XSEC.FLAG = FALSE
     PS.FLAG =  FALSE
 
- while(TRUE)
+    WIN  = LASTwin= NULL
+#####################################     global variables
+  global.vars = list(
+
+    SW =SW,
+    iseclab=iseclab,
+    xLAB = xLAB,
+       CONT.FLAG = FALSE,
+    XSEC.FLAG = FALSE,
+    PS.FLAG =  FALSE,
+
+   ilocstyle = ilocstyle,
+    iloccol = rgb(1,0.6, 0.6),
+    ilocnum = 1,
+    MAINdev=NULL,
+    tempbuttons = NULL,
+
+    BLABS = BLABS ,
+    NLABS = length(BLABS),
+    NOLAB = NOLAB,
+    
+    WIN =WIN,
+    LASTwin = LASTwin,
+    KLICK = NULL,
+    thebuts = FALSE
+    )
+##################################### 
+      
+
+  YN = YNreplot(global.vars)
+  
+    if(demo==TRUE)
       {
-        ############   button actions
+        return(NULL)
 
-        ###########   quit and break loop
-        if(K[Nclick] == match("DONE", labs, nomatch = NOLAB))
-          {
-
-
-             buttons = rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
-            title("Return to Calling Program")
+      }
        
-            break;
-          }
+    
+ global.vars$MAINdev = dev.cur()
+  
 
-        ###########   refresh the screen
-        if(K[Nclick] == match("REFRESH", labs, nomatch = NOLAB))
-          {
-            zloc = list(x=NULL, y=NULL)
-          }
- ###########   
-        if(K[Nclick] == match("Next", labs, nomatch = NOLAB))
-          {
-            dev.set(dev.next())
-            
-            zloc = list(x=NULL, y=NULL)
-          }
+  global.vars$buttoncex = 0.8
+  
+  buttons = rowBUTTONS(BLABS, col=colabs, pch=pchlabs, cex=global.vars$buttoncex )
+
+  global.vars$MAINdev = dev.cur()
 
 
-        if(K[Nclick] > 0)
-          {
-            
-            
-            if(PS.FLAG) {
-              P = round(par('pin'), digits=2); 
-              postscript(file="XMAPdemo.eps"  , width=P[1], height=P[2],
-                         paper = "special", horizontal=FALSE, onefile=TRUE,print.it=FALSE)
-            }
-
-            
-            
-            plot(SW$r , -SW$depth,  main=paste( iseclab, xLAB) , xlab="km", ylab="Depth", asp=1)
-            a1 = range(SW$r, ns.rm=TRUE)
-            mtext(xLAB, side=3, at=a1[1])
-            mtext(paste(sep="", xLAB, "'") , side=3, at=a1[2])
-            
-             buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
-            
-            if(PS.FLAG) {
-              dev.off();
-              cat("the postscript file is in: RPMGdemo.eps", sep="\n")
-              PS.FLAG =  FALSE
-            }
-            
-            
-          }
-        else
-          {
-###  in case the plot was resized with asp=1, need to replot the buttons
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
-          }
+###  Get.Screens(2)
+  dev.set(global.vars$MAINdev)
+ 
+  
+  u = par("usr")
+  sloc = list(x=c(u[1],u[2]), y=c(u[3],u[4]))
+  zloc =list(x=NULL, y=NULL)
+ 
+  zenclick = length(zloc$x)
 
 
+  global.vars$BLABS = BLABS
+  global.vars$buttons = buttons
+  global.vars$zloc = zloc
+  global.vars$sloc = sloc
+  global.vars$zenclick = zenclick
+  global.vars$action="donothing"
+  OLDglobal.vars = global.vars
+   global.vars$OLDglobal.vars = global.vars
+ 
+ iloc = ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
+       
+ Nclick = length(iloc$x)
+   
+    K =  whichbutt(zloc , buttons)
+    sloc = zloc
+
+    
+    while(TRUE)
+      {
+############   button actions
+        iloc = ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
         
-        iloc = locator(1,type='p')
-##### print(iloc)
-        zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
+        
         Nclick = length(iloc$x)
-        if(is.null(zloc$x)) { return(sloc) }
-        K =  whichbutt(iloc , buttons)
-##### print(K)   
+
+###########   quit and break loop
+
+       ##  print(Nclick)
+        
+
+        if(Nclick>0)
+          {
+#######  add last click to list of clicks, continue 
+            zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
+            global.vars$zenclick = length(zloc$x)
+            K =  whichbutt(iloc ,buttons)
+            sloc = zloc
+            
+            
+            if(K[Nclick] == match("DONE", labs, nomatch = NOLAB))
+              {
+
+
+                buttons = rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
+                title("Return to Calling Program")
+                
+                break;
+              }
+
+###########   refresh the screen
+            if(K[Nclick] == match("REFRESH", labs, nomatch = NOLAB))
+              {
+                YNreplot(global.vars)
+                buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+                zloc = list(x=NULL, y=NULL)
+                next
+              }
+###########   
+            if(K[Nclick] == match("Next", labs, nomatch = NOLAB))
+              {
+                dev.set(dev.next())
+                
+                zloc = list(x=NULL, y=NULL)
+                next
+              }
+
+###########   
+            if(K[Nclick] == match("PS", labs, nomatch = NOLAB))
+              {
+                
+                PS.FLAG = !PS.FLAG
+
+                psname = local.file(paste("xsec", xLAB, sep=""), "eps")
+                
+                P = round(par('din'), digits=2); 
+                postscript(file= psname , width=P[1], height=P[2],
+                           paper = "special", horizontal=FALSE, onefile=TRUE,print.it=FALSE)
+                
+                
+                YNreplot(global.vars)
+                dev.off();
+                
+                dev.set(global.vars$MAINdev)
+                
+                zloc = list(x=NULL, y=NULL)
+
+                next
+              }
+
+
+          }
+        
+
+        ## print("here at end of while loop")  
       }
     
 

@@ -60,7 +60,7 @@ InvBox = list(x=x3+L$x[1], y=y3+L$y[1])
 
   ##  plot(r, -z2)
 
-  invisible(list(r=x2[flag] , dh=y2[flag] , depth=z[flag] ,    flag=which(flag) , InvBox = InvBox)  )  
+  invisible(list(r=x2[flag] , dh=y2[flag] , depth=z[flag] ,    flag=which(flag) , InvBox = InvBox, rdis=c(0, d1))   )  
 
 
 }

@@ -91,7 +91,7 @@ mode to go from the projected world back to geographic coordinates.
 The set up of the projection is accomplished by 
 running, for example,
 
-<<fig=FALSE, echo=TRUE, results=TEX>>=
+<<fig=FALSE, echo=TRUE, results=tex>>=
 library(GEOmap)
 options(continue = " ")
 
@@ -114,14 +114,14 @@ And we can see the usage of the projection by loading and plotting a map.
 First we plot the map with no projection, so the xy coordinates are Lat-Lon
 and the map will be distorted.
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 require('geomapdata')
 data(kammap)
 plotGEOmap(kammap,  add=FALSE, asp=1)
 @ 
 
 Next we show how to plot the map in projected form,
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 plotGEOmapXY(kammap,  PROJ=PROJ, add=FALSE, xlab="km", ylab="km")
 @ 
 
@@ -147,7 +147,7 @@ The following illustrates some of the features available in GEOmap.
 First we set up the data and then begin making the plot after manipulating the 
 database.
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 
   data(cosomap)
      data(faults)
@@ -171,7 +171,7 @@ cosogeol = boundGEOmap(cosogeol)
 The colors here are not very useful, so we can modify them by
 assigning colors from a given palette, in this case
 the palette of the program geotouch,
-<<fig=FALSE, echo=TRUE, results=TEX>>=
+<<fig=FALSE, echo=TRUE, results=tex>>=
 
 XMCOL = setXMCOL()
 
@@ -186,7 +186,7 @@ cosogeol$STROKES$col = newcol
 @ 
 and lastly we must create a legend by matching the colors with the
 symbols or names of hte units:
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 ss = strsplit(cosogeol$STROKES$nam, split="_")     
 
 geo = unlist(lapply(ss  , FUN="getmem", mem=1))
@@ -284,7 +284,7 @@ projection parameters stored in list PROJ.
 First the whole of Japan is plotted 
 with the volcanoes plotted as triangle.
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 require("geomapdata")
 
 data("japmap", package="geomapdata")
@@ -300,7 +300,7 @@ rect(-150, -150, 150,150)
 Next we can zoom into the desired target region shown as a rectangle 
 in the previous figure:
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 
 plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, xlab="km", ylab="km" )
 pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
@@ -329,7 +329,7 @@ if we choose those strokes that are not internal
 and create a selection vector, we can quickly elliminate 
 the internal boundaries.
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 
 isel = which( japmap$STROKES$code != "i" )
 plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
@@ -355,7 +355,7 @@ by the greater than symbol ``>''.
 Here we read in a GMT map file that 
 has coordinates of the crude, world, plate-tectonic boundaries. 
 
-<<fig=FALSE, echo=TRUE, results=TEX>>=
+<<fig=FALSE, echo=TRUE, results=tex>>=
 plates = scan(file="Plates.gmt", what="", sep="\n")
 @ 
 
@@ -440,7 +440,7 @@ events plotted with colors coded according to
 depth,
 
 
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 
 rcol = rainbow(120)
 
@@ -559,7 +559,7 @@ Several standard geological symbols are available for plotting
 specific  faults on plots.
 These can be seen by executing the 
 gridded plot of many line dress ups:
-<<fig=TRUE, echo=TRUE, results=TEX>>=
+<<fig=TRUE, echo=TRUE, results=tex>>=
 GEOsymbols()
 @ 
 
