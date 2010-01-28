@@ -9,7 +9,7 @@
 plotGEOmapXY(MAP, LIM = c(-180, -90, 180, 90), PROJ = list(), PMAT=NULL,
 add = TRUE,  SEL=NULL , GRID = NULL, GRIDcol = 1,
 MAPcol = NULL, MAPstyle = NULL, border = NA, cenlon = 0, shiftlon = 0, linelty = 1,
-linelwd = 1, NUMB = FALSE, ...)
+linelwd = 1, ptpch=".", ptcex=1, NUMB = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -28,6 +28,11 @@ linelwd = 1, NUMB = FALSE, ...)
   \item{shiftlon}{degrees, rotate longitude}
   \item{linelty}{Line type}
   \item{linelwd}{line width}
+  \item{ptpch}{plotting character for strokes (style=1) that are plotted
+  as points}
+  \item{ptcex}{character expansion factor for style=1 strokes }
+
+  
   \item{NUMB}{logical, number the strokes on the map}
   
   
@@ -36,7 +41,13 @@ linelwd = 1, NUMB = FALSE, ...)
 \details{
   plotGEOmapXY includes projection of the data, plotGEOmap does
   not.  MAPcol and MAPstyle can be used to override the
-  colors and style in the map-list.  These are applied to all the strokes.
+  colors and style in the map-list.  These are applied to all the
+  strokes.
+
+  For strokes that are of style=1 points are plotted with graphical
+  parameters ptpch="." and ptcex=1 unless otherwise indicated.
+  
+  
   
 }
 \value{

@@ -1,22 +1,22 @@
 `GEOTOPO` <-
-function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
+  function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
   {
 
 
-    if(missing(calcol)) {  calcol = settopocol() }
+    if(missing(calcol)) {  CCOL = settopocol(); calcol = CCOL$calcol }
     if(missing(npoints)) { npoints=500  }
+    if(missing(PLOT)) { PLOT=TRUE }
+
+    if(is.null(calcol)) {  CCOL = settopocol(); calcol = CCOL$calcol  }
 
 
-     if(is.null(calcol)) {  calcol = settopocol() }
 
-
-
-  cat("Extracting from Data Base....please wait....", file="", sep="\n")
+    cat("Extracting from Data Base....please wait....", file="", sep="\n")
     
     if(TRUE)
       {
-        ###  here make adjustments so the topo part is square, not curved
-        ###  to do this extend the borders of extraction
+###  here make adjustments so the topo part is square, not curved
+###  to do this extend the borders of extraction
 
         nn = names(PLOC)
         
@@ -26,14 +26,14 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
         if(length(ilon)<1)   { return(NULL) }
         if(length(ilat)<1)   { return(NULL) }
 
-  
+        
         A = list(lat=PLOC[[ilat[1]]], lon=PLOC[[ilon[1]]], LAT=PLOC[[ilat[1]]], LON=fmod(PLOC[[ilon[1]]], 360) )
-  
-  
+        
+        
         
         PG  = GLOB.XY(A$lat, A$lon , PROJ  )
 
-       ##   plot(PG, asp=1)
+        ##   plot(PG, asp=1)
 
         
         dx = (PG$x[2]-PG$x[1])
@@ -50,20 +50,20 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 
         ZZ2 = subsetTOPO(TOPO, newPLOC)
         
-     
-     ######   image(ZZ2)
+        
+######   image(ZZ2)
 
         
         
         
       }
     
-   
+    
     d = dim(ZZ2$z)
     
     G = setplotmat(ZZ2$x,ZZ2$y)
 
-    ######  image(ZZ2)
+######  image(ZZ2)
 
 ######    DOTOPOMAPI(TOPO=ETOPO5, worldmap=worldmap, shiftlon=0, ALOC=PLOC)
 
@@ -72,8 +72,8 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     
 ### first:  jtop = scan(file='jap.topo', list(lon=0, lat=0, z=0))
 
- ###   jlon = unique(ZZ2$x)
- ###   jlat = unique(ZZ2$y)
+###   jlon = unique(ZZ2$x)
+###   jlat = unique(ZZ2$y)
 
 
 
@@ -81,8 +81,8 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     GXY  = GLOB.XY(G$y, G$x , PROJ  )
     
     
-  ###  xo = seq(from=range(GXY$x)[1], to=range(GXY$x)[2], length=npoints)
- ###   yo = seq(from=range(GXY$y)[1], to=range(GXY$y)[2], length=npoints)
+###  xo = seq(from=range(GXY$x)[1], to=range(GXY$x)[2], length=npoints)
+###   yo = seq(from=range(GXY$y)[1], to=range(GXY$y)[2], length=npoints)
 
 ##########   here, lets try to restrict the number of points for interpolation
 
@@ -94,17 +94,17 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
     gz = gz[Gflag ]
 
     
-     
+    
     xo = seq(from=PG$x[1], to=PG$x[2], length=npoints)
     yo = seq(from=PG$y[1], to=PG$y[2], length=npoints)
 
 
     
 
-    ##########   here we transpose the topo data to fit the next programs
+##########   here we transpose the topo data to fit the next programs
     cat("Interpolating the topography....please wait, this can take time....", file="", sep="\n")
     
-   ###  IZ = interp(x=GXY$x , y=GXY$y,  z=t(ZZ2$z)  , xo=xo, yo=yo, extrap=FALSE)
+###  IZ = interp(x=GXY$x , y=GXY$y,  z=t(ZZ2$z)  , xo=xo, yo=yo, extrap=FALSE)
 
     ww = which(gx>=PG$x[1] & gx<=PG$x[2] & gy>=PG$y[1] & gy<=PG$y[2])
     
@@ -113,129 +113,39 @@ function(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
 
 
 
-    ###    rect(PG$x[1], PG$y[1],     PG$x[2], PG$y[2]         )  
+###    rect(PG$x[1], PG$y[1],     PG$x[2], PG$y[2]         )  
     ##  image(IZ, col=rainbow(100) )
     
     ##   H = setplotmat(IZ$x,IZ$y)
     ##  points(H$x[is.na(IZ$z)] , H$y[is.na(IZ$z)], pch=2)
     
     ##  jz = matrix(ZZ2$z, ncol=length(jx), nrow=length(jy), byrow=TRUE)
-    
-    cat("Setting Colors....please wait....", file="", sep="\n")
-
-    UZ = IZ$z
-    UZ[IZ$z>= .001 ] = NA
-
-    AZ = IZ$z
-    AZ[IZ$z<=-.001] = NA
-
-    blues = shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
-
-    ##  image(x=xo, y=yo,   z=UZ, col=blues, asp=TRUE , axes=FALSE, xlab="", ylab="" )
-
-    ##  image(x=xo, y=yo,   z=AZ, col=topo.colors(100), asp=TRUE , axes=FALSE, xlab="", ylab="", add=TRUE )
-
-    ##  plotGEOmapXY(japmap, PROJ=PROJ,CZ LIM=c(A$LON[1], A$LAT[1],A$LON[2], A$LAT[2] ) , add=TRUE)
 
 
-    
-    CZ = AZ
-   ########  TZ[TZ<0] = NA
 
-    dz = dim(AZ)
-    
-    coltab = cbind(calcol$r1, calcol$g1, calcol$b1,calcol$r2, calcol$g2, calcol$b2)
-    
-    coltab = rbind(coltab, coltab[length(calcol$r1),])
-    
-    rng = range(AZ[!is.na(AZ)])
-    ncol = 100
-    levs = seq(from=rng[1], to=rng[2], length=100)
-    
-    
-    brs = c(calcol$z1[1], calcol$z2,  calcol$z2[length(calcol$z2)]+10000)
-    
-    Cs = CZ
+    if(PLOT==TRUE)
+      {
+        
+        cat("Setting Colors....please wait....", file="", sep="\n")
 
-    naflag = which(is.na(Cs))
-    
-    fs = findInterval(Cs, brs)
-    df = diff(brs)
-    
-    coldis = (Cs - brs[fs])/df[fs]
-    
-    newcol = list(r= round(coltab[fs,1]+coldis*(coltab[fs,4]-coltab[fs,1]  )),
-      g = round(coltab[fs,2]+coldis*(coltab[fs,5]-coltab[fs,2]  )),
-      b = round(coltab[fs,3]+coldis*(coltab[fs,6]-coltab[fs,3]  )))
-
-    newcol$r[naflag] = 0
-    newcol$g[naflag] = 0
-    newcol$b[naflag] = 0
-
-    
-    Collist = rgb(newcol$r/255, newcol$g/255, newcol$b/255)
-
-    
-#### bluesrgb = col2rgb(blues)
-
-####    Collist[IZ$z<0] = blues
-    
-####   Mollist = matrix(data=Collist, ncol=dz[2], nrow=dz[1])
-    
-####    PMAT = persp(jx, jy , TZ, theta = 0, phi = 90, r=4000, col=Mollist[1:479, 1:359] , scale = FALSE,
-####      ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
+       Cmat  = TOPOCOL(IZ, calcol)
+        Dcol  = attr(Cmat, 'Dcol') 
+        cat(".....plotting with persp....please wait....", file="", sep="\n")
+        
+        PMAT = persp(xo, yo, IZ$z, theta = 0, phi = 90, r=4000, col=Cmat[1:(Dcol[1]-1), 1:(Dcol[2]-1)] , scale = FALSE,
+          ltheta = 120, lphi=30, shade = 0.75, border = NA, expand=0.001, box = FALSE )
+        
+      }
+    else
+      {
+        PMAT = NA
+      Cmat=NA
+       Dcol=NA
 
 
-   if( all(is.na(UZ)) )
-     {
-       C2 = Collist
-     }
-   else
-     {
-       
-       bluesrgb = col2rgb(blues)
-
-       rngU = range(UZ[!is.na(UZ)])
-       
-       ncol = 100
-       levs = seq(from=rngU[1], to=rngU[2], length=100)
-       
-       
-       brs = levs
-       Cs = UZ[!is.na(UZ)]
-       fs = findInterval(Cs, brs)
-       
-       
-####   df = diff(brs)
-    
-####  coldis = (Cs - brs[fs])/df[fs]
-       
-       
-       Anewcol = list(r=bluesrgb[1,fs],
-         g =bluesrgb[2,fs] ,
-         b =bluesrgb[3,fs] )
-       
-       
-       UCollist = rgb(Anewcol$r/255, Anewcol$g/255, Anewcol$b/255)
-       
-       C2 = Collist
-       C2[!is.na(UZ)] = UCollist
-       
-     }
-    
-    Mollist = matrix(data=C2, ncol=dz[2], nrow=dz[1])
-    
-    dMOL = dim(Mollist)       
-    
-
-    cat(".....plotting with persp....please wait....", file="", sep="\n")
-    
-    PMAT = persp(xo, yo, IZ$z, theta = 0, phi = 90, r=4000, col=Mollist[1:(dMOL[1]-1), 1:(dMOL[2]-1)] , scale = FALSE,
-      ltheta = 120, lphi=30, shade = 0.75, border = NA, expand=0.001, box = FALSE )
-    
-  
+      }
     
     
-    invisible(list(PMAT=PMAT, xo=xo, yo=yo, IZ=IZ , Mollist=Mollist, dMOL=dMOL))
+    invisible(list(PMAT=PMAT, xo=xo, yo=yo, IZ=IZ ,Cmat=Cmat, Dcol=Dcol))
   }
 

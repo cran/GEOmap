@@ -1,6 +1,8 @@
 `plotGEOmapXY` <-
-function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL=NULL, GRID=NULL,
-                        GRIDcol=1, MAPcol=NULL, MAPstyle=NULL, border=NA, cenlon=0, shiftlon=0, linelty=1, linelwd=1, NUMB=FALSE, ...)
+function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
+         add=TRUE,  SEL=NULL, GRID=NULL, GRIDcol=1,
+         MAPcol=NULL, MAPstyle=NULL, border=NA, cenlon=0, shiftlon=0,
+         linelty=1, linelwd=1, ptpch=".", ptcex=1, NUMB=FALSE, ...)
 {
   ###  NUMB = add a number on the stroke to show which stroke it is for later modification
   ######   MAPcol will override the color in the map data base.  Good for making BW figures
@@ -12,14 +14,18 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
   if(missing(linelty)) { linelty=1 }
   if(missing(NUMB)) { NUMB=FALSE }
   if(missing(linelwd)) { linelwd=1 }
+  if(missing(ptpch)) { ptpch="." }
+  if(missing(ptcex)) { ptcex=1 }
+
+  
   if(missing(MAPcol)) { MAPcol=NULL }
   if(missing(MAPstyle)) { MAPstyle=NULL }
   if(missing(border)) { border=NA  }
   if(missing(shiftlon)) {  shiftlon=0 }
   if(missing(PROJ)) {
-
-   PROJ = setPROJ(type=2, LAT0=median(MAP$POINTS$lat), LON0=median(MAP$POINTS$lon-shiftlon) , LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
-
+    PROJ = setPROJ(type=2, LAT0=median(MAP$POINTS$lat), LON0=median(MAP$POINTS$lon-shiftlon) ,
+      LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
+    
   }
 
  ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
@@ -90,6 +96,9 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
       STRKXYLL = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
       STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
 
+      STRKXYUL = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
+      STRKXYLR = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
+
 
       
       if(is.null(PMAT))
@@ -154,25 +163,45 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
  ###      STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
 
       
-      y1 = MAP$STROKES$y1
-      y2 = MAP$STROKES$y2
-      x1 = MAP$STROKES$x1
-      x2 = MAP$STROKES$x2
+   ###     y1 = MAP$STROKES$y1
+   ###     y2 = MAP$STROKES$y2
+   ###     x1 = MAP$STROKES$x1
+   ###     x2 = MAP$STROKES$x2
 
-       XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
+      XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
       LLlim$x = XYLIM$x
       LLlim$y = XYLIM$y
 
- y3 =XYLIM$y[1]
-   y4 =XYLIM$y[2]
- x3 =XYLIM$x[1]
-   x4 = XYLIM$x[2]
-     
-      OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
+      y3 =XYLIM$y[1]
+      y4 =XYLIM$y[2]
+      x3 =XYLIM$x[1]
+      x4 = XYLIM$x[2]
       
-      IN = which(!OUT)
+     ##  OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
+      
+      ##  IN = which(!OUT)
 
-
+      IN = vector()
+      kout = 0
+      for(kin in 1:length(MAP$STROKES$num))
+        {
+          j1 = MAP$STROKES$index[kin]+1
+          j2 = j1+MAP$STROKES$num[kin]-1
+          
+          if(j1>0 & j2>0 & j2-j1 >=0)
+            {
+              JEC = j1:j2
+              x = MAP$POINTS$x[JEC]
+              y = MAP$POINTS$y[JEC]
+              if(any(y>y3 & y<y4 & x>x3 & x<x4))
+                {
+                  kout = kout+1
+                  IN[kout] = kin
+                  
+                }
+            }
+          
+        }
 
 
       
@@ -213,7 +242,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
       j1 = MAP$STROKES$index[i]+1
       j2 = j1+MAP$STROKES$num[i]-1
       
-      if(j1>0 & j2>0 & j2-j1 >0)
+      if(j1>0 & j2>0 & j2-j1 >=0)
         {
           JEC = j1:j2
           x = MAP$POINTS$x[JEC]
@@ -251,7 +280,10 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
     {
 ###R1 = range(c(MAP$STROKES$x1[IN],MAP$STROKES$x2[IN]))
 ###R2 = range(c(MAP$STROKES$y1[IN], MAP$STROKES$y2[IN]))
-      plot(c(minx, maxx) , c(miny,maxy), asp=TRUE, type='n', ...)
+ ###     plot(c(minx, maxx) , c(miny,maxy), asp=1, type='n', ...)
+
+ plot(range(LLlim$x), range(LLlim$y),  asp=1, type='n', ...)
+      
       
 ### plot(c(MAP$STROKES$x1[IN],MAP$STROKES$x2[IN]) , c(MAP$STROKES$y1[IN], MAP$STROKES$y2[IN]), asp=TRUE, type='n', ...)
 ###print(c(R1, R2))
@@ -267,8 +299,12 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
     {
       j1 = MAP$STROKES$index[i]+1
       j2 = j1+MAP$STROKES$num[i]-1
+
+
+
+ ###cat(paste(i, "style=",  MAP$STROKES$style[i]), sep="\n")
       
-      if( (j1>0 & j2>0 & j2-j1 >0))
+      if( (j1>0 & j2>0 & j2-j1 >=0))
         {
           JEC = j1:j2
         }
@@ -288,7 +324,10 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL, add=TRUE,  SEL
       
       if(MAP$STROKES$style[i]==1)
         {
-          points(MAP$POINTS$x[JEC], MAP$POINTS$y[JEC], col=MAP$STROKES$col[i])
+         ### cat(paste(i, "***********plotting style=1"), sep="\n")
+
+          
+          points(MAP$POINTS$x[JEC], MAP$POINTS$y[JEC], col=MAP$STROKES$col[i], pch=ptpch, cex=ptcex)
         }
 
       

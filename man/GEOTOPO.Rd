@@ -7,7 +7,7 @@
   plot using the persp program.
 }
 \usage{
-GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
+GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
 }
 
 \arguments{
@@ -15,7 +15,8 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
   \item{PLOC}{Location list, includes vectors LON and Lat}
   \item{PROJ}{projection}
   \item{calcol}{color table for coloring elevations above sea level}
-   \item{npoints}{number of points in x-y grid, default=500}
+  \item{npoints}{number of points in x-y grid, default=500}
+  \item{PLOT}{ logical, TRUE=plot a map and return color map}
 }
 \details{
   The return matrix PMAT is a rotation matrix used for adding
@@ -28,17 +29,29 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500)
   \item{xo}{x-coordinates}
   \item{ yo}{y-coordinates}
    \item{IZ}{interpolated elevations}
-   \item{Mollist}{matrix of RGB Colors}
-   \item{dMOL}{dimensions of Mollist}
+   \item{Cmat}{matrix of RGB Colors}
+   \item{Dcol}{dimensions of Cmat}
 
   
   
  
 }
+\note{
+  If PLOT is false the transform matrix PMAT and the color
+  mapping matrix Cmat will be returned as NA.
+  To create these for future plotting, use TOPOCOL or LandSeaCol
+  functions.  TOPOCOL simply assigns values above sea level with
+  one color scale and those below with under water colors.
+  LandSeaCol requires a coastal map and fills in
+  land areas with terrain colors and sea areas with blue palette colors.
+  
+}
+
+
 
 \author{Jonathan M. Lees<jonathan.lees.edu>}
 
-\seealso{subsetTOPO,  settopocol,  subsetTOPO, persp, DOTOPOMAPI}
+\seealso{subsetTOPO, TOPOCOL,  LandSeaCol, settopocol,  subsetTOPO, persp, DOTOPOMAPI}
 \examples{
 
 library(geomapdata)
@@ -50,13 +63,13 @@ PLOC=list(LON=c(137.008, 141.000),LAT=c(34.000, 36.992),
 
  PROJ = setPROJ(type=2, LAT0=mean(PLOC$y) , LON0=mean(PLOC$x) )
 COLS = settopocol()
-JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol)
+JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol, PLOT=TRUE)
 
 ############  this plot can be duplicated by using the output or GEOTOPO
 
 
  PMAT = persp(JMAT$xo, JMAT$yo, JMAT$IZ$z, theta = 0, phi = 90, r=4000,
-col=JMAT$Mollist[1:(JMAT$dMOL[1]-1), 1:(JMAT$dMOL[2]-1)] , scale = FALSE,
+col=JMAT$Cmat[1:(JMAT$Dcol[1]-1), 1:(JMAT$Dcol[2]-1)] , scale = FALSE,
       ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
 
 

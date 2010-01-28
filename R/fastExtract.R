@@ -45,7 +45,7 @@ fastExtract<-function(MAP, SEL, INOUT="out")
       lon = MAP$POINTS$lon[JEC]
       lat = MAP$POINTS$lat[JEC]
       
-      if(j1>0 & j2>0 & j2-j1 >0)
+      if(j1>0 & j2>0 & j2-j1 >=0)
         {
           
           NEWMAP$STROKES$nam[kmap] =  MAP$STROKES$nam[i]

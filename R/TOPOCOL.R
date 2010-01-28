@@ -1,7 +1,11 @@
-TOPOCOL<- function(IZ, calcol)
+TOPOCOL<- function(IZ, calcol=NULL)
   {
     ######  source("/home/lees/Progs/R_PAX/GEOmap/R/TOPOCOL.R")
-
+    if(missing(calcol)) {  CCOL = settopocol(); calcol = CCOL$calcol }
+    
+    if(is.null(calcol)) {  CCOL = settopocol(); calcol = CCOL$calcol  }
+    
+  
     if(!is.list(IZ)) { IZ = list(z=IZ) }
     
     UZ = IZ$z
@@ -53,9 +57,9 @@ TOPOCOL<- function(IZ, calcol)
 
 ####    Collist[IZ$z<0] = blues
     
-####   Mollist = matrix(data=Collist, ncol=dz[2], nrow=dz[1])
+####   Cmat = matrix(data=Collist, ncol=dz[2], nrow=dz[1])
     
-####    PMAT = persp(jx, jy , TZ, theta = 0, phi = 90, r=4000, col=Mollist[1:479, 1:359] , scale = FALSE,
+####    PMAT = persp(jx, jy , TZ, theta = 0, phi = 90, r=4000, col=Cmat[1:479, 1:359] , scale = FALSE,
 ####      ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
 
 
@@ -96,11 +100,11 @@ TOPOCOL<- function(IZ, calcol)
        
      }
     
-    Mollist = matrix(data=C2, ncol=dz[2], nrow=dz[1])
+    Cmat = matrix(data=C2, ncol=dz[2], nrow=dz[1])
     
-    dMOL = dim(Mollist)       
+    Dcol = dim(Cmat)       
 
-    attr(Mollist, 'dMOL') <- dMOL
-    invisible(Mollist)
+    attr(Cmat, 'Dcol') <- Dcol
+    invisible(Cmat)
 
   }

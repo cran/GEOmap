@@ -50,22 +50,22 @@ MYCOLL = TOPOCOL(volcano, BWpal2)
      y <- 10 * (1:ncol(z))   # 10 meter spacing (E to W)
      ## Don't draw the grid lines :  border = NA
      par(bg = "slategray")
-dMOL = attr(  MYCOLL , "dMOL")
+Dcol = attr(  MYCOLL , "Dcol")
 
-     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(dMOL[1]-1), 1:(dMOL[2]-1)], scale = FALSE,
+     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
            ltheta = -120, shade = 0.75, border = NA, box = FALSE)
 
 
 calcol=settopocol()
 MYCOLL = TOPOCOL(volcano, calcol$calcol)
 
-dMOL = attr(  MYCOLL , "dMOL")
+Dcol = attr(  MYCOLL , "Dcol")
 
   K <- 8 *volcano
 
 MYCOLL = TOPOCOL(K, calcol$calcol)
 
-     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(dMOL[1]-1), 1:(dMOL[2]-1)], scale = FALSE,
+     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
            ltheta = -120, shade = 0.75, border = NA,  box = FALSE)
 
 

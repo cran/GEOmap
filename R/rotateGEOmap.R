@@ -38,7 +38,7 @@ rotateGEOmap<-function(INmap, TARGlat,  TARGlon, LAT0,  LON0, beta=0)
     for (i in IN) {
       j1 = MAP$STROKES$index[i] + 1
       j2 = j1 + MAP$STROKES$num[i] - 1
-      if ((j1 > 0 & j2 > 0 & j2 - j1 > 0)) {
+      if ((j1 > 0 & j2 > 0 & j2-j1 >= 0)) {
         JEC = j1:j2
       }
       xlon = MAP$POINTS$lon[JEC]

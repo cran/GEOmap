@@ -145,7 +145,7 @@ if(!is.null(MAPstyle)) {  MAP$STROKES$style = rep(MAPstyle, length(MAP$STROKES$s
 
       if(MAP$STROKES$style[i]==1)
         {
-          points(LONS, LATS, col=MAP$STROKES$col[i])
+          points(LONS, LATS, col=MAP$STROKES$col[i], pch=".")
         }
        if(BB==TRUE)
         {
