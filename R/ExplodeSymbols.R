@@ -1,9 +1,10 @@
-ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL )
+ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
   {
 ####  find a good way to explode symbols (focal mechanisms)
     ####  source("ExplodeSymbols.R")
     
     library(RPMG)
+    if(missing(MAP)) { MAP = NULL }
     if(missing(STARTXY))
       {
         STARTXY=NULL 
@@ -46,6 +47,8 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL )
         
         plot(rx , ry , type='n', asp=1, xlab="km", ylab="km")
 
+        if(!is.null(MAP) ) { plotGEOmap(MAP, LIM = c(rx[1],ry[1] , rx[2], ry[2]) , add = TRUE ) }
+
         points(XY$x, XY$y, pch=3, col='blue')
         points(NEWXY$x, NEWXY$y, pch=6, col='red')
         segments(XY$x, XY$y, NEWXY$x, NEWXY$y)
@@ -58,7 +61,7 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL )
         
       }
 
-    
+   
     XPCT = 0
     focsiz =EXPreplot()
 
@@ -522,7 +525,7 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
           "CIRC:",
           "After selection, click once for the circle center, and a second time for the radius, then click CIRC",
           "\n",
-          "LINE:\n","Not implemented yet",
+          "LINE:\n","After selection, three clicks: 1,2 for line, 3 for distance from line",
           "############################",
           "############################",
           "\n",

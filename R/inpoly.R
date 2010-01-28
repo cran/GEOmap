@@ -1,13 +1,12 @@
 `inpoly` <-
-function(x,y, POK )
+  function(x,y, POK )
   {
-G = rep(0,length(x))
-for(i in 1:length(x))
-{
-A = list(x=x[i], y=y[i])
-G[i] = inside(A , POK )
+    require(splancs)
+    kin = inout(cbind(x, y) ,cbind(POK$x, y =POK$y), bound=TRUE)
 
-}
-return(G)
-}
+    G = rep(0,length(x))
+    G[kin] = 1
+
+    return(G)
+  }
 

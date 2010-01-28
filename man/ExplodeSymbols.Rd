@@ -8,7 +8,7 @@
   for Focal Mechanisms.
 }
 \usage{
-ExplodeSymbols(XY, fsiz = 1, STARTXY = NULL)
+ExplodeSymbols(XY, fsiz = 1, STARTXY = NULL, MAP = NULL)
 }
 \arguments{
   \item{XY}{list of x,y values
@@ -17,6 +17,8 @@ ExplodeSymbols(XY, fsiz = 1, STARTXY = NULL)
 }
 \item{STARTXY}{Starting positions.  This is used
   for multiple sessions where we want to pick up the previous locations.
+}
+\item{MAP}{Map to plot on the screen, in GEOmap format.
 }
 }
 \details{
@@ -34,17 +36,18 @@ on top (or bottom) - the button takes your clicks and does something
 Here are some hints:
 
 
-Buttons:
+Buttons:Buttons appear on top and bottom of the plotting
+region.
 
 HAND: If you want to move only one symbol (focal mech) click near it and then click
 where you want it to go.  Then click the HAND button
 You may click several at once, but for each click oin a symbol
 there has to be a click somewhere to relocate it.
 (i.e. there must be an even number of clicks on the screen before hitting the
- HAND button)
+HAND button)
 
-SEL:
 
+  SEL:
 If you want to explode several symbols at once, first select them:
   click lower left, then upper right of rectangle enclosing the selection.
 Once a selection is made it remains active until another selection is made
@@ -52,22 +55,30 @@ so you can keep changing the radius and center for different explosions
 Then click CIRC.
 
 RECT
-Choose a rectangle (lower left and upper right), then click RECT for an explosion
+  Choose a rectangle (lower left and upper right), then click RECT for
+  an explosion
 
 RECT2
 After selecting, choose a center and a distance.
-symbols will be moved to a rectangular perimeter defined by the two points
+symbols will be moved to a rectangular perimeter defined by the two
+points
 
 CIRC
 After selection, click once for the circle center, and a second time for the radius, then click CIRC
 
-
 LINE
-Not implemented yet
-
+After selection,will explode the events away from a line, a given distance away.
+The line is given by 2 points and the distance by a third perpendicular
+distance.
 
 }
 \value{list of new x,y values
+}
+\note{
+  For now the map is given in lat-lon coordinates-
+  the same as the points being moved.
+  There is no map  projection used.
+  
 }
 
 \author{

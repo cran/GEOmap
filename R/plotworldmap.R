@@ -13,6 +13,27 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , ..
       LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
       LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
     }
+  else
+    {
+
+      if(LIM[1]==(-180) & LIM[3]==(180))
+        {
+          LIM[1] =  min(fmod(MAP$POINTS$lon, 360))
+          LIM[3] =  max(fmod(MAP$POINTS$lon, 360))
+        }
+
+      if(LIM[1]==(0) & LIM[3]==(360))
+        {
+          LIM[1] =  min(fmod(MAP$POINTS$lon, 360))
+          LIM[3] =  max(fmod(MAP$POINTS$lon, 360))
+        }
+
+      
+
+      LIM = c(  fmod(LIM[1], 360)  , LIM[2] , fmod(LIM[3], 360) , LIM[4]) 
+      
+      LIMP=LIM
+    }
   
 
 ###  determine stroke inclusion

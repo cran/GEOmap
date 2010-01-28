@@ -1,5 +1,5 @@
 `zebra` <-
-function(x,y,Dx, dx, dy, lab="", units="", col=c("black", "white"), cex=1, xpd=TRUE,  PMAT=NULL)
+function(x,y,Dx, dx, dy, lab="", pos=1, col=c("black", "white"), cex=1, textcol="black", xpd=TRUE,  PMAT=NULL)
 {
 ###  zebra: draw a zebra bar km scale on a map; Km ; KM scale; kmscale
 ###  x, y = location of left point 
@@ -12,8 +12,9 @@ function(x,y,Dx, dx, dy, lab="", units="", col=c("black", "white"), cex=1, xpd=T
   if(missing(lab)) { lab=NULL  }
   if(missing(col)) { col=c("black", "white")  }
   if(missing(cex)) { cex=1  }
-  if(missing(units)) { units=NULL }
+  if(missing(pos)) { pos=1 }
   if(missing(xpd)) { xpd=TRUE }
+  if(missing(textcol)) { textcol="black"  }
 
   
   for(i in 1:(Dx/dx))
@@ -37,23 +38,31 @@ function(x,y,Dx, dx, dy, lab="", units="", col=c("black", "white"), cex=1, xpd=T
       
     }
 
-
+  ytext = y
+  if(pos==3)
+    {
+      ytext = y+dy
+      
+    }
+      
   if(!is.null(PMAT))
     {
-      tem1 = trans3d(x, y, rep(0, length(y)) , PMAT)
-      text(tem1$x[1], tem1$y[1], labels="0", pos=1, cex=cex, xpd=xpd)
+
+      tem1 = trans3d(x, ytext, rep(0, length(y)) , PMAT)
+      text(tem1$x[1], tem1$y[1], labels="0", pos=pos, cex=cex, xpd=xpd, col=textcol)
       
-      tem1 = trans3d(px2, y, rep(0, length(y)) , PMAT)
-      text(tem1$x[1], tem1$y[1], labels=Dx, pos=1, cex=cex, xpd=xpd )
+      tem1 = trans3d(px2, ytext, rep(0, length(y)) , PMAT)
+      text(tem1$x[1], tem1$y[1], labels=Dx, pos=pos, cex=cex, xpd=xpd, col=textcol )
       
-      tem1 = trans3d((x+px2)/2, y, rep(0, length(y)) , PMAT)
-      text(tem1$x[1], tem1$y[1], labels=lab, pos=1, cex=cex , xpd=xpd)
+      tem1 = trans3d((x+px2)/2, ytext, rep(0, length(y)) , PMAT)
+      text(tem1$x[1], tem1$y[1], labels=lab, pos=pos, cex=cex , xpd=xpd, col=textcol)
+      
     }
   else
     {
-      text(x,y, labels="0", pos=1, cex=cex, xpd=xpd)
-      text(px2, y, labels=Dx, pos=1, cex=cex, xpd=xpd )
-      text((x+px2)/2, y, labels=lab, pos=1, cex=cex, xpd=xpd)
+      text(x,ytext, labels="0", pos=pos, cex=cex, xpd=xpd, col=textcol)
+      text(px2, ytext, labels=Dx, pos=pos, cex=cex, xpd=xpd, col=textcol )
+      text((x+px2)/2, ytext, labels=lab, pos=pos, cex=cex, xpd=xpd, col=textcol)
     }
 
 }

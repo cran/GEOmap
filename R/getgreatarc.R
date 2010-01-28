@@ -12,7 +12,7 @@ getgreatarc<-function( lat1,  lon1,  lat2,  lon2,  num=10)
     AA = along.great( lat1*DEGRAD,  lon1*DEGRAD, angle, Az*DEGRAD);
     phi2 = RADDEG * AA$phi;
     lam2 = RADDEG * AA$lam;
-    return(list( lat=phi2, lon=lam2) )
+    return(list( lat=phi2, lon=lam2, del=dis ) )
 
     
   }

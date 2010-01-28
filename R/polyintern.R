@@ -2,26 +2,26 @@ polyintern<-function(P, n=10, PLOT=FALSE)
   {
 
     if(missing(n)) n=10
-    if(PLOT)  PLOT=FALSE
+    if(missing(PLOT) )  PLOT=FALSE
     
     
     x = P$x
     y = P$y
 
-    xo = seq(from=min(x), to=max(x), length=10)
+    xo = seq(from=min(x), to=max(x), length=n)
     
-    yo = seq(from=min(y), to=max(y), length=10)
+    yo = seq(from=min(y), to=max(y), length=n)
 
     mg = meshgrid(xo, yo)
 
     
     
-    I = inpoly(mg$x, mg$y , list(x=c(P$x, P$x[1]), y=c(P$y, P$y[1])))
+   ###   I = inpoly(mg$x, mg$y , list(x=c(P$x, P$x[1]), y=c(P$y, P$y[1])))
 
-
-    
-    nx = mg$x[I==1]
-    ny =  mg$y[I==1]
+    kin = inout(cbind(as.vector(mg$x), as.vector(mg$y) ) ,cbind(x, y), bound=TRUE)
+ 
+    nx = mg$x[kin]
+    ny =  mg$y[kin]
 
     ef = rep(0, length=length(nx))
     
@@ -84,7 +84,7 @@ polyintern<-function(P, n=10, PLOT=FALSE)
         plot(x,y, type='n', asp=1)
         polygon(x,y, col=rgb(.7,.7,1))
         
-        points(mg$x[I==1] , mg$y[I==1] )
+        points(mg$x[kin] , mg$y[kin] )
 
         points(nx[zi], ny[zi], col='red', pch=6)
       }

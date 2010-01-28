@@ -12,7 +12,7 @@ Topographic and Geologic Mapping
 \tabular{ll}{
 Package: \tab GEOmap\cr
 Type: \tab Package\cr
-Version: \tab 1.5-4\cr
+Version: \tab 1.5-8\cr
 Date: \tab 2010-01-28\cr
 License: \tab GPL\cr
 }

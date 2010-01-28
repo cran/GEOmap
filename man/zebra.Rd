@@ -6,8 +6,8 @@
   Plot a zebra style horizontal scale on a projected map.
 }
 \usage{
-zebra(x, y, Dx, dx, dy, lab = "", units = "", col = c("black", "white"),
-cex = 1, xpd=TRUE, PMAT = NULL)
+zebra(x, y, Dx, dx, dy, lab = "", pos=1, col = c("black", "white"),
+cex = 1, textcol="black", xpd=TRUE, PMAT = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,9 +17,11 @@ cex = 1, xpd=TRUE, PMAT = NULL)
   \item{dx}{distance for zebra stripes in x }
   \item{dy}{thickness in km}
   \item{lab}{labels}
-  \item{units}{units}
-  \item{col}{color}
+  \item{pos}{position of text, 1=below, 3=above, as in par}
+  \item{col}{2-vector of colors, for the alternating bars}
   \item{cex}{character expansion}
+  \item{textcol}{color for the text}
+  
   \item{xpd}{logical, graphic parameter for clipping (see par) }
   \item{PMAT}{3D projection matrix from persp}
 }
