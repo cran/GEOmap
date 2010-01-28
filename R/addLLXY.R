@@ -11,7 +11,10 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
     if(missing(BORDER)) { BORDER=NULL }
     if(missing(TICS)) { TICS=NULL }
     if(missing(xpd)) { xpd=TRUE }
+
+    if(LABS==FALSE) { LABS = NULL }
     
+  ############   Hershey Fonts ( vfont  typeface  fontindex )  degrees = de   minutes = fm   seconds = sd
 
    typefaces  =  c("serif","sans serif", "script", "gothic english", "serif symbol" , "sans serif symbol")
 
@@ -24,6 +27,9 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
     
     HL = 0
     tpoints = as.list(NA)
+
+
+    if(GRID==FALSE) { GRIDcol = NULL }
     
 ########  latitudes
 
@@ -117,7 +123,7 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
             else
               {
 
-                alab = paste(sep="", degs[k], "\\de", mins[k], "\\mi")
+                alab = paste(sep="", degs[k], "\\de", mins[k], "\\fm")
                ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=1, col=col)
                 text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont , xpd=xpd, pos=1, col=col)
                 
@@ -144,11 +150,15 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
               {
                 alab = paste(sep="", degs[k], "\\de")
               ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree)  , xpd=xpd, pos=2, col=col)
+
+                ############   Hershey Fonts (vfont)  degrees = de   minutes = fm   seconds = sd
+
+                
                 text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont  , xpd=xpd, pos=2, col=col)
               }
             else
               {
-                alab = paste(sep="", degs[k], "\\de", mins[k], "\\mi")
+                alab = paste(sep="", degs[k], "\\de", mins[k], "\\fm")
                 ## text(xy$x[k], xy$y[k], labels=bquote(.(degs[k])*degree ~ .(mins[k])*minute)  , xpd=xpd, pos=2, col=col)
                  text(xy$x[k], xy$y[k], labels=alab,  vfont=vfont , xpd=xpd, pos=2, col=col)
                 

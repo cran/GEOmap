@@ -108,6 +108,14 @@
 
     ww = which(gx>=PG$x[1] & gx<=PG$x[2] & gy>=PG$y[1] & gy<=PG$y[2])
     
+##     plot( gx[ww] , gy[ww] )
+
+##  mg = meshgrid(xo, yo)
+##   points(mg, col='red', pch=3)
+
+    rect(PG$x[1], PG$y[1], PG$x[2], PG$y[2])
+
+    
     
     IZ = interp(x=gx[ww] , y=gy[ww] ,  z=gz[ww]   , xo=xo, yo=yo, extrap=FALSE)
 

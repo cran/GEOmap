@@ -13,7 +13,9 @@ function(LABS=NULL, PROJ=NULL)
             lab = LABS[i]
             print(paste(sep=' ', i, lab) )
             print("click in figure pairs for arrows")
-            L = locator(2)
+            L = locator(2, type="p", col='red')
+            segments(L$x[1], L$y[1], L$x[2], L$y[2], col='red')
+            
             apos = readline(prompt="Type in the position (0, 1,2,3,4)  ROT(T, F)  Arrow(T, F):")
             kin = unlist(strsplit(apos, " "))
             kin = kin[kin != "" ]
@@ -27,9 +29,10 @@ function(LABS=NULL, PROJ=NULL)
             y2=L$y[2]
             
             MM[[i]] = list(x1=x1, y1=y1, x2=x2, y2=y2, lab=lab, pos=pos,
-                angdeg=angdeg, ROT=rot, ARR=TRUE, CEX=1)
-            names(MM) = LABS
+                angdeg=angdeg, ROT=rot, ARR=arr, CEX=1)
+            
           }
+        
       }
     else
       {
@@ -85,7 +88,7 @@ function(LABS=NULL, PROJ=NULL)
       }
 
 
-
+    names(MM) = LABS
     
     
     return(MM)

@@ -24,7 +24,8 @@
   for(i in 1:Norg)
     {
       
-      L = list( del=rep(0, length(tlat)) , dist=rep(0, length(tlat)) , az=rep(0, length(tlat)) , baz=rep(0, length(tlat)), err=rep(0, length(tlat)) )
+      L = list( del=rep(0, length(tlat)) , dist=rep(0, length(tlat)) ,
+        az=rep(0, length(tlat)) , baz=rep(0, length(tlat)), err=rep(0, length(tlat)) )
       
 
       olat[is.na(olat)] = -100

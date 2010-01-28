@@ -78,6 +78,16 @@ plotGEOmapXY(japmap, LIM=c(PLOC$LON[1], PLOC$LAT[1],PLOC$LON[2],
 
 addLLXY(PLAT,  PLON, PROJ=PROJ, LABS=TRUE, PMAT=NULL, TICS=c(.1,.1) )
 
+###############
+
+
+
+####  rotated map
+PMAT = rotdelta4(-34)
+
+ plotGEOmapXY(japmap, PMAT=PMAT, xpd=TRUE)
+
+
 
 }
 

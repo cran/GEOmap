@@ -22,11 +22,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   if(missing(MAPstyle)) { MAPstyle=NULL }
   if(missing(border)) { border=NA  }
   if(missing(shiftlon)) {  shiftlon=0 }
-  if(missing(PROJ)) {
-    PROJ = setPROJ(type=2, LAT0=median(MAP$POINTS$lat), LON0=median(MAP$POINTS$lon-shiftlon) ,
-      LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
-    
-  }
+
+  
 
  ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
 
@@ -43,6 +40,14 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
     }
   else
     {
+
+
+      if(is.null(LIM))
+        {
+          lon = fmod(MAP$POINTS$lon-shiftlon, 360)
+          LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
+          LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+        }
 
       
       if(!is.list(LIM))
@@ -63,6 +68,25 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   
 
   LLlim = list(lat=LIM[c(2,4)], lon=LIM[c(1,3)])
+
+########################################################
+  if(missing(PROJ)) {
+    ############   need a projection  ###############
+   ### MAPMEDLAT =  median(MAP$POINTS$lat)
+   ### MAPMEDLON =  median(MAP$POINTS$lon-shiftlon)
+
+    MAPCENLAT =  mean(LLlim$lat)
+    MAPCENLON =  median(LLlim$lon)
+
+    PROJ = setPROJ(type=2, LAT0=MAPCENLAT, LON0=MAPCENLON ,
+      LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
+    
+  }
+
+
+
+
+  
   
   if(missing(add)) { add=FALSE }
 
@@ -78,6 +102,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
       MAPXY = GLOB.XY(MAP$POINTS$lat ,  fmod( MAP$POINTS$lon-shiftlon, 360) , PROJ )
 
 
+
+      
       MAXDISTX = max( MAPXY$x) - min(MAPXY$x)
       
       if(is.null(PMAT))
@@ -143,71 +169,48 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   Kstroke = length(MAP$STROKES$num)
 
 
+  FORCE = FALSE
+
+  if(!is.null(SEL))
+    {
+      if(SEL<0)
+        {
+          FORCE = TRUE
+          SEL = 1:length(MAP$STROKES$num)
+        }
+    }
+
   ###  if(exists("worldmap"))
 
-  if(TRUE)
+  if(FORCE==FALSE)
     {
- ###     y1 = MAP$STROKES$LAT1
- ###     y2 = MAP$STROKES$LAT2
- ###     x1 =   fmod(MAP$STROKES$LON1, 360)
- ###     x2 =   fmod(MAP$STROKES$LON2, 360)
-      
-      
- ###      y3 = LIM[2]
- ###      y4 = LIM[4]
- ###      x3 =  fmod(LIM[1], 360)
- ###      x4 =  fmod(LIM[3], 360)
-
-
- ###  STRKXYLL = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
- ###      STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
-
-      
-   ###     y1 = MAP$STROKES$y1
-   ###     y2 = MAP$STROKES$y2
-   ###     x1 = MAP$STROKES$x1
-   ###     x2 = MAP$STROKES$x2
+ 
 
       XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
       LLlim$x = XYLIM$x
       LLlim$y = XYLIM$y
 
-      y3 =XYLIM$y[1]
-      y4 =XYLIM$y[2]
-      x3 =XYLIM$x[1]
-      x4 = XYLIM$x[2]
+     ## y3 =XYLIM$y[1]
+     ## y4 =XYLIM$y[2]
+     ## x3 =XYLIM$x[1]
+     ## x4 = XYLIM$x[2]
       
      ##  OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
       
       ##  IN = which(!OUT)
 
-      IN = vector()
-      kout = 0
-      for(kin in 1:length(MAP$STROKES$num))
-        {
-          j1 = MAP$STROKES$index[kin]+1
-          j2 = j1+MAP$STROKES$num[kin]-1
-          
-          if(j1>0 & j2>0 & j2-j1 >=0)
-            {
-              JEC = j1:j2
-              x = MAP$POINTS$x[JEC]
-              y = MAP$POINTS$y[JEC]
-              if(any(y>y3 & y<y4 & x>x3 & x<x4))
-                {
-                  kout = kout+1
-                  IN[kout] = kin
-                  
-                }
-            }
-          
-        }
-
+      IN = KINOUT(MAP, LLlim , projtype=2)
 
       
     }
   else
     {
+
+      XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
+      LLlim$x = XYLIM$x
+      LLlim$y = XYLIM$y
+
+      
       IN = 1:length(MAP$STROKES$num)
 
     }
@@ -260,6 +263,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
         }
       
     }
+
 ##############   this replaces the colors with a fixed color
   if(!is.null(MAPcol))
     {

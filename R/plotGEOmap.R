@@ -21,6 +21,15 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SE
     }
   else
     {
+
+      if(is.null(LIM))
+        {
+          lon = fmod(MAP$POINTS$lon-shiftlon, 360)
+          LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
+          LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+        }
+
+      
       if(is.list(LIM))
         {
           

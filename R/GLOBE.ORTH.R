@@ -1,8 +1,12 @@
-GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, map=coastmap, mapcol =grey(.2) , linecol = grey(.7) )
+GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, plotline=TRUE, add=FALSE, map=coastmap, mapcol =grey(.2) , linecol = grey(.7) )
   {
     ###   use orthogonal projection to plot a global view
     if(missing(R)) R = 1
+    if(missing(add)) add=FALSE
     if(missing( plotmap))  plotmap=TRUE
+    if(missing( plotline))  plotline=TRUE
+
+    
     if(missing(map) & plotmap)
       {
         data(coastmap)
@@ -36,9 +40,11 @@ GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, map=coastmap, mapcol =grey(.
     ATOL= 0.4
 
 
-  
-    plot(c(-R, R), c(-R,R), asp=1, type='n', ann=FALSE, axes=FALSE)
 
+    if(!add)
+      {
+        plot(c(-R, R), c(-R,R), asp=1, type='n', ann=FALSE, axes=FALSE)
+      }
 
     
 ###   mapcol =rgb(1, .7, .7)
@@ -76,33 +82,38 @@ GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, map=coastmap, mapcol =grey(.
       }
   }
 
-    circ = darc( rad=1, ang1=0, ang2=360, x1=0, y1=0, n=1)
-    lines(circ)
-
-
-    for(i in 1:length(Marids))
+    if(plotline)
       {
-        x = Marids[[i]]$x
-        y = Marids[[i]]$y
-        flag = Marids[[i]]$cosc>=0
 
-        lines(x[flag],y[flag], col=linecol)
+        circ = darc( rad=1, ang1=0, ang2=360, x1=0, y1=0, n=1)
+        lines(circ)
 
 
-      }
+        for(i in 1:length(Marids))
+          {
+            x = Marids[[i]]$x
+            y = Marids[[i]]$y
+            flag = Marids[[i]]$cosc>=0
+
+            lines(x[flag],y[flag], col=linecol)
+
+
+          }
 
 
 
-    for(i in 1:length(Parals))
-      {
-        x = Parals[[i]]$x
-        y = Parals[[i]]$y
-        flag = Parals[[i]]$cosc>=0
-        lines(x[flag],y[flag], col=linecol)
+        for(i in 1:length(Parals))
+          {
+            x = Parals[[i]]$x
+            y = Parals[[i]]$y
+            flag = Parals[[i]]$cosc>=0
+            lines(x[flag],y[flag], col=linecol)
                                         # points(x[flag],y[flag], col='red')
 
                                         # locator()
-        
+            
+          }
+
       }
 
 

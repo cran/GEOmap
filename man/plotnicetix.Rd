@@ -5,7 +5,7 @@
   Find and plot nice tick marks on projected plot
 }
 \usage{
-plotnicetix(nex, nwhy, proj, tlen = 0.1, fonts = c("serif", "plain"), PMAT = NULL)
+plotnicetix(nex, nwhy, proj, tlen = 0.1, fonts = c("serif", "plain"), PMAT = NULL, PLOT = TRUE)
 }
 \arguments{
   \item{nex}{X coordinates}
@@ -14,6 +14,8 @@ plotnicetix(nex, nwhy, proj, tlen = 0.1, fonts = c("serif", "plain"), PMAT = NUL
   \item{tlen}{length for tic marks (inches)}
   \item{fonts}{Hershy font vector}
   \item{PMAT}{projection matrix from persp}
+  \item{PLOT}{logical, TRUE = add to plot}
+  
 }
 
 \value{

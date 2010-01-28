@@ -1,6 +1,7 @@
 \name{rotx4}
 \Rdversion{1.1}
 \alias{rotx4}
+
 \title{x-axis rotation matrix}
 
 \description{x-axis rotation matrix}
@@ -23,7 +24,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 }
 
 
-\seealso{roty4
+\seealso{roty4, rotdelta4
 }
 \examples{
 

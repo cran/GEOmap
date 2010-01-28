@@ -1,10 +1,13 @@
 `boundGEOmap` <-
-function(MAP, NEGLON=FALSE)
+function(MAP, NEGLON=FALSE, projtype=2)
 {
   if(missing(NEGLON)) { NEGLON=FALSE }
+  if(missing(projtype)) { projtype=2 }
+
+  
   ###############  if NEGLON=FALSE, convert all negative lons to positive
   ###########  if true, allow neg lons to stay negative
-  ## the the bounds of strokes in a GEOmap
+  ## caluclate the LL bounds of strokes in a GEOmap
   
  Kstroke = length(MAP$STROKES$num)
 
@@ -22,7 +25,7 @@ function(MAP, NEGLON=FALSE)
       lat=MAP$POINTS$lat[j1:j2]
 
       
-      proj = setPROJ(type = 2, LAT0 =lat[1] , LON0 =lon[1] )
+      proj = setPROJ(type = projtype, LAT0 =lat[1] , LON0 =lon[1] )
 
       xy = GLOB.XY(lat, lon, proj)
       xr = range(xy$x)

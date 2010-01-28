@@ -6,12 +6,13 @@
 Given a GEOmap strucutre, set the bounds for the strokes.
 }
 \usage{
-boundGEOmap(MAP, NEGLON = FALSE)
+boundGEOmap(MAP, NEGLON = FALSE, projtype = 2)
 }
 
 \arguments{
   \item{MAP}{GEOmap structure}
   \item{NEGLON}{whether to allow negative longitudes}
+    \item{projtype}{suggestion (local) map projection to use when getting bounds}
 }
 \details{
   Used to rectify a new map after reading in from ascii

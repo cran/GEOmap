@@ -5,7 +5,7 @@
 \description{Plot globe with orthogonal
 }
 \usage{
-GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, map = coastmap, mapcol = grey(0.2), linecol = grey(0.7))
+GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,  map = coastmap, mapcol = grey(0.2), linecol = grey(0.7))
 }
 \arguments{
   \item{lam0}{view origin longitude, degrees
@@ -14,8 +14,14 @@ GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, map = coastmap, mapcol = grey(0.2)
 }
   \item{R}{Radius of sphere, default=1
 }
-  \item{plotmap}{logical, TRUE=add map
+  \item{plotmap}{logical, default=TRUE, add map
+  }
+  \item{plotline}{logical, default=TRUE, add grid of lat-lons
 }
+  \item{add}{logical, default=FALSE, Do not start a new plot, rather add to
+    existing plot
+}
+  
   \item{map}{GEOmap list
 }
   \item{mapcol}{color for map

@@ -1,6 +1,6 @@
-plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PMAT=NULL)
+plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PMAT=NULL, PLOT=TRUE )
   {
-
+    if(missing(PLOT)) PLOT=TRUE
     if(missing(fonts))
       {
         tf <- "serif"
@@ -54,7 +54,7 @@ plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PM
         y2 = y1-ticlengthY
         
         
-        segments(x1, y1, x2, y2)
+        if(PLOT) segments(x1, y1, x2, y2)
         ## text(ticlon$x[1], ticlon$y[1]-ticlength, labels=G$LON$lab[i], pos=1, xpd=TRUE)
 
         asec = round(G$LON$sec[i])
@@ -71,11 +71,15 @@ plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PM
           }
 
         
-        text(x2, y2,
+      if(PLOT)  text(x2, y2,
              labels=string    ,
              pos=1, xpd=TRUE, vfont=fonts )
         ##  string = paste(format(G$LON$deg[i]), "\\de", format(G$LON$min[i]), "\\fm" , format(G$LON$sec[i]) 
-        ##  text(ticlon$x[1], ticlon$y[1]-ticlength, string, vfont=c(tf, fi)) 
+        ##  text(ticlon$x[1], ticlon$y[1]-ticlength, string, vfont=c(tf, fi))
+
+        PLONS = list(x=x2, y=y2, labels=string)
+
+        
       }
 
 
@@ -103,7 +107,7 @@ plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PM
         y2 = y1
         
         
-        segments(x1, y1, x2, y2)
+       if(PLOT) segments(x1, y1, x2, y2)
         ## text(ticlat$x[1], ticlat$y[1]-ticlength, labels=G$LAT$lab[i], pos=1, xpd=TRUE)
 
         asec = round(G$LAT$sec[i])
@@ -120,14 +124,19 @@ plotnicetix<-function(nex, nwhy , proj, tlen=0.1, fonts=c("serif", "plain" ), PM
           }
 
         
-        text(x2, y2,
+      if(PLOT)  text(x2, y2,
              labels=string    ,
              pos=2, xpd=TRUE, vfont=fonts )
+
+        PLATS = list(x=x2, y=y2, labels=string)
+
+
+        
         ##  string = paste(format(G$LAT$deg[i]), "\\de", format(G$LAT$min[i]), "\\fm" , format(G$LAT$sec[i]) 
         ##  text(ticlat$x[1], ticlat$y[1]-ticlength, string, vfont=c(tf, fi)) 
       }
 
-
+    invisible(list(lon=PLONS, lat=PLATS))
 
 
   }
