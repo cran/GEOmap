@@ -1,7 +1,7 @@
 Package: GEOmap
 Type: Package
 Title: Topographic and Geologic Mapping
-Version: 1.6-00
+Version: 1.6-01
 Date: 2010-01-28
 Depends: R (>= 2.12), geomapdata, RPMG, akima, splancs
 Suggests: maps, RFOC
@@ -12,6 +12,6 @@ Description: Set of routines for making Map Projections (forward and
         geological map symbols, geological databases, interactive
         plotting and selection of focus regions.
 License: GPL
-Packaged: 2011-05-26 20:57:09 UTC; lees
+Packaged: 2011-10-17 14:25:16 UTC; lees
 Repository: CRAN
-Date/Publication: 2011-05-26 21:31:01
+Date/Publication: 2011-10-19 07:37:17

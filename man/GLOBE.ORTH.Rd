@@ -5,7 +5,7 @@
 \description{Plot globe with orthogonal
 }
 \usage{
-GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,  map = coastmap, mapcol = grey(0.2), linecol = grey(0.7))
+GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,  map = coastmap, mapcol = grey(0.2), linecol = grey(0.7), fill=FALSE)
 }
 \arguments{
   \item{lam0}{view origin longitude, degrees
@@ -27,7 +27,9 @@ GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,  map = c
   \item{mapcol}{color for map
 }
   \item{linecol}{color for meridians and parallels
-}
+  }
+  \item{fill}{fill polygons with color, default=FALSE
+}  
 }
 \details{
   Plots whole globe with grid.

@@ -90,14 +90,14 @@ else {
 
   int i; 
  
-  double rex, rey, d1;
+  
 
   /* find the distance of a point from the perimeter of a polygon  **/
 
   double dee, zee;
-  double px, py, px1,py1;
+  double  px1,py1;
   double adis, thedis;
-  int iz;
+ 
 
   k = *n;
 

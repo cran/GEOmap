@@ -17,7 +17,7 @@ niceLLtix<-function(rcoords)
         ######  same degree, check minutes
         dm = diff(dms1$m)
         
-        if(dm<=1)
+        if(abs(dm)<=1)
           {
 
 
