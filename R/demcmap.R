@@ -12,7 +12,7 @@
     
     Rz = range(ZTOPO , na.rm = TRUE)
 
-    zee = seq(from=Rz[1], to=Rz[2], length=100)
+    zee = seq(from=Rz[1], to=Rz[2], length=n)
 
     a1 = findInterval(zee ,  ccol$calcol$z1)
 

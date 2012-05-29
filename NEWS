@@ -1,0 +1,7 @@
+NEWS for GEOmap package
+======================
+
+1.6-05  2012-05-29
+	o    Fixed bug in sqrTICXY. Now lat lines are plotted correctly
+1.6-06  2012-05-31
+	o    Fixed bug in demcmap where n was fixed at 100

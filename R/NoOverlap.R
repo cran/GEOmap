@@ -54,7 +54,7 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
       {
         i = SEL[j]
         points(newx[i],newy[i],pch=6,col="green")
-     ###     print(paste(sep=" ", "check", j, i, newx[i] , OLDx[i] , newy[i],  OLDy[i]))
+###     print(paste(sep=" ", "check", j, i, newx[i] , OLDx[i] , newy[i],  OLDy[i]))
         
         jx = newx[-i]
         jy = newy[-i]
@@ -71,10 +71,10 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
           }
         
         
-     ###     print(paste("##################     working on ", j, i, vec[1], vec[2]  ))
-     ###    cat(cbind(jx, jy), sep="\n")
+###     print(paste("##################     working on ", j, i, vec[1], vec[2]  ))
+###    cat(cbind(jx, jy), sep="\n")
         
-        ###  for each point keep looping until it is nudged away from all other points
+###  for each point keep looping until it is nudged away from all other points
         while(TRUE){
 
           px = newx[i]
@@ -89,12 +89,12 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
               
               cat(paste(rdis, collapse=" "), sep="\n")
 
-             ## return(list(x=newx, y=newy))
-               break
+              ## return(list(x=newx, y=newy))
+              break
               
             }
           
-            
+          
           if(any(kdis<2*focsiz)   )
             {
 ### nudge the location of newx newy away from cenx ceny
@@ -107,9 +107,11 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
 
 
               
-            }else{
-                break
-              }
+            }
+          else
+            {
+              break
+            }
         }
         
       }

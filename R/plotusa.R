@@ -7,7 +7,7 @@
   if(missing(add)) { add=FALSE }
 
   
-  data(USAmap)
+  data('USAmap')
   
   USALL=list()
   USALL$lat=LATS

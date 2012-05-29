@@ -16,12 +16,14 @@ lam = fmod(lam, 360)
 ##  print(paste(sep=' ', phi,lam, phi0, lam0,  phi1,  phi2, FE, FN))
 
 #  Constants:
-phi =phi*pi/180
-lam =lam*pi/180
-phi1=phi1*pi/180 
-phi2=phi2*pi/180 
-phi0=phi0*pi/180
-lam0=lam0*pi/180
+
+DR = pi/180
+phi =phi*DR
+lam =lam*DR
+phi1=phi1*DR
+phi2=phi2*DR
+phi0=phi0*DR
+lam0=lam0*DR
 R = MAPconstants()$A.MAPK
 
 n=log(cos(phi1)/cos(phi2))/log(tan(pi/4+phi2/2)/tan(pi/4+phi1/2))  #15-3

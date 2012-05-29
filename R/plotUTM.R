@@ -40,7 +40,7 @@ lon180[lon180>180] = lon180[lon180>180]-360
   
   for(i in 1:length(ulons))
     {
-      XY = GLOB.XY(ulats, rep(ulons[i], length(ulats)) , PROJ=proj)
+      XY = GLOB.XY(ulats, rep(ulons[i], length(ulats)) , proj)
       lines(XY, col='blue')
       
 
@@ -48,7 +48,7 @@ lon180[lon180>180] = lon180[lon180>180]-360
   
   for(i in 1:length(ulats))
     {
-      XY = GLOB.XY(rep(ulats[i], length( ulons))  , ulons , PROJ=proj)
+      XY = GLOB.XY(rep(ulats[i], length( ulons))  , ulons , proj)
       lines(XY, col='blue')
 
     }
@@ -56,12 +56,12 @@ lon180[lon180>180] = lon180[lon180>180]-360
 
   halflat = utmy[1:(length(utmy)-1)]+diff(utmy)/2
   
-  XY = GLOB.XY( halflat[uy1:uy2] ,  rep(ulons[1], length(ulats)), PROJ=proj)
+  XY = GLOB.XY( halflat[uy1:uy2] ,  rep(ulons[1], length(ulats)), proj)
 text(XY, labels=htags[uy1:uy2])
 
   
 
-  XY = GLOB.XY(  rep(ulats[i], length( ulons)) , jhalf[ux1:ux2], PROJ=proj)
+  XY = GLOB.XY(  rep(ulats[i], length( ulons)) , jhalf[ux1:ux2], proj)
 text(XY, labels=LONLABS[ux1:ux2])
   
 ######  pusa = plotusa(); proj = pusa$PROJ; LIM=pusa$LIM

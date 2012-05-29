@@ -1,5 +1,6 @@
-d75e3f2696005aa5c2f86acdc4cc2438 *DESCRIPTION
+65f261e24a33b0a715c34110703dc2a9 *DESCRIPTION
 2f8b78b5ad7ddb6e91c7842a4815df1d *NAMESPACE
+27f044a891889e591f6b43b2a75026d8 *NEWS
 708d5b023cd962cf1fb57565f6844d25 *R/BASICTOPOMAP.R
 b7138f5b08fcf4bb6f97834f74c6c8b9 *R/CCcheck.R
 88f302f92711c50452e5e4f72bbca603 *R/ColorScale.R
@@ -12,9 +13,10 @@ b2bcc195d062835863a278bda3a978e3 *R/ExplodeSymbols.R
 154529d962c7c98b9f7e6f887a33e40f *R/GEOTOPO.R
 15b16a7b67b3d9e66d909501e1410fd2 *R/GEOmap.CombineStrokes.R
 05d8861a7a8ed7b3f8d78c8e35d1bdd9 *R/GEOmap.Extract.R
-09b1f5110452137ba7e41268d107ab1f *R/GEOmap.breakline.R
+4219899ff1fb99a682873df97c1f6e4b *R/GEOmap.breakline.R
 0b486ec0af37abb9c50cb3e821c874d2 *R/GEOmap.breakpoly.R
 8dee28d692209011573bfc984bd30064 *R/GEOmap.cat.R
+e2eb9d71bc7acbab1971701028e12f79 *R/GEOmap.limit.R
 cdeea5aacdd8562b5b9f8036be986658 *R/GEOmap.list.R
 b1468b83c5a4617277214be159b6b452 *R/GEOsymbols.R
 4fc9c7717c86396fa804be0eb8cb9fbd *R/GETXprofile.R
@@ -31,7 +33,7 @@ fdd25d87865e26cb4fbe09f52843f59b *R/Lxyz2ll.R
 ea88ca0880aeae01649a8862dc622f65 *R/MAPconstants.R
 89bab24f2e2b919600d871814d2378fb *R/Markup.R
 67073d218b776b9689d0fb59d6766d93 *R/NSarrow.R
-7ac19a63cb2c225c1481fa05696d9279 *R/NoOverlap.R
+320f670f37d2beb093f477d45d5ec718 *R/NoOverlap.R
 19b8ad9899c9dedc591d0c7e7fdff091 *R/OverTurned.R
 824487c4eb1d285d4d1669adb9505aff *R/PointsAlong.R
 6fbe231547617d5278cf2fc3a91f0508 *R/SELGEOmap.R
@@ -53,7 +55,7 @@ cf410c8c44e84684fb024a8289326856 *R/antipolygon.R
 8a56417f78a84440b3a959c31baf0d00 *R/boundGEOmap.R
 862e6822e235e48b7715dbb47792949d *R/ccw.R
 4ef61f9da6f57ba8492304e45c6f4449 *R/darc.R
-573e93bd7345f96d91b54b2172650bfb *R/demcmap.R
+27a4b4bcc5bcab5f30df70a376540d8d *R/demcmap.R
 2abb39f0dc5ba530c57305c247b5396d *R/difflon.R
 be7799e9184038fc1c76b6735fae0d59 *R/distaz.R
 c24d16deff9f8ad7f2c15d0a6f1597d8 *R/dms.R
@@ -85,8 +87,8 @@ fcffa10a31ebc5d34410664fc351ce5a *R/insertvec.R
 a59a6c3ae40d7efef83c88d77980bbf9 *R/inside.R
 fd7287fad03ed7ad6bf07280a4e9a9a4 *R/insideGEOmapXY.R
 fdc860e021910f085daa4531c5c12b21 *R/lamaz.eqarea.R
-f767de0788e2154a3a734c6456d02f76 *R/lambert.cc.ll.R
-f7ba13606add1aa0fd8224ccd3de5a61 *R/lambert.cc.xy.R
+2a35b874c4879a13405f39e7f38170e6 *R/lambert.cc.ll.R
+d9842804c933ab39b81725a380b1f04a *R/lambert.cc.xy.R
 eb11e9648d862c8786dc8a353a2065a8 *R/lambert.ea.ll.R
 cdedbdf6d02bcc3672ebe9dc569e594c *R/lambert.ea.xy.R
 d62792e568bef0c91f4d7ce0d9f9097f *R/lcgc.R
@@ -108,11 +110,11 @@ e28fb3cb5c4a1b2406dc10900303bd14 *R/ortho.proj.R
 ac45a64e2e6d83f1a66c64cd56d31a5f *R/pgon.R
 ff39c1fb038d0fe4a0292c085f8e7365 *R/pline.R
 d0fd824700ffdb34ebeeb0d2828a8c9f *R/plotGEOmap.R
-6ffec3b6981c133e43cc9896bf77b83a *R/plotGEOmapXY.R
-0a23fbd26b9b2a91ba65ef4f50f159c6 *R/plotUTM.R
+c3395941f5eaf930bdab807ddd154346 *R/plotGEOmapXY.R
+340d943d156db2fdd565cddc5682816c *R/plotUTM.R
 4163f029a654f9d2ad384e32106d8e4d *R/plothypos.R
 cff6f60f46c874e40c22549a2364ab08 *R/plotnicetix.R
-5978009e5380ea3773eee5031684004b *R/plotusa.R
+ee940d21aa4bf4024a7397c7af0b385b *R/plotusa.R
 277d7de6554884da519b3e6a7b655772 *R/plotworldmap.R
 3da812c8c3c538af55e85784f46213e2 *R/pointsGEOmapXY.R
 6f478c3ab1062053c289db28b94862ce *R/polyGEOmapXY.R
@@ -134,7 +136,7 @@ c8e5d6e89020fa80903172e9ac068794 *R/setMarkup.R
 a565a3bf6b209c597e2a7b78347f259a *R/setplotmat.R
 2693c3b945604c4fbece1c2637095981 *R/settopocol.R
 701da865e17cc053b20401b92e1e5230 *R/sizelegend.R
-4d266f8849f9ae08f4e0165fdec397a0 *R/sqrTICXY.R
+018e1e33e7f92d99e88acd599b25a05d *R/sqrTICXY.R
 80988ae94ecc3e8986934039a9384150 *R/stereo.sphr.ll.R
 5b65a083239d177e148033ea67952a67 *R/stereo.sphr.xy.R
 cd0e8b7fd00f8c5d481b9e4224da9fcd *R/subsetTOPO.R
@@ -162,7 +164,7 @@ f15045b6991d73075a0bffd676f95e44 *demo/00Index
 b31de7c3bf5aaf68976fc48fdcacece6 *demo/geolcoso.R
 1bfb3b3bfb66f2b98326c89d4502d635 *demo/weathermap.R
 a375447e4e5e26f1ef63f540f1e8cf2f *inst/doc/GEOmap.Rnw
-c9536b17ca9a8086c0b4092ebdb68e44 *inst/doc/GEOmap.pdf
+93ad3673f4abd6c6d24255648fabee85 *inst/doc/GEOmap.pdf
 d88f5952c1900dc523bc87f6c14c9c31 *inst/doc/Plates.gmt
 a7577ee96f1c191444fe914285c41e1a *inst/doc/Volc_points.LLZ
 b57316735e84008be89efea001529fef *inst/doc/coso_sta.LLZ
@@ -179,10 +181,10 @@ c03017624b42fdccefdfc4cf9c7ddaa4 *man/CCcheck.Rd
 7a0414cb71d9e65247e2693e942640d5 *man/ExcludeGEOmap.Rd
 b52fb4996798ad57067028113b4524a0 *man/ExplodeSymbols.Rd
 8f4a1d2f389660218aed16098a234c0b *man/GEOTOPO.Rd
-f2ecb5389cbfe5626228c4cbff0e8d81 *man/GEOmap-package.Rd
+2bf2c9eaf4d29c2f9421da7f699a2f22 *man/GEOmap-package.Rd
 61c1a4988e7d8cc80cadb2863ac515fb *man/GEOmap.CombineStrokes.Rd
-8b12c91e5b80d8e354956a57ecc66d34 *man/GEOmap.Extract.Rd
-27cf20922bd85498cd842232a3cc1b97 *man/GEOmap.breakline.Rd
+011f2b65fc3474c16902ed94a9eedbca *man/GEOmap.Extract.Rd
+5389e5d4f351b32c96af65ec00add359 *man/GEOmap.breakline.Rd
 2d365004d509b24899317ced3769d326 *man/GEOmap.breakpoly.Rd
 67fe0bbc70f9375333ef61216cd89908 *man/GEOmap.cat.Rd
 2d355db69c30c216481f9cfa81cbdeef *man/GEOmap.list.Rd

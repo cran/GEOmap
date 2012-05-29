@@ -31,6 +31,8 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
     
       JNUM = 100000
 
+    Klinepoints = 1000
+
       botleft.x = min(prsurf$x, na.rm=TRUE)
       botleft.y = min(prsurf$y, na.rm=TRUE)
 
@@ -329,11 +331,11 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
       {
 
 
-      ###  m1 = match( iBLONtop ,  iBLONbot)
-       ### thelons = iBLONbot[m1[!is.na(m1)]]
+###  m1 = match( iBLONtop ,  iBLONbot)
+### thelons = iBLONbot[m1[!is.na(m1)]]
         thelons =  unique(c(MYTOP[,1], MYBOT[,1]))
         
-        ############################################
+############################################
         for(i in 1:length(thelons))
           {
             j = which(thelons[i]==MYBOT[,1] )
@@ -343,10 +345,10 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
               }
             else
               {
-            
-            LL1 = list(lat=MYBOT[j,4], lon=MYBOT[j,5])
+                
+                LL1 = list(lat=MYBOT[j,4], lon=MYBOT[j,5])
 
-          }
+              }
 
             j = which(thelons[i]==MYTOP[,1])
             
@@ -356,37 +358,37 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
               }
             else
               {
-            
-            LL2 = list(lat=MYTOP[j,4], lon=MYTOP[j,5])
+                
+                LL2 = list(lat=MYTOP[j,4], lon=MYTOP[j,5])
 
-          }
+              }
 
             
-          ##   print(paste(sep=" ", LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1]) )
+            ##   print(paste(sep=" ", LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1]) )
 
-             if(any(is.na(c( LL1$lat[1], LL2$lat[1] ))) ) next
+            if(any(is.na(c( LL1$lat[1], LL2$lat[1] ))) ) next
             
-           ##### G = getgreatcirc(min(c( B1$lat, B3$lat))   ,thelons[i], LL$lat[1] , thelons[i], 1000)
-            G =getgreatarc( LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1], 1000)
-         ##    print(range(G$lat))
+##### G = getgreatcirc(min(c( B1$lat, B3$lat))   ,thelons[i], LL$lat[1] , thelons[i], 1000)
+            G =getgreatarc( LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1], Klinepoints)
+            ##    print(range(G$lat))
             gxy = GLOB.XY(G$lat , G$lon, proj)
             
-           ## gxy = GLOB.XY(beelat$lat , rep(BLONbot[i], length=length(beelat$lat)), proj)
+            ## gxy = GLOB.XY(beelat$lat , rep(BLONbot[i], length=length(beelat$lat)), proj)
 
-             gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
-             gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
+            gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
+            gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
 
 
 
-          if(!is.null(PMAT))
-            {
-              tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
-            }
-          else
-            {
-              tem1 = gxy
-              
-            }
+            if(!is.null(PMAT))
+              {
+                tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
+              }
+            else
+              {
+                tem1 = gxy
+                
+              }
             
             
             lines(tem1$x, tem1$y,  col=col, lty=lty, lwd=lwd)
@@ -395,12 +397,12 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
 
 
 
-       ### m1 = match( iBLATleft ,  iBLATright)
-       ### thelats = iBLATleft[m1[!is.na(m1)]]
+### m1 = match( iBLATleft ,  iBLATright)
+### thelats = iBLATleft[m1[!is.na(m1)]]
 
         thelats =  unique(c(iBLATleft ,  iBLATright) )
 
-        ############################################
+############################################
         for(i in 1:length(thelats))
           {
 
@@ -415,28 +417,28 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
 
             
 
-          ##   G = getgreatcirc(thelats[i], min(c( B1$lon, B2$lon)), thelats[i]   , max(c( B3$lon, B4$lon)) , 10)
-           ##  print(c(LL1$lon[1] , to=LL2$lon[1]))
+            ##   G = getgreatcirc(thelats[i], min(c( B1$lon, B2$lon)), thelats[i]   , max(c( B3$lon, B4$lon)) , 10)
+            ##  print(c(LL1$lon[1] , to=LL2$lon[1]))
             if(any(is.na(c(LL1$lon[1] , to=LL2$lon[1]))) ) next
-            alons = seq(from=LL1$lon[1] , to=LL2$lon[1]  , length=1000)
+            alons = seq(from=LL1$lon[1] , to=LL2$lon[1]  , length=Klinepoints)
             
-            gxy = GLOB.XY(thelats[i] , alons, proj)
-       
+            gxy = GLOB.XY(rep(thelats[i], length=length(alons) ) , alons, proj)
             
-           ## gxy = GLOB.XY( rep(BLATleft[i], length=length(beelon$lon))   , beelon$lon , proj )
+            
+            ## gxy = GLOB.XY( rep(BLATleft[i], length=length(beelon$lon))   , beelon$lon , proj )
 
-         ##    gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
-          ##   gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
+            ##    gxy$x[gxy$x<botleft.x|gxy$x>topright.x] = NA
+            ##   gxy$y[gxy$y<botleft.y|gxy$y>topright.y] = NA
             
             if(!is.null(PMAT))
-            {
-              tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
-            }
-          else
-            {
-              tem1 = gxy
-              
-            }
+              {
+                tem1 = trans3d(gxy$x, gxy$y, rep(0, length(gxy$y)) , PMAT)
+              }
+            else
+              {
+                tem1 = gxy
+                
+              }
             
             lines(tem1$x, tem1$y, col=col, lty=lty, lwd=lwd)
           }

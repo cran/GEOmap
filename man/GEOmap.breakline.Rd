@@ -2,7 +2,7 @@
 \alias{GEOmap.breakline}
 \title{Break a line at specified indeces into a list}
 \description{
-  Break a line at specified indeces into a list
+  Break a line at specified indices into a list
 }
 \usage{
 GEOmap.breakline(Z, ww)

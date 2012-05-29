@@ -318,6 +318,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
         {
          ### cat(paste(i, "***********plotting style=1"), sep="\n")
 
+          ###if(MAP$STROKES$code[i]==1) {  ptpch=6; ptcex=1  }
           
           points(MAP$POINTS$x[JEC], MAP$POINTS$y[JEC], col=MAP$STROKES$col[i], pch=ptpch, cex=ptcex)
         }

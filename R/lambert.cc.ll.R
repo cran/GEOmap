@@ -11,10 +11,11 @@ function(x,y, PROJ.DATA)
 	FN = PROJ.DATA$FN
  
 #  Constants:
-phi1=phi1*pi/180 
-phi2=phi2*pi/180 
-phi0=phi0*pi/180
-lam0=lam0*pi/180
+    DR = pi/180
+phi1=phi1*DR
+phi2=phi2*DR
+phi0=phi0*DR
+lam0=lam0*DR
 R = MAPconstants()$A.MAPK
 
 x=x-FE

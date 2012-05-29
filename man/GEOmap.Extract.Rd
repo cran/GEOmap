@@ -1,6 +1,7 @@
 \name{GEOmap.Extract}
 \alias{GEOmap.Extract}
 \alias{fastExtract}
+\alias{GEOmap.limit}
 
 \title{Extract from GEOmap}
 \description{Extract or Exclude parts of a GEOmap list.
@@ -8,12 +9,15 @@
 \usage{
 GEOmap.Extract(MAP, SEL, INOUT = "out")
 fastExtract(MAP, SEL, INOUT = "out")
+GEOmap.limit(MAP, LLlim )
 
 }
 \arguments{
   \item{MAP}{GEOmap List }
   \item{SEL}{Selection of stroke indeces to include or exclude }
   \item{INOUT}{text, "in" means include, "out" means exclude }
+  \item{LLlim}{vector latlon limits }
+   
 }
 \value{
   \item{GEOmap}{list}
