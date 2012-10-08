@@ -12,8 +12,8 @@ Topographic and Geologic Mapping
 \tabular{ll}{
 Package: \tab GEOmap\cr
 Type: \tab Package\cr
-Version: \tab 1.6-06\cr
-Date: \tab 2012-05-29\cr
+Version: \tab 1.6-09\cr
+Date: \tab 2012-10-08\cr
 License: \tab GPL\cr
 }
 Set of routines for making Map Projections (forward and inverse), Topographic Maps, Perspective plots, geologi

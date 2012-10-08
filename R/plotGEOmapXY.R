@@ -183,7 +183,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   if(!is.null(SEL))
     {
-      if(SEL<0)
+      if(length(SEL)<0)
         {
           FORCE = TRUE
           SEL = 1:length(MAP$STROKES$num)

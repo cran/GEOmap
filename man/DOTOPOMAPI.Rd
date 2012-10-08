@@ -46,16 +46,16 @@ DOTOPOMAPI(TOPO = TOPO, themap = NULL, shiftlon = 0, ALOC = NULL, DOCONT = TRUE,
 }
 \seealso{BASICTOPOMAP, RPMG}
 \examples{
+
+\dontrun{
 library(geomapdata)
 data(worldmap)
 data(ETOPO5)
 
-
-\dontrun{
 ###  this is in interactive mode with plotworldmap:
 DOTOPOMAPI(TOPO=ETOPO5, themap=worldmap, shiftlon=180)
 
-}
+
 
 ##  select a small region,  like the boot heel of italy
 
@@ -74,7 +74,7 @@ shiftlon=180)
 
 DOTOPOMAPI(TOPO=ETOPO5, themap=worldmap, ALOC=Alocat, shiftlon=180)
 
-
+}
 
 }
 

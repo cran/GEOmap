@@ -54,6 +54,8 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
 \seealso{subsetTOPO, TOPOCOL,  LandSeaCol, settopocol,  subsetTOPO, persp, DOTOPOMAPI}
 \examples{
 
+
+\dontrun{
 library(geomapdata)
 
 
@@ -72,6 +74,8 @@ JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol, PLOT=TRUE)
 col=JMAT$Cmat[1:(JMAT$Dcol[1]-1), 1:(JMAT$Dcol[2]-1)] , scale = FALSE,
       ltheta = 120, lphi=60, shade = 0.75, border = NA, expand=0.001, box = FALSE )
 
+
+}
 
 
 }
