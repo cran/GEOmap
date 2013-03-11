@@ -6,18 +6,18 @@ function(sta, mylist, worldmap=NULL)
     
     plotGEOmap(worldmap ,MAPcol=grey(.75),  add=FALSE, xaxs='i')
 
-    points(  fmod(sta$lon, 360)    ,  sta$lat, col='red', pch=6)
+    points(  RPMG::fmod(sta$lon, 360)    ,  sta$lat, col='red', pch=6)
 
     pcol = rainbow(length(mylist))
     
     for(i in 1:length(mylist))
       {
         gev = mylist[[i]]
-        points(  fmod(gev$lon, 360)    ,  gev$lat, col='purple', pch=8)
-        text( fmod(gev$lon, 360)    ,  gev$lat, labels=i, pos=3)
-        garc = getgreatarc( gev$lat  ,fmod(gev$lon, 360) ,  stinfo$mlat , fmod(stinfo$mlon,360) , num = 50)
+        points(  RPMG::fmod(gev$lon, 360)    ,  gev$lat, col='purple', pch=8)
+        text( RPMG::fmod(gev$lon, 360)    ,  gev$lat, labels=i, pos=3)
+        garc = getgreatarc( gev$lat  ,RPMG::fmod(gev$lon, 360) ,  stinfo$mlat , fmod(stinfo$mlon,360) , num = 50)
 
-        flon = fmod(garc$lon, 360)
+        flon = RPMG::fmod(garc$lon, 360)
         flat = garc$lat
 
 ##  print(i)

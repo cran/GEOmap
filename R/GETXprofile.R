@@ -67,22 +67,22 @@ if(myloc$x[1]==myloc$x[2])
   ###  but it is overkill since the intervals are
   ###  uniform.  So - go with simpler approach
   
-  #boxx = findInterval(allx, jx)
+  iboxx = findInterval(allx, jx)
 
-  #boxy =  findInterval(ally, jy, all.inside = FALSE)
+  iboxy =  findInterval(ally, jy, all.inside = FALSE)
+
+
 #####
 
 
-  boxx = floor(allx/delx)+1
-  boxy = floor(ally/dely)+1
 
-  flag = boxy>0 & boxy<length(jy)
+  flag = (iboxy>0 & iboxy<length(jy))  &  (iboxx>0 & iboxx<length(jx)) 
  
   
 
 ### points(jx[flag],JY[flag], col=p2)
 
-  pts = cbind(boxx[flag], boxy[flag])
+  pts = cbind(iboxx[flag], iboxy[flag])
 
   LX = allx[flag]
   LY = ally[flag]

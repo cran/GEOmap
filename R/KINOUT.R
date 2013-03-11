@@ -16,7 +16,7 @@ KINOUT<-function(MAP, LLlim, projtype=2)
       }
 
 
-    lons = fmod(LLlim$lon, 360)
+    lons = RPMG::fmod(LLlim$lon, 360)
    ##   rlon = range(lons)
 
     if(lons[2]<lons[1])

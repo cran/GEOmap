@@ -6,7 +6,8 @@
  Plot a strike slip fault
 }
 \usage{
-SSfault(x, y, h = 1, hoff = 0.15, rot = list(cs = 1, sn = 0), col = "black", dextral = TRUE, lwd = 1)
+SSfault(x, y, h = 1, hoff = 0.15, rot = list(cs = 1, sn = 0),
+col = "black", dextral = TRUE, lwd = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

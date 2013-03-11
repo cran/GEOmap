@@ -35,7 +35,7 @@ LLlabel<-function(DD, dir=1, ksec=-1 )
 
     #####    make sure all the lons are rectified
 
-    DD = fmod(DD,  360)
+    DD = RPMG::fmod(DD,  360)
     DD[DD>180] =  DD[DD>180]-360
     N = length(DD)
 

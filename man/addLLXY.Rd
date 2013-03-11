@@ -6,7 +6,9 @@
 Add Lat-Lon points using projection
 }
 \usage{
-addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL, col = gray(0.7), GRID = TRUE, GRIDcol = 1, LABS = NULL, LABcol = 1, BORDER = NULL, TICS = c(1, 1), xpd=TRUE)
+addLLXY(lats, lons, PROJ = PROJ, PMAT = NULL,
+col = gray(0.7), GRID = TRUE, GRIDcol = 1, LABS = NULL,
+LABcol = 1, BORDER = NULL, TICS = c(1, 1), xpd=TRUE)
 }
 
 \arguments{
@@ -52,7 +54,8 @@ A = PLOC
    PLAT =  pretty(A$LAT)
     PLAT = c(min(A$LAT),  PLAT[PLAT>min(A$LAT) & PLAT<max(A$LAT)],max(A$LAT)) 
   PLON  = pretty(A$LON)
-        PLON = c(min(A$LON), PLON[PLON>min(A$LON) & PLON<max(A$LON)], max(A$LON))
+        PLON = c(min(A$LON), PLON[PLON>min(A$LON) & PLON<max(A$LON)],
+ max(A$LON))
 
 
 addLLXY(PLAT,  PLON, PROJ=PROJ, LABS=TRUE, PMAT=NULL, TICS=c(.1,.1) )

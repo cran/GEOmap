@@ -6,7 +6,8 @@
   Basic Topogrpahy Map
 }
 \usage{
-BASICTOPOMAP(xo, yo, DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON, PROJ = PROJ, pnts = NULL, GRIDcol = NULL)
+BASICTOPOMAP(xo, yo, DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON,
+PROJ = PROJ, pnts = NULL, GRIDcol = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -99,7 +100,8 @@ DF = cbind(x=B$x , y=B$y ,  z=topotemp$z[selectionflag])
 ###  lats for tic marks:
     PLAT =  pretty(PLOC$LAT)
 
-    PLAT = c(min(PLOC$LAT),  PLAT[PLAT>min(PLOC$LAT) & PLAT<max(PLOC$LAT)],max(PLOC$LAT)) 
+    PLAT = c(min(PLOC$LAT),
+PLAT[PLAT>min(PLOC$LAT) & PLAT<max(PLOC$LAT)],max(PLOC$LAT)) 
 PLON  = pretty(PLOC$LON)
 
 ### main program:
@@ -107,7 +109,8 @@ PLON  = pretty(PLOC$LON)
 DOCONT = TRUE
 PNTS  = NULL
 
-BASICTOPOMAP(xo, yo , DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON,  PROJ=PROJ, pnts=NULL, GRIDcol=NULL)
+BASICTOPOMAP(xo, yo , DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON,
+PROJ=PROJ, pnts=NULL, GRIDcol=NULL)
 
 
 ###  add in the map information

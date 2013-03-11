@@ -4,7 +4,9 @@
 \description{Lat-Lon Tick marks and grid for Square plot
 }
 \usage{
-sqrTICXY(prsurf, proj, side = c(1, 2, 3, 4), PMAT=NULL, LLgrid = TRUE, col = "black", colt = "black", font=5, cex=1, lty=2, lwd=1, pcex=1, TICS=NULL)
+sqrTICXY(prsurf, proj, side = c(1, 2, 3, 4), PMAT=NULL, LLgrid = TRUE,
+ col = "black", colt = "black", font=5, cex=1, lty=2, lwd=1,
+pcex=1, TICS=NULL)
 }
 \arguments{
   \item{prsurf}{list with x, y}
@@ -43,6 +45,7 @@ sqrTICXY(prsurf, proj, side = c(1, 2, 3, 4), PMAT=NULL, LLgrid = TRUE, col = "bl
     PLAT = seq(from=KAMlat[1], to=KAMlat[2], by=2)
     
     proj = setPROJ(2, LON0=mean(KAMlon), LAT0=mean(KAMlat))
+library(geomapdata)
 data(worldmap)
 
  plotGEOmapXY(worldmap, LIM=c(KAMlon[1], KAMlat[1], KAMlon[2], KAMlat[2]),

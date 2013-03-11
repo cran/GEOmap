@@ -47,7 +47,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
  draw.circ<-function (x, y, r, ...) 
       {
-        CI = circle(1)
+        CI = RPMG::circle(1)
         for (i in 1:length(x)) {
           Cx = x[i] + r * CI$x
           Cy = y[i] + r * CI$y

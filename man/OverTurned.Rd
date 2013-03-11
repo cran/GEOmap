@@ -6,7 +6,8 @@
 Plot Overturned fault
 }
 \usage{
-OverTurned(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2, h1 = 0.5, h2 = 0.5, endtol = 0.1, REV = FALSE, col = "black", ...)
+OverTurned(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2,
+ h1 = 0.5, h2 = 0.5, endtol = 0.1, REV = FALSE, col = "black", ...)
 }
 
 \arguments{

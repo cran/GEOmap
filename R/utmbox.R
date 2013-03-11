@@ -23,7 +23,7 @@ function(lat , lon)
     utmlam0 = (utmx[fzlon] +  utmx[fzlon+1])/2
 
 
-     A = list(lon=lon, lat=lat  , LON=fmod(lon, 360), LAT=lat, utmbox=utmbox , UTM0=list(lam=utmlam0, phi=utmphi0))
+     A = list(lon=lon, lat=lat  , LON=RPMG::fmod(lon, 360), LAT=lat, utmbox=utmbox , UTM0=list(lam=utmlam0, phi=utmphi0))
    
      ## utmbox(34.333333, 281)
 

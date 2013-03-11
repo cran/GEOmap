@@ -13,8 +13,8 @@
       longD =     lamdeg
       
       lat =   latD*pi/180
-#### long =  fmod(longD, 360)*pi/180
-#### long0 = fmod(long0D, 360)*pi/180
+#### long =  RPMG::fmod(longD, 360)*pi/180
+#### long0 = RPMG::fmod(long0D, 360)*pi/180
       
       
       long =  longD*pi/180

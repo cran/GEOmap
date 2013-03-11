@@ -15,7 +15,7 @@ function(TOPO, ALOC, PROJ, nx=500, ny=500, nb = 4, mb = 4, hb = 8)
   if(length(ilat)<1)   { return(NULL) }
 
   
-  A = list(lat=ALOC[[ilat[1]]], lon=ALOC[[ilon[1]]], LAT=ALOC[[ilat[1]]], LON=fmod(ALOC[[ilon[1]]], 360) )
+  A = list(lat=ALOC[[ilat[1]]], lon=ALOC[[ilon[1]]], LAT=ALOC[[ilat[1]]], LON=RPMG::fmod(ALOC[[ilon[1]]], 360) )
   
   
   nlats=  A$lat	
@@ -26,7 +26,7 @@ function(TOPO, ALOC, PROJ, nx=500, ny=500, nb = 4, mb = 4, hb = 8)
   topolat = attr(TOPO, 'lat')
 
 
- LLM =  meshgrid( topolon, topolat )
+ LLM =  RPMG::meshgrid( topolon, topolat )
 
 
 
@@ -56,7 +56,7 @@ WXY =   (GG$x>=AXY$x[1] & GG$x<=AXY$x[2] & GG$y>=AXY$y[1] & GG$y<=AXY$y[2] )
  DF = cbind(x=ex , y=why ,  z=zee)
 
   
-    IZ = mba.surf(DF, nx, ny, n = nb, m = mb, h = hb, extend=TRUE)$xyz.est
+    IZ = MBA::mba.surf(DF, nx, ny, n = nb, m = mb, h = hb, extend=TRUE)$xyz.est
 
   return(list(z=IZ$z,x=xo, y=yo) )
   

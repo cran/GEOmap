@@ -6,7 +6,9 @@
   Add Tic marks to map
 }
 \usage{
-addTIX(lats, lons, PROJ = list(), PMAT = NULL, col = gray(0.7), TICS = c(1, 1), OUTER = TRUE, sides = c(1, 2, 3, 4))
+addTIX(lats, lons, PROJ = list(), PMAT = NULL,
+col = gray(0.7), TICS = c(1, 1), OUTER = TRUE,
+sides = c(1, 2, 3, 4))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

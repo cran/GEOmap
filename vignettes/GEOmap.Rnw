@@ -96,7 +96,7 @@ library(GEOmap)
 options(continue = " ")
 
 kliuLL = c(56.056000,   160.640000)
-PROJ =setPROJ(type=2, LAT0=kliuLL[1], 	LON0= kliuLL[2] , 	LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
+PROJ =GEOmap::setPROJ(type=2, LAT0=kliuLL[1], 	LON0= kliuLL[2] , 	LATS=NULL, LONS=NULL, DLAT=NULL, DLON=NULL, FN =0)
 
 @ 
 
@@ -107,7 +107,7 @@ calls to GEOmap plotting routines and conversions.
 The choices for projections can be seen by calling  projtype()
 as in,
 <<fig=FALSE, echo=TRUE>>=
- projtype()
+ GEOmap::projtype()
 @ 
 
 And we can see the usage of the projection by loading and plotting a map.
@@ -117,12 +117,12 @@ and the map will be distorted.
 <<fig=TRUE, echo=TRUE, results=tex>>=
 require('geomapdata')
 data(kammap)
-plotGEOmap(kammap,  add=FALSE, asp=1)
+GEOmap::plotGEOmap(kammap,  add=FALSE, asp=1)
 @ 
 
 Next we show how to plot the map in projected form,
 <<fig=TRUE, echo=TRUE, results=tex>>=
-plotGEOmapXY(kammap,  PROJ=PROJ, add=FALSE, xlab="km", ylab="km")
+GEOmap::plotGEOmapXY(kammap,  PROJ=PROJ, add=FALSE, xlab="km", ylab="km")
 @ 
 
 Notice that by resizing the window the map retains the proper
@@ -206,14 +206,14 @@ data(cosogeol)
 ## cosocolnumbers = cosogeol$STROKES$col+1
 
  proj = cosomap$PROJ
- plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+ GEOmap::plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
   
-cosogeol = boundGEOmap(cosogeol)
-  plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+cosogeol = GEOmap::boundGEOmap(cosogeol)
+  GEOmap::plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
-  plotGEOmapXY(cosomap, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  GEOmap::plotGEOmapXY(cosomap, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
-  plotGEOmapXY(faults, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  GEOmap::plotGEOmapXY(faults, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
 @ 
 
@@ -222,7 +222,7 @@ assigning colors from a given palette, in this case
 the palette of the program geotouch,
 <<fig=FALSE, echo=TRUE, results=tex>>=
 
-XMCOL = setXMCOL()
+XMCOL = RPMG::setXMCOL()
 
 cosocolnumbers = 1:length(cosogeol$STROKES$col)
 
@@ -238,12 +238,12 @@ symbols or names of hte units:
 <<fig=TRUE, echo=TRUE, results=tex>>=
 ss = strsplit(cosogeol$STROKES$nam, split="_")     
 
-geo = unlist(lapply(ss  , FUN="getmem", mem=1))
+geo = unlist(sapply(ss  , "[[", 1))
 UGEO = unique(geo)
 
 mgeo = match( geo, UGEO )
 
-cosogeol = boundGEOmap(cosogeol)
+cosogeol = GEOmap::boundGEOmap(cosogeol)
 
 gcol = paste(sep=".", geo, cosogeol$STROKES$col)
 
@@ -255,20 +255,20 @@ spucol = strsplit(ucol,split="\\.")
 N = length(spucol)
 
        
-names = unlist(lapply(spucol  , FUN="getmem", mem=1))
+names = unlist(sapply(spucol  , "[[", 1))
 
-shades = unlist(lapply(spucol  , FUN="getmem", mem=2))
+shades = unlist(sapply(spucol  , FUN="[[", 2))
 
 ORDN = order(names)
- plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+ GEOmap::plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
   
-  plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  GEOmap::plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
 
-  plotGEOmapXY(cosomap, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  GEOmap::plotGEOmapXY(cosomap, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
-  plotGEOmapXY(faults, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
-  geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 16, 6)
+  GEOmap::plotGEOmapXY(faults, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  GEOmap::geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 16, 6)
 
 @ 
 
@@ -306,7 +306,7 @@ the character string FUJI with the corresponding name in the data set.
 <<fig=FALSE, echo=TRUE>>=
 
 ifuji = grep("FUJI", jvolcs$name)
-PROJ = setPROJ(type=2, LAT0=jvolcs$lat[ifuji] , LON0=jvolcs$lon[ifuji] )
+PROJ = GEOmap::setPROJ(type=2, LAT0=jvolcs$lat[ifuji] , LON0=jvolcs$lon[ifuji] )
 
 @ 
 
@@ -322,7 +322,7 @@ used a distance of 15o km north and south of
 Mt. Fuji as our target region.
 
 <<fig=FALSE, echo=TRUE>>=
-LL = XY.GLOB(c(-150, 150), c(-150,150), PROJ =PROJ)
+LL = GEOmap::XY.GLOB(c(-150, 150), c(-150,150), PROJ =PROJ)
 FUJIAREA = c(LL$lon[1], LL$lat[1], LL$lon[2], LL$lat[2])
 
 @ 
@@ -338,15 +338,15 @@ require("geomapdata")
 
 data("japmap", package="geomapdata")
 
-plotGEOmapXY(japmap,  PROJ=PROJ, xlab="km", ylab="km" )
-pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, xlab="km", ylab="km" )
+GEOmap::pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
 
 rect(-150, -150, 150,150)
 
 pctexp = 0.01
 
-RLON = expandbound( range(fmod(japmap$POINTS$lon, 360)), pctexp) 
-      RLAT = expandbound( range(japmap$POINTS$lat), pctexp) 
+RLON = GEOmap::expandbound( range(RPMG::fmod(japmap$POINTS$lon, 360)), pctexp) 
+      RLAT = GEOmap::expandbound( range(japmap$POINTS$lat), pctexp) 
       JAPLIM=c( RLON[1], RLAT[1], RLON[2] , RLAT[2] )
 
 
@@ -357,9 +357,9 @@ in the previous figure:
 
 <<fig=TRUE, echo=TRUE, results=tex>>=
 
-plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, xlab="km", ylab="km" )
-pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
-textGEOmapXY(jvolcs$lat, jvolcs$lon , PROJ=PROJ, labels = jvolcs$name, cex=.5, pos=3)
+GEOmap::plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, xlab="km", ylab="km" )
+GEOmap::pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
+GEOmap::textGEOmapXY(jvolcs$lat, jvolcs$lon , PROJ=PROJ, labels = jvolcs$name, cex=.5, pos=3)
 
 @ 
 
@@ -387,9 +387,9 @@ the internal boundaries.
 <<fig=TRUE, echo=TRUE, results=tex>>=
 
 isel = which( japmap$STROKES$code != "i" )
-plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
-pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
-textGEOmapXY(jvolcs$lat, jvolcs$lon , PROJ=PROJ, labels = jvolcs$name, cex=.5, pos=3)
+GEOmap::plotGEOmapXY(japmap,  LIM =FUJIAREA, PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
+GEOmap::pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
+GEOmap::textGEOmapXY(jvolcs$lat, jvolcs$lon , PROJ=PROJ, labels = jvolcs$name, cex=.5, pos=3)
 
 
 @ 
@@ -463,8 +463,8 @@ K = K+length(lat)
   }
 
 
-PLATES$POINTS$lon = fmod(PLATES$POINTS$lon, 360)
-PLATES = boundGEOmap(PLATES, NEGLON =FALSE)
+PLATES$POINTS$lon = RPMG::fmod(PLATES$POINTS$lon, 360)
+PLATES = GEOmap::boundGEOmap(PLATES, NEGLON =FALSE)
 
 PLATES$PROJ = PROJ
 
@@ -472,8 +472,8 @@ PLATES$PROJ = PROJ
 <<fig=TRUE, echo=TRUE>>=
 data(worldmap)
 
-plotGEOmap(worldmap, asp=1)
-plotGEOmap(PLATES, add=TRUE)
+GEOmap::plotGEOmap(worldmap, asp=1)
+GEOmap::plotGEOmap(PLATES, add=TRUE)
 
 @ 
 
@@ -482,11 +482,11 @@ Or to show the map of Japan, projected with volcanoes, earthquakes and plate tec
 <<fig=TRUE, echo=TRUE>>=
 
 
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
-pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
-pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ, col='green', pch=".", cex=2)
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
+GEOmap::pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
+GEOmap::pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ, col='green', pch=".", cex=2)
 
-plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM,  add=TRUE)
+GEOmap::plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM,  add=TRUE)
 
 @ 
 
@@ -502,10 +502,10 @@ rcol = rainbow(120)
 
 ecol = 1+floor( 99* (eqs$z-min(eqs$z))/(max(eqs$z)-min(eqs$z)) )
 
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km" )
 ##  pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
-pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ,  pch=".", cex=2, col=rcol[ecol])
-plotGEOmapXY(PLATES, PROJ=PROJ, , LIM=JAPLIM , add=TRUE)
+GEOmap::pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ,  pch=".", cex=2, col=rcol[ecol])
+GEOmap::plotGEOmapXY(PLATES, PROJ=PROJ, , LIM=JAPLIM , add=TRUE)
 
 @ 
 
@@ -524,21 +524,21 @@ and the figure is constructed by:
 
 esiz = exp(eqs$m)
 
-rsiz = RESCALE(esiz, .4, 10, min(esiz), max(esiz))
+rsiz = RPMG::RESCALE(esiz, .4, 10, min(esiz), max(esiz))
 
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE )
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE )
 
 ##  pointsGEOmapXY(jvolcs$lat, jvolcs$lon, PROJ=PROJ, col='red', pch=2, cex=.5)
 PLAT =  pretty(eqs$lat)
 PLON =  pretty(eqs$lon)
 
- addLLXY(PLAT ,PLON , GRIDcol="black", LABS=0, BORDER=0 , PROJ=PROJ )
+ GEOmap::addLLXY(PLAT ,PLON , GRIDcol="black", LABS=0, BORDER=0 , PROJ=PROJ )
 
-pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ,  pch=rep(1, length(rsiz)) , cex=rsiz, col=rcol[ecol])
-plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM,  add=TRUE)
+GEOmap::pointsGEOmapXY(eqs$lat,eqs$lon, PROJ=PROJ,  pch=rep(1, length(rsiz)) , cex=rsiz, col=rcol[ecol])
+GEOmap::plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM,  add=TRUE)
 
 
-HOZscale(eqs$z, rcol[1:100] , units = "km depth", SIDE = 1, s1 = 0.5, s2 = 0.95)
+RPMG::HOZscale(eqs$z, rcol[1:100] , units = "km depth", SIDE = 1, s1 = 0.5, s2 = 0.95)
 
 
 ##  location of zebra: zeb = locator(); DUMPLOC(zeb)
@@ -556,11 +556,11 @@ am = pretty(eqs$m)
 am = am[am>min(eqs$m) & am<max(eqs$m) ]
 
 em = exp(am)
-se = RESCALE(em, .4, 10, min(esiz), max(esiz))
+se = RPMG::RESCALE(em, .4, 10, min(esiz), max(esiz))
 
-sizelegend(se, am, pch=1)
+GEOmap::sizelegend(se, am, pch=1)
 
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km", add=TRUE )
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km", add=TRUE )
 
 ## plotGEOmapXY(worldmap,  PROJ=PROJ, add=TRUE )
 @ 
@@ -568,14 +568,14 @@ plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="km", ylab="km", add=TRUE )
 Next we can plot this in a slightly different way, using a home grown symbol function.
 
 <<fig=TRUE, echo=TRUE>>=
-EXY = GLOB.XY(eqs$lat,eqs$lon, PROJ)
+EXY = GEOmap::GLOB.XY(eqs$lat,eqs$lon, PROJ)
 PLAT =  pretty(eqs$lat)
 PLON =  pretty(eqs$lon)
 
 
 esiz = exp(eqs$m)
 
-rsiz = RESCALE(esiz, .04, .2, min(esiz), max(esiz))
+rsiz = RPMG::RESCALE(esiz, .04, .2, min(esiz), max(esiz))
 
 ###  plot with the larges events first so they do not
 ###  cover the smaller ones
@@ -585,16 +585,16 @@ ordsiz = order(rsiz, decreasing = TRUE)
 
 acol=rcol[ecol]
 
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE )
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE )
 
- addLLXY(PLAT ,PLON , GRIDcol="black", LABS=0, BORDER=0 , PROJ=PROJ )
+ GEOmap::addLLXY(PLAT ,PLON , GRIDcol="black", LABS=0, BORDER=0 , PROJ=PROJ )
 
-pgon(EXY$x[ordsiz],EXY$y[ordsiz], siz=rsiz[ordsiz], col=acol[ordsiz], border='black', startalph =60, K=5, lwd=.5, xpd=TRUE)
+GEOmap::pgon(EXY$x[ordsiz],EXY$y[ordsiz], siz=rsiz[ordsiz], col=acol[ordsiz], border='black', startalph =60, K=5, lwd=.5, xpd=TRUE)
 
 
-plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM, add=TRUE)
-plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE, add=TRUE )
-HOZscale(eqs$z, rcol[1:100] , units = "km depth", SIDE = 1, s1 = 0.5, s2 = 0.95)
+GEOmap::plotGEOmapXY(PLATES, PROJ=PROJ, LIM=JAPLIM, add=TRUE)
+GEOmap::plotGEOmapXY(japmap,  PROJ=PROJ, SEL=isel, xlab="", ylab="", axes=FALSE, add=TRUE )
+RPMG::HOZscale(eqs$z, rcol[1:100] , units = "km depth", SIDE = 1, s1 = 0.5, s2 = 0.95)
 
                  
 @
@@ -616,7 +616,7 @@ specific  faults on plots.
 These can be seen by executing the 
 gridded plot of many line dress ups:
 <<fig=TRUE, echo=TRUE, results=tex>>=
-GEOsymbols()
+GEOmap::GEOsymbols()
 @ 
 
 \end{document}

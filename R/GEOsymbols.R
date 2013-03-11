@@ -48,7 +48,7 @@ MYh = pin[1]/(u[2]-u[1])
 
    for(i in 1:length(geotypes) )
       {
-        B =  itoxyz(i, ncol, nrow, 1)
+        B =  RPMG::itoxyz(i, ncol, nrow, 1)
         x = (B$ix-1)*dx
         y = (B$iy-1)*dy
         rect(x , y , x+dx, y+dy, lty=1, col='white' )
@@ -58,8 +58,8 @@ MYh = pin[1]/(u[2]-u[1])
         
      ###   segments(g1x[1], g1y[1],  g1x[2], g1y[2], col='blue')
 
-       wig1x = RESCALE(G$x, x+bx, x+dx-bx, -1, 1)
-       wig1y = RESCALE(G$y, y+by, y+dy-by, -1, 1)
+       wig1x = RPMG::RESCALE(G$x, x+bx, x+dx-bx, -1, 1)
+       wig1y = RPMG::RESCALE(G$y, y+by, y+dy-by, -1, 1)
 
         g = PointsAlong(wig1x, wig1y, N=3)
 

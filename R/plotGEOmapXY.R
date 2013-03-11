@@ -25,7 +25,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   
   pctexp = 0.01
- ###  MAP$POINTS$lon = fmod( MAP$POINTS$lon, 360)
+ ###  MAP$POINTS$lon = RPMG::fmod( MAP$POINTS$lon, 360)
 
   ###  LIM can be a vector (lon1, lat1, lon2, lat2)
   ###  or LIM can be a list: list(lon=c(lon1, lon2), lat=c(lat1, lat2))
@@ -33,11 +33,11 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   
   if(missing(LIM))
     {
-      lon = fmod(MAP$POINTS$lon-shiftlon, 360)
+      lon = RPMG::fmod(MAP$POINTS$lon-shiftlon, 360)
       
      ###  LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
 
-      RLON = expandbound( range(fmod(MAP$POINTS$lon, 360)), pctexp) 
+      RLON = expandbound( range(RPMG::fmod(MAP$POINTS$lon, 360)), pctexp) 
       RLAT = expandbound( range(MAP$POINTS$lat), pctexp) 
 
       
@@ -49,7 +49,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
     {
       if(is.null(LIM))
         {
-          RLON = expandbound( range(fmod(MAP$POINTS$lon, 360)), pctexp) 
+          RLON = expandbound( range(RPMG::fmod(MAP$POINTS$lon, 360)), pctexp) 
           RLAT = expandbound( range(MAP$POINTS$lat), pctexp) 
           
           LIM=c( RLON[1], RLAT[1], RLON[2] , RLAT[2] )
@@ -60,10 +60,10 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
       if(is.list(LIM))
         {
          
-          lon = fmod(LIM$lon-shiftlon, 360)
+          lon = RPMG::fmod(LIM$lon-shiftlon, 360)
           lat = LIM$lat
          ###  LIMP=c( min(lon), min(lat), max(lon), max(lat))
-          LIM=c( min(fmod(lon, 360)), min(lat), max(fmod(lon, 360)), max(lat))
+          LIM=c( min(RPMG::fmod(lon, 360)), min(lat), max(fmod(lon, 360)), max(lat))
           
         }
     }
@@ -102,7 +102,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   if(is.null(MAP$POINTS$x))
     {
-      MAPXY = GLOB.XY(MAP$POINTS$lat ,  fmod( MAP$POINTS$lon-shiftlon, 360) , PROJ )
+      MAPXY = GLOB.XY(MAP$POINTS$lat ,  RPMG::fmod( MAP$POINTS$lon-shiftlon, 360) , PROJ )
 
 
 
@@ -122,11 +122,11 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
           MAP$POINTS$y = tem$y
         }
 
-      STRKXYLL = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
-      STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
+      STRKXYLL = GLOB.XY( MAP$STROKES$LAT1,  RPMG::fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
+      STRKXYUR = GLOB.XY( MAP$STROKES$LAT2,  RPMG::fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
 
-      STRKXYUL = GLOB.XY( MAP$STROKES$LAT2,  fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
-      STRKXYLR = GLOB.XY( MAP$STROKES$LAT1,  fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
+      STRKXYUL = GLOB.XY( MAP$STROKES$LAT2,  RPMG::fmod(MAP$STROKES$LON1-shiftlon, 360)  , PROJ )
+      STRKXYLR = GLOB.XY( MAP$STROKES$LAT1,  RPMG::fmod(MAP$STROKES$LON2-shiftlon, 360)  , PROJ )
 
 
       

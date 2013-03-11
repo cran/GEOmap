@@ -19,7 +19,7 @@ fixCoastwrap<-function(Z, maxdis=100)
 ###  print(paste("fixCoastwrap 1", nww))
 ### 
   
-  if(fmod(nww, 2)==1)
+  if(RPMG::fmod(nww, 2)==1)
     {
 
    ###   print(paste("0 fixCoastwrap nww=", nww))
@@ -130,7 +130,7 @@ fixCoastwrap<-function(Z, maxdis=100)
 ####  if K is even there is a problem:
   K = length( newx)
 
-  if(fmod(K, 2)==0) {
+  if(RPMG::fmod(K, 2)==0) {
 
    ### print(paste("even K fixCoastwrap 2", K) )
 

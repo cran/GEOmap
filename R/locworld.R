@@ -17,7 +17,7 @@ function(shiftlon=0, col="brown", n=2)
     rect(L$x[1], L$y[1], L$x[2], L$y[2], border=col)}
 
 
-    lon = fmod(L$x+shiftlon, 360)
+    lon = RPMG::fmod(L$x+shiftlon, 360)
     lat = L$y
     
     utmx = seq(from=(-180), to=180, by=6)
@@ -46,7 +46,7 @@ function(shiftlon=0, col="brown", n=2)
     utmlam0 = (utmx[fzlon] +  utmx[fzlon+1])/2
 
 
-     A = list(lon=lon, lat=L$y  , LON=fmod(lon, 360), LAT=L$y, utmbox=utmbox , x=L$x, y=L$y, UTM0=list(lam=utmlam0, phi=utmphi0), shiftlon=shiftlon)
+     A = list(lon=lon, lat=L$y  , LON=RPMG::fmod(lon, 360), LAT=L$y, utmbox=utmbox , x=L$x, y=L$y, UTM0=list(lam=utmlam0, phi=utmphi0), shiftlon=shiftlon)
    
     
     ## print(A)

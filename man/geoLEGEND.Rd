@@ -50,14 +50,16 @@ proj = cosomap$PROJ
 
      plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
   
-setXMCOL()
+XMCOL = setXMCOL()
 
 newcol = XMCOL[cosogeol$STROKES$col+1]
 cosocolnums = cosogeol$STROKES$col
 cosogeol$STROKES$col = newcol
 ss = strsplit(cosogeol$STROKES$nam, split="_")     
 
-geo = unlist(lapply(ss  , FUN="getmem", mem=1))
+geo = unlist(sapply(ss  , "[[", 1))
+
+
 UGEO = unique(geo)
 
 
@@ -74,9 +76,9 @@ N = length(ucol)
 spucol = strsplit(ucol,split="\\.")     
 
        
-names = unlist(lapply(spucol  , FUN="getmem", mem=1))
+names = unlist(sapply(spucol  , "[[", 1))
 
-shades = unlist(lapply(spucol  , FUN="getmem", mem=2))
+shades = unlist(sapply(spucol  , "[[", 2))
 
 ORDN = order(names)
 

@@ -38,7 +38,7 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
         col = GRIDcol
         for(i in lons)
           {
-            xy = GLOB.XY(lats ,  rep(fmod(i, 360), length(lats)) ,  PROJ)
+            xy = GLOB.XY(lats ,  rep(RPMG::fmod(i, 360), length(lats)) ,  PROJ)
             if(!is.null(PMAT))
               {
                 tem = trans3d(xy$x, xy$y, rep(0, length(xy$y)) , PMAT)

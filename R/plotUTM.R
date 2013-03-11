@@ -7,13 +7,13 @@ function(proj, LIM, shiftlon=0)
   utmx = seq(from=(-180), to=180, by=6)
   utmy = seq(from =-56, to =72, by=8)
 
-  LONS = fmod(utmx, 360)
+  LONS = RPMG::fmod(utmx, 360)
 
   htags =  LETTERS[6:23]
   htags = htags[-c(4, 10)]
 
 
-  lon180 = fmod(c(LIM[1], LIM[3]), 360 )
+  lon180 = RPMG::fmod(c(LIM[1], LIM[3]), 360 )
 
 lon180[lon180>180] = lon180[lon180>180]-360
   
@@ -31,8 +31,8 @@ lon180[lon180>180] = lon180[lon180>180]-360
   ulats =utmy[uy1:uy2]
 
 
-  j = fmod(seq(from=(-180), to=180, by=6)-shiftlon, 360)
-  jhalf = fmod(seq(from=(-177), to=177, by=6)-shiftlon, 360)
+  j = RPMG::fmod(seq(from=(-180), to=180, by=6)-shiftlon, 360)
+  jhalf = RPMG::fmod(seq(from=(-177), to=177, by=6)-shiftlon, 360)
 ###  text(jhalf , u[3], labels=1:length(jhalf), pos=3)
 
 

@@ -160,7 +160,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     
     cdev = dev.cur()
     
-    buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+    buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
     NLABS = length(labs)
     NOLAB = NLABS +1000  ## some large number
     
@@ -170,7 +170,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     
     Nclick = length(iloc$x)
     if(is.null(zloc$x)) { return(NULL) }
-    K =  whichbutt(zloc , buttons)
+    K =  RPMG::whichbutt(zloc , buttons)
     sloc = zloc
     
 
@@ -184,7 +184,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
           {
 
 
-             buttons = rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
+             buttons = RPMG::rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
             title("Return to Calling Program")
             
             break;
@@ -437,7 +437,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
           {
             if(PS.FLAG) {
               P = round(par('pin'), digits=2);
-              psname = local.file("XMAP", "eps")
+              psname = RPMG::local.file("XMAP", "eps")
 
               postscript(file=psname  , width=P[1], height=P[2],
                          paper = "special", horizontal=FALSE, onefile=TRUE,print.it=FALSE)
@@ -534,14 +534,14 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
               PS.FLAG =  FALSE
             }
 
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
 
 
           }
         else
           {
 ###  in case the plot was resized with asp=1, need to replot the buttons
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
           }
 
 
@@ -550,7 +550,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
         zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
         Nclick = length(iloc$x)
         if(is.null(zloc$x)) { return(sloc) }
-        K =  whichbutt(iloc , buttons)
+        K =  RPMG::whichbutt(iloc , buttons)
 ##### print(K)   
       }
 

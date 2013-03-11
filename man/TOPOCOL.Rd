@@ -52,7 +52,8 @@ MYCOLL = TOPOCOL(volcano, BWpal2)
      par(bg = "slategray")
 Dcol = attr(  MYCOLL , "Dcol")
 
-     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
+     persp(x, y, z, theta = 135, phi = 30,
+         col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
            ltheta = -120, shade = 0.75, border = NA, box = FALSE)
 
 
@@ -65,7 +66,8 @@ Dcol = attr(  MYCOLL , "Dcol")
 
 MYCOLL = TOPOCOL(K, calcol$calcol)
 
-     persp(x, y, z, theta = 135, phi = 30, col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
+     persp(x, y, z, theta = 135, phi = 30,
+           col = MYCOLL[1:(Dcol[1]-1), 1:(Dcol[2]-1)], scale = FALSE,
            ltheta = -120, shade = 0.75, border = NA,  box = FALSE)
 
 

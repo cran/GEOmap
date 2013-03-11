@@ -28,7 +28,7 @@ RIODEJANEIRO =c( -22.9,  -43.2333333333333)
 
 g = getgreatarc(PARIS[1],PARIS[2], RIODEJANEIRO[1], RIODEJANEIRO[2],
 100)
-
+library(geomapdata)
 data(worldmap)
 
 plotGEOmap(worldmap, add=FALSE, shiftlon=180)

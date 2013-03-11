@@ -9,7 +9,7 @@ function(P, MAP)
         j1 = MAP$STROKES$index[i]+1
         j2 = j1+MAP$STROKES$num[i]-1
         
-        LONS = fmod(MAP$POINTS$lon[j1:j2], 360)
+        LONS = RPMG::fmod(MAP$POINTS$lon[j1:j2], 360)
         
         LATS = MAP$POINTS$lat[j1:j2]
 

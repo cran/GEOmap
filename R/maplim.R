@@ -17,7 +17,7 @@ maplim<-function(lat, lon, pct=.1)
 
       }
 
-    LON = fmod(glon, 360)
+    LON = RPMG::fmod(glon, 360)
 
     G = list(lat=glat, lon=glon, LON=LON, lim=c(glon[1], glat[1], glon[2], glat[2]), LIM=c(LON[1], glat[1], LON[2], glat[2]))
 

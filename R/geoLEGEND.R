@@ -14,7 +14,7 @@ for(i in 1:N)
 {
 
 ii = i
-ixy = itoxyz(i, nx, ny,1)
+ixy = RPMG::itoxyz(i, nx, ny,1)
 
 ##print(paste(sep=" ", i, ixy$ix, ixy$iy))
 

@@ -39,7 +39,7 @@ fmod<-function(k, m)
 
  ###   }
   
-  angles <- fmod(angles , (2 * pi))
+  angles <- RPMG::fmod(angles , (2 * pi))
 
   cx <- cos(seq(0, 2 * pi, length = 1000))
   sy <- sin(seq(0, 2 * pi, length = 1000))

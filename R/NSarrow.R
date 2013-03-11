@@ -51,7 +51,7 @@ function(x=NULL, y=NULL, R=1, col.arrow=1, col.N=1, col.circ=1, rot=0, PMAT=NULL
 
 
     
-   C = circle()
+   C = RPMG::circle()
    #   rect(-.2, -1, .2, .5)
 
    ##  col.arrow="black"; col.N="black"; col.circ="white"

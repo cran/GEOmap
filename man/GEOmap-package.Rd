@@ -94,19 +94,11 @@ getgreatarc
 ccw
 difflon
 DUMPLOC
-fmod
-getmem
 getsplineG
-ilocator
 inpoly
 inside
-itoxyz
-jpostscript
-local.file
-meshgrid
 PointsAlong
-polyintern
-RESCALE}
+polyintern}
 
 \item{Projections:}{
 setPROJ
@@ -144,6 +136,7 @@ equid.cyl.xy}
 }
 \examples{
 
+
 ################  projections
 proj = setPROJ(type = 2, LAT0 =23, LON0 = 35)
 
@@ -155,7 +148,7 @@ LL = XY.GLOB(200, 300, proj)
 XY = GLOB.XY(LL$lat, LL$lon, proj)
 XY
 ################
-
+library(geomapdata)
 data(worldmap)
   KAMlat = c(48.5,  65)
     KAMlon = c(150, 171)

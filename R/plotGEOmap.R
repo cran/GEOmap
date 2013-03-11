@@ -14,29 +14,29 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , SE
   
   if(missing(LIM))
     {
-      lon = fmod(MAP$POINTS$lon-shiftlon, 360)
+      lon = RPMG::fmod(MAP$POINTS$lon-shiftlon, 360)
       
       LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
-      LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+      LIM=c( min(RPMG::fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
     }
   else
     {
 
       if(is.null(LIM))
         {
-          lon = fmod(MAP$POINTS$lon-shiftlon, 360)
+          lon = RPMG::fmod(MAP$POINTS$lon-shiftlon, 360)
           LIMP=c( min(lon), min(MAP$POINTS$lat), max(lon), max(MAP$POINTS$lat))
-          LIM=c( min(fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
+          LIM=c( min(RPMG::fmod(MAP$POINTS$lon, 360)), min(MAP$POINTS$lat), max(fmod(MAP$POINTS$lon, 360)), max(MAP$POINTS$lat))
         }
 
       
       if(is.list(LIM))
         {
           
-          lon = fmod(LIM$lon-shiftlon, 360)
+          lon = RPMG::fmod(LIM$lon-shiftlon, 360)
           lat = LIM$lat
           LIMP=c( min(lon), min(lat), max(lon), max(lat))
-          LIM=c( min(fmod(lon, 360)), min(lat), max(fmod(lon, 360)), max(lat))
+          LIM=c( min(RPMG::fmod(lon, 360)), min(lat), max(fmod(lon, 360)), max(lat))
           
         }
       else
@@ -63,14 +63,14 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
   
   y1 = MAP$STROKES$LAT1
   y2 = MAP$STROKES$LAT2
-  x1 = fmod(MAP$STROKES$LON1-shiftlon, 360)
-  x2 = fmod(MAP$STROKES$LON2-shiftlon, 360)
+  x1 = RPMG::fmod(MAP$STROKES$LON1-shiftlon, 360)
+  x2 = RPMG::fmod(MAP$STROKES$LON2-shiftlon, 360)
 
   y3 = LIM[2]
   y4 = LIM[4]
   
-  x3 = fmod(LIM[1], 360)
-  x4 = fmod(LIM[3], 360)
+  x3 = RPMG::fmod(LIM[1], 360)
+  x4 = RPMG::fmod(LIM[3], 360)
   
 
   
@@ -99,7 +99,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
       ##  xlab="Lon", ylab="Lat",
       ## if(is.null(xlab)) { xlab="Lon" }
       
-      plot(fmod(MAP$POINTS$lon-shiftlon, 360), MAP$POINTS$lat, xlim=c(LIMP[1], LIMP[3])  , ylim=c(LIM[2], LIM[4]),
+      plot(RPMG::fmod(MAP$POINTS$lon-shiftlon, 360), MAP$POINTS$lat, xlim=c(LIMP[1], LIMP[3])  , ylim=c(LIM[2], LIM[4]),
            type='n', xlab="lon", ylab='lat', axes=FALSE,  ...)
 
       if(PLOT==FALSE) { return(0) }
@@ -107,7 +107,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
       
       pp = axTicks(1)
 
-      xlabs = fmod(pp, 360)
+      xlabs = RPMG::fmod(pp, 360)
       axis(1, at=pp, labels = xlabs)
 
       xlabs[xlabs>180 & xlabs<=359.99] = xlabs[xlabs>180 & xlabs<=359.99]-360
@@ -139,7 +139,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
       j1 = MAP$STROKES$index[i]+1
       j2 = j1+MAP$STROKES$num[i]-1
 
-      LONS = fmod(MAP$POINTS$lon[j1:j2]-shiftlon, 360)
+      LONS = RPMG::fmod(MAP$POINTS$lon[j1:j2]-shiftlon, 360)
       LATS = MAP$POINTS$lat[j1:j2]
        if(NUMB==TRUE)
         {
@@ -200,7 +200,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
 
               
               xshift = LONS[1]
-              v = fmod(LONS-xshift, 360)
+              v = RPMG::fmod(LONS-xshift, 360)
               x = v+xshift
               polygon(x, LATS,border=border, col=MAP$STROKES$col[i] )
               wv = which.max(x)

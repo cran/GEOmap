@@ -6,16 +6,19 @@
  High Level plot of GEO map
 }
 \usage{
-plotGEOmap(MAP, LIM = c(-180, -90, 180, 90) , shiftlon = 0, add = TRUE ,
-NUMB = FALSE , SEL = NULL, MAPcol = NULL, MAPstyle = NULL, border=NA,
+plotGEOmap(MAP, LIM = c(-180, -90, 180, 90) ,
+shiftlon = 0, add = TRUE ,
+NUMB = FALSE , SEL = NULL, MAPcol = NULL,
+MAPstyle = NULL, border=NA,
 PLOT = TRUE, PRINT=FALSE, BB = FALSE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{MAP}{Map Structure}
   \item{LIM}{Lat-Lon limits}
   \item{add}{logical, TRUE= add to existing plot}
-  \item{SEL}{Index vector of strokes to be used in plotting,default=NULL(use all that pass other tests) }
+  \item{SEL}{Index vector of strokes to be used in plotting,
+    default=NULL(use all that pass other tests) }
   \item{MAPcol}{override color for maps}
   \item{MAPstyle}{override plotting style for maps}
   \item{border}{color, add border to polygons, NA=no border}
@@ -42,6 +45,7 @@ PLOT = TRUE, PRINT=FALSE, BB = FALSE, ...)
 
 \seealso{plotGEOmapXY, DOTOPOMAPI, addLLXY}
 \examples{
+library(geomapdata)
 
 data(coastmap)
 

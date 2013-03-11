@@ -18,7 +18,7 @@ stickh = h*umm
 
 rd = hoff*0.875*umm/2
 
-ci = circle(n=36)
+ci = RPMG::circle(n=36)
 rdot = list(x=rd*ci$x, y=rd*ci$y)
     cs = -rot$sn
     sn = rot$cs

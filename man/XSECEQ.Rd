@@ -5,7 +5,9 @@
  Iinteractive earthquake cross section
 }
 \usage{
-XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC", "MSEC"), width = 10, kmaxes = TRUE, pch = ".", demo = FALSE)
+XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC",
+"MSEC"),
+ width = 10, kmaxes = TRUE, pch = ".", demo = FALSE)
 }
 
 \arguments{
@@ -30,7 +32,7 @@ XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC", "MSEC"), width
 \seealso{XSECDEM, eqswath, XSECwin}
 \examples{
 
-
+library(geomapdata)
 ##########  get map of Japan
  data(japmap)
 proj = setPROJ(type = 2, LAT0=35.358,LON0=138.731)
@@ -50,11 +52,11 @@ attr(MAP, "PROJ") <- proj
 MAP[[2]] = japmap
 
 ###########  load Engdahl earthquake Data base
-########   EHB.LLZ = scan("/home/lees/Site/World/EHB.LLZ", what=list(lat=0, lon=0, z=0))
+########  
 data(EHB.LLZ)
 
 flagEHB = EHB.LLZ$lat>=NIHON$lat[1] &  EHB.LLZ$lat<=NIHON$lat[2] &
-fmod(EHB.LLZ$lon, 360)>+NIHON$lon[1] &  fmod(EHB.LLZ$lon,
+RPMG::fmod(EHB.LLZ$lon, 360)>+NIHON$lon[1] &  RPMG::fmod(EHB.LLZ$lon,
 360)<=NIHON$lon[2]
 
 eqJ =   GLOB.XY(EHB.LLZ$lat[flagEHB], EHB.LLZ$lon[flagEHB], proj)
@@ -72,7 +74,7 @@ rz = range(c(rz, EQ[[1]]$z), na.rm=TRUE )
 
 for(i in 1:length(EQ))
 {
-iz = RESCALE(EQ[[i]]$z, 1, 100, rz[1], rz[2])
+iz = RPMG::RESCALE(EQ[[i]]$z, 1, 100, rz[1], rz[2])
 EQ[[i]]$COL = rainbow(100)[iz]
 }
 

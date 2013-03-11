@@ -5,7 +5,8 @@
 \description{Add north-south weather vane arrow figure 
 }
 \usage{
-NSarrow(x = NULL, y = NULL, R = 1, col.arrow = 1, col.N = 1, col.circ = 1, rot = 0, PMAT = NULL)
+NSarrow(x = NULL, y = NULL, R = 1, col.arrow = 1, col.N = 1,
+col.circ = 1, rot = 0, PMAT = NULL)
 }
 \arguments{
   \item{x}{X-location vector, if list, include both x and y values }

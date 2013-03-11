@@ -5,7 +5,8 @@
   Find and plot nice tick marks on projected plot
 }
 \usage{
-plotnicetix(nex, nwhy, proj, tlen = 0.1, fonts = c("serif", "plain"), PMAT = NULL, PLOT = TRUE)
+plotnicetix(nex, nwhy, proj, tlen = 0.1,
+fonts = c("serif", "plain"), PMAT = NULL, PLOT = TRUE)
 }
 \arguments{
   \item{nex}{X coordinates}

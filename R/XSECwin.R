@@ -99,7 +99,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
 
   global.vars$buttoncex = 0.8
   
-  buttons = rowBUTTONS(BLABS, col=colabs, pch=pchlabs, cex=global.vars$buttoncex )
+  buttons = RPMG::rowBUTTONS(BLABS, col=colabs, pch=pchlabs, cex=global.vars$buttoncex )
 
   global.vars$MAINdev = dev.cur()
 
@@ -124,18 +124,18 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
   OLDglobal.vars = global.vars
    global.vars$OLDglobal.vars = global.vars
  
- iloc = ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
+ iloc = RPMG::ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
        
  Nclick = length(iloc$x)
    
-    K =  whichbutt(zloc , buttons)
+    K =  RPMG::whichbutt(zloc , buttons)
     sloc = zloc
 
     
     while(TRUE)
       {
 ############   button actions
-        iloc = ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
+        iloc = RPMG::ilocator(global.vars$ilocnum ,COL=global.vars$iloccol ,NUM=FALSE , YN=length(global.vars$sel), style=global.vars$ilocstyle )
         
         
         Nclick = length(iloc$x)
@@ -150,7 +150,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
 #######  add last click to list of clicks, continue 
             zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
             global.vars$zenclick = length(zloc$x)
-            K =  whichbutt(iloc ,buttons)
+            K =  RPMG::whichbutt(iloc ,buttons)
             sloc = zloc
             
             
@@ -158,7 +158,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
               {
 
 
-                buttons = rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
+                buttons = RPMG::rowBUTTONS(labs, col=rep(grey(.8), length(labs)), pch=rep("NULL", length(labs)))
                 title("Return to Calling Program")
                 
                 break;
@@ -168,7 +168,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
             if(K[Nclick] == match("REFRESH", labs, nomatch = NOLAB))
               {
                 YNreplot(global.vars)
-                buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+                buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
                 zloc = list(x=NULL, y=NULL)
                 next
               }
@@ -187,7 +187,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
                 
                 PS.FLAG = !PS.FLAG
 
-                psname = local.file(paste("xsec", xLAB, sep=""), "eps")
+                psname = RPMG::local.file(paste("xsec", xLAB, sep=""), "eps")
                 
                 P = round(par('din'), digits=2); 
                 postscript(file= psname , width=P[1], height=P[2],

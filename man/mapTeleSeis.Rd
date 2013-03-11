@@ -95,7 +95,7 @@ mylist[[j]] = list(yr=eq1$yr[j], jd=eq1$jd[j], mo=eq1$mo[j], dom=eq1$dom[j], hr=
 mi=eq1$mi[j], sec=eq1$sec[j], lat=eq1$lat[j], lon=eq1$lon[j], z=eq1$z[j], mag=eq1$mag[j])
 }
 
-library(GEOmap)
+
 library(geomapdata)
      data(worldmap)
  mapTeleSeis(sta, mylist, worldmap=worldmap)

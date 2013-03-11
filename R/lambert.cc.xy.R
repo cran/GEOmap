@@ -3,7 +3,7 @@ function(phi,lam, PROJ.DATA)
   {
 	###  lambert conformal conic Snyder(USGS) p. 104
 
-lam = fmod(lam, 360)	
+lam = RPMG::fmod(lam, 360)	
 
  
     phi0 = PROJ.DATA$LAT0

@@ -39,7 +39,7 @@ function(type=1, LAT0=0, LON0=0 ,LAT1=0,  LAT2=0,LATS=NULL, LONS=NULL, DLAT=NULL
       }
     else
       {
-        LON0=fmod(LON0, 360)
+        LON0=RPMG::fmod(LON0, 360)
       }
     
     MAPconstants()

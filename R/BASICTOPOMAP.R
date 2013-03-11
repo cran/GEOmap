@@ -5,7 +5,7 @@ function(xo, yo, DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON, PROJ=PROJ, pnts=N
     if(missing(pnts) ) { pnts=NULL }
 
 
-     blues = shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
+     blues = RPMG::shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
 
     plot(range(xo), range(yo),  type='n' , asp=TRUE , axes=FALSE, xlab="", ylab="")
 

@@ -5,7 +5,9 @@
   Plot global view of the earth
 }
 \usage{
-GlobeView(phicen, lamcen, worldmap, MAXR, SEL = 1, circol = rgb(1, 0.8, 0.8), innercol = "white", linecol = rgb(0, 0, 0), mapcol = rgb(0, 0, 0), backcol = "white", add=FALSE)
+GlobeView(phicen, lamcen, worldmap, MAXR, SEL = 1,
+circol = rgb(1, 0.8, 0.8), innercol = "white", linecol = rgb(0, 0, 0),
+ mapcol = rgb(0, 0, 0), backcol = "white", add=FALSE)
 }
 \arguments{
   \item{phicen}{Latitude}
@@ -36,6 +38,8 @@ GlobeView(phicen, lamcen, worldmap, MAXR, SEL = 1, circol = rgb(1, 0.8, 0.8), in
 
 \seealso{plotGEOmap, lamaz.eqarea}
 \examples{
+
+
 data(coastmap)
 
 phicen  =32.20122+5
@@ -50,7 +54,8 @@ SEL = c(SEL, which(coastmap$STROKES$nam=="GreatBritain"),
 which(coastmap$STROKES$nam=="Japan"), which(coastmap$STROKES$nam=="Ireland"))
 
 
-PER = GlobeView(phicen, lamcen, SEL=SEL, coastmap, MAXR, linecol=rgb(.2, .2, .2), mapcol=rgb(.8, .8, .8), 
+PER = GlobeView(phicen, lamcen, SEL=SEL, coastmap, MAXR,
+linecol=rgb(.2, .2, .2), mapcol=rgb(.8, .8, .8), 
 innercol=carolinablue , circol=carolinablue ,    backcol="white")
 
 }

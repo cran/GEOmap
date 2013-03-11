@@ -12,13 +12,13 @@ polyintern<-function(P, n=10, PLOT=FALSE)
     
     yo = seq(from=min(y), to=max(y), length=n)
 
-    mg = meshgrid(xo, yo)
+    mg = RPMG::meshgrid(xo, yo)
 
     
     
    ###   I = inpoly(mg$x, mg$y , list(x=c(P$x, P$x[1]), y=c(P$y, P$y[1])))
 
-    kin = inout(cbind(as.vector(mg$x), as.vector(mg$y) ) ,cbind(x, y), bound=TRUE)
+    kin = splancs::inout(cbind(as.vector(mg$x), as.vector(mg$y) ) ,cbind(x, y), bound=TRUE)
  
     nx = mg$x[kin]
     ny =  mg$y[kin]

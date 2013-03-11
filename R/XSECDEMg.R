@@ -49,10 +49,10 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
     pchlabs = rep(0,length(labs))
  ##    FUN = match.fun(TPALS[1])
 ##     pal = FUN(ncol)
-    pal = Gcols(plow=0, phi=0,  N=100, pal=TPALS[1])
+    pal = RPMG::Gcols(plow=0, phi=0,  N=100, pal=TPALS[1])
     
     image(jx, jy, Data, col=pal , asp=1)
-    buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+    buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
     NLABS = length(labs)
     NOLAB = NLABS +1000  ## some large number
     
@@ -62,7 +62,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
 
     Nclick = length(iloc$x)
     if(is.null(zloc$x)) { return(NULL) }
-    K =  whichbutt(zloc , buttons)
+    K =  RPMG::whichbutt(zloc , buttons)
     sloc = zloc
     CONT.FLAG = FALSE
     PTS.FLAG = FALSE
@@ -97,7 +97,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
             ##  FUN = match.fun(TPALS[J])
              ##  pal = FUN(NCOL)
             
-            pal = Gcols(plow=0, phi=0,  N=100, pal=TPALS[J])
+            pal = RPMG::Gcols(plow=0, phi=0,  N=100, pal=TPALS[J])
           
         
             zloc = list(x=NULL, y=NULL)
@@ -167,7 +167,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
 
 
               }
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
             if(PS.FLAG) {
               dev.off();
               cat("the postscript file is in: RPMGdemo.eps", sep="\n")
@@ -179,7 +179,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
         else
           {
 ###  in case the plot was resized with asp=1, need to replot the buttons
-            buttons = rowBUTTONS(labs, col=colabs, pch=pchlabs)
+            buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
           }
 
 
@@ -188,7 +188,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
         zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
         Nclick = length(iloc$x)
         if(is.null(zloc$x)) { return(sloc) }
-        K =  whichbutt(iloc , buttons)
+        K =  RPMG::whichbutt(iloc , buttons)
 ##### print(K)   
       }
 

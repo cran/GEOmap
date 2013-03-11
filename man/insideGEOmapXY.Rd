@@ -34,6 +34,8 @@ Vector of index values for points that satisfy geographic criteria
 \examples{
 
 \dontrun{
+library(geomapdata)
+
 data(japmap)
  PROJfuji = setPROJ(type = 2, LAT0=35.358,LON0=138.731)
 plotGEOmapXY(japmap, PROJ=PROJfuji, add=FALSE)

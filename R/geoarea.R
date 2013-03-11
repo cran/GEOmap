@@ -5,7 +5,7 @@ geoarea<-function(MAP, proj=NULL , ncut=10)
     if(missing(ncut)) ncut=10 
     if(missing(proj)) proj=NULL 
 
-    if(!require(splancs)) { print("NEED splancs"); return(NULL) }
+   ##  if(!require(splancs)) { print("NEED splancs"); return(NULL) }
 
     cgAREA=rep(NA,length(MAP$STROKES$num)) 
 
@@ -33,7 +33,7 @@ geoarea<-function(MAP, proj=NULL , ncut=10)
             X = GLOB.XY(lat, lon, PROJ)
             POL = cbind(X$x, X$y)
 
-            cgAREA[i] = areapl(POL)
+            cgAREA[i] = splancs::areapl(POL)
 
           }
         else

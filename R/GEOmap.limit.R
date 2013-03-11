@@ -6,17 +6,17 @@ GEOmap.limit<-function(MAP, LLlim )
   if(is.list(LLlim))
     {
       lat1 = LLlim$lat[1]
-      lon1= fmod(LLlim$lon[1], 360)
+      lon1= RPMG::fmod(LLlim$lon[1], 360)
       lat2= LLlim$lat[2]
-      lon2= fmod(LLlim$lon[2], 360)
+      lon2= RPMG::fmod(LLlim$lon[2], 360)
 
     }
   else
     {
       lat1 = LLlim[2]
-      lon1= fmod(LLlim[1], 360)
+      lon1= RPMG::fmod(LLlim[1], 360)
       lat2= LLlim[4]
-      lon2= fmod(LLlim[3], 360)
+      lon2= RPMG::fmod(LLlim[3], 360)
     }
 
   
@@ -52,7 +52,7 @@ GEOmap.limit<-function(MAP, LLlim )
       if(kix>0)
         {
         ##  print(c(i, kix, nix))
-          Zbreak  = breakline.index(WLL, nix)
+          Zbreak  = RPMG::breakline.index(WLL, nix)
          ## print(length(Zbreak))
           
           for(ib in 1:length(Zbreak))

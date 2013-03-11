@@ -37,7 +37,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{inpoly, 
 }
 \examples{
-
+library(geomapdata)
 data(worldmap)
 data(coastmap)
 L = list(lon=c(163.59, 182.95), lat=c(-48.998, -32.446))

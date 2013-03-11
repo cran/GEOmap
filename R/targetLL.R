@@ -2,8 +2,7 @@ targetLL <-
 function(sta, rdist=100)
 {
 
-  require(GEOmap)
-
+ 
   ###  get center for a projection
 
   mlat = median(sta$lat)

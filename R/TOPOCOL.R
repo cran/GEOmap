@@ -14,7 +14,7 @@ TOPOCOL<- function(IZ, calcol=NULL)
     AZ = IZ$z
     AZ[IZ$z<=-.001] = NA
 
-    blues = shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
+    blues = RPMG::shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
 
     CZ = AZ
    ########  TZ[TZ<0] = NA

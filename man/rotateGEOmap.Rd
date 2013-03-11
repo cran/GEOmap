@@ -76,11 +76,13 @@ proj = setPROJ( 2, LAT0=L1$y, LON0=L1$x )
 plotGEOmapXY(neweng, LIM=LIMS,  PROJ =proj, axes=FALSE, xlab="", ylab="" )
 
 
-plotGEOmapXY(MAP, LIM=LIMS,  PROJ =proj, axes=FALSE, xlab="", ylab="", add = TRUE, MAPcol = grey(.85)  , lwd=2, xpd=TRUE)
+plotGEOmapXY(MAP, LIM=LIMS,  PROJ =proj, axes=FALSE, xlab="",
+     ylab="", add = TRUE, MAPcol = grey(.85)  , lwd=2, xpd=TRUE)
 
 
 
-  plotGEOmapXY(neweng, LIM=LIMS,  PROJ =proj, axes=FALSE, xlab="", ylab="", add=TRUE )
+  plotGEOmapXY(neweng, LIM=LIMS,  PROJ =proj,
+       axes=FALSE, xlab="", ylab="", add=TRUE )
   
 
 

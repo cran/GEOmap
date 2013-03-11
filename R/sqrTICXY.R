@@ -88,7 +88,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
 
 
           
-          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex, col=col)
 
           if(!is.null(colt))
             {
@@ -159,7 +159,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
             }
                   
           
-          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex, col=col)
 
           if(!is.null(colt))
             {
@@ -231,7 +231,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
 
 
           
-          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex, col=col)
 
            if(!is.null(colt))
             {
@@ -298,7 +298,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
               
             }
           
-          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex)
+          points(tem1$x, tem1$y, pch=3, xpd=TRUE, cex=pcex, col=col)
 
            if(!is.null(colt))
             {

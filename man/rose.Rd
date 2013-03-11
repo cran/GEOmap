@@ -5,7 +5,9 @@
 \description{Rose diagram of angle orientations or directions
 }
 \usage{
-rose(angles, bins, x = 0, y = 0, col = "black", border = "black", annot = FALSE, main = "", prop = 1, pts = FALSE, cex = 1, pch = 16, dotsep = 40, siz = 1, LABS = LABS, LABangle = 180, add = FALSE, SYM = FALSE)
+rose(angles, bins, x = 0, y = 0, col = "black", border = "black",
+annot = FALSE, main = "", prop = 1, pts = FALSE, cex = 1, pch = 16,
+dotsep = 40, siz = 1, LABS = LABS, LABangle = 180, add = FALSE, SYM = FALSE)
 }
 \arguments{
   \item{angles}{numeric, vector of angles in radians

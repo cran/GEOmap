@@ -29,7 +29,7 @@
         if(length(ilat)<1)   { return(NULL) }
 
         
-        A = list(lat=PLOC[[ilat[1]]], lon=PLOC[[ilon[1]]], LAT=PLOC[[ilat[1]]], LON=fmod(PLOC[[ilon[1]]], 360) )
+        A = list(lat=PLOC[[ilat[1]]], lon=PLOC[[ilon[1]]], LAT=PLOC[[ilat[1]]], LON=RPMG::fmod(PLOC[[ilon[1]]], 360) )
         
         
         

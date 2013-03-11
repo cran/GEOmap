@@ -51,6 +51,7 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
   
 }
 \examples{
+library(geomapdata)
 
 data(EHB.LLZ)
 data(japmap)

@@ -43,7 +43,7 @@ lines(m[,1]+.5, m[,2]+.5)
 R = rotmat2D(32)
 
 #########  apply rotation
-nm=m %*% R
+nm=m \%*\% R
 
 
 ###  plot

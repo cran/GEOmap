@@ -3,7 +3,7 @@ function(phi,lam, PROJ.DATA)
   {
 	###  lambert azimuthal equal area Snyder(USGS) p. 185
 
-lam = fmod(lam, 360)	
+lam = RPMG::fmod(lam, 360)	
 
  
     phi0 = PROJ.DATA$LAT0

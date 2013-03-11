@@ -5,7 +5,8 @@
 \description{Plot globe with orthogonal
 }
 \usage{
-GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,  map = coastmap, mapcol = grey(0.2), linecol = grey(0.7), fill=FALSE)
+GLOBE.ORTH(lam0, phi1, R = 1, plotmap = TRUE, plotline=TRUE, add=FALSE,
+ map = coastmap, mapcol = grey(0.2), linecol = grey(0.7), fill=FALSE)
 }
 \arguments{
   \item{lam0}{view origin longitude, degrees
@@ -87,7 +88,8 @@ points(XYtarg , col='blue')
  da = distaz(olat, olon, tlat, tlon)
  ed2 =  Ellipsoidal.Distance(olat, olon, tlat, tlon, a=R.MAPK*1000, b=R.MAPK*1000)
 
-  A = along.great(olat*pi/180, olon*pi/180, seq(from=0, to=da$del, by=2)*pi/180,  da$az*pi/180)
+  A = along.great(olat*pi/180, olon*pi/180,
+seq(from=0, to=da$del, by=2)*pi/180,  da$az*pi/180)
 
      lat=A$phi*180/pi
      lon = A$lam*180/pi
@@ -104,7 +106,9 @@ M2 = merid(olon, lat1=olat,  phi1=olat, lam0=olon,R=1, by=2)
 
 lines(M2$x, M2$y, col='red' )
 
- leg = c( paste("del=", round(da$del)), paste("DA=", round(da$az),  round(da$baz) ), paste("ED=", round(ed2$az) ,  round(ed2$revaz) ))
+ leg = c( paste("del=", round(da$del)), paste("DA=", round(da$az),
+ round(da$baz) ),
+ paste("ED=", round(ed2$az) ,  round(ed2$revaz) ))
  
 legend("topleft", legend=leg)
 

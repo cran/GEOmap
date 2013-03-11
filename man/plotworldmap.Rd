@@ -6,7 +6,8 @@
 Plot World Map with UTM sections
 }
 \usage{
-plotworldmap(MAP, LIM = c(-180, -90, 180, 90), shiftlon = 0, add = TRUE, NUMB = FALSE, ...)
+plotworldmap(MAP, LIM = c(-180, -90, 180, 90), shiftlon = 0,
+add = TRUE, NUMB = FALSE, ...)
 }
 
 \arguments{

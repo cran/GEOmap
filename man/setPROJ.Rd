@@ -6,7 +6,8 @@
 Setup parameters for Map Projection
 }
 \usage{
-setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL, LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0)
+setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL,
+ LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -50,7 +51,9 @@ projtype()
 setPROJ(type = 1, LAT0 =23, LON0 = 35)
 
 ### Hengill Map: lambert.cc
-setPROJ(type=3, LAT0=65, LON0=360-19 ,LAT1=64+15/60,  LAT2=65+45/60,LATS=, LONS=NULL, DLAT=NULL, DLON=NULL,FE=500000,FN=500000)
+setPROJ(type=3, LAT0=65, LON0=360-19 ,LAT1=64+15/60,
+LAT2=65+45/60,LATS=NULL, 
+LONS=NULL, DLAT=NULL, DLON=NULL,FE=500000,FN=500000)
 
 ### old lees/crosson projection
 setPROJ(type=99, LAT0=23, LON0=35, LATS=NULL, LONS=NULL, DLAT=NULL,

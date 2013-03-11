@@ -48,6 +48,7 @@ plot(M$lon, M$lat, type='n')
 points(lon, lat)
 
 ############   plotting with a GEOmap
+library(geomapdata)
 data(worldmap)
 
 PROJ = setPROJ(type=2, LON0=mean(lon), LAT0=mean(lat))

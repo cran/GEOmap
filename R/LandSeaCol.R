@@ -94,9 +94,9 @@ FLAGland = matrix(FALSE, ncol=ncol(mxy$x) , nrow=nrow(mxy$x))
 
 
 
- MAPXY = GLOB.XY(coastmap$POINTS$lat ,  fmod( coastmap$POINTS$lon, 360) , PROJ )
+ MAPXY = GLOB.XY(coastmap$POINTS$lat ,  RPMG::fmod( coastmap$POINTS$lon, 360) , PROJ )
 
- mypoly  = as.points(as.vector(mxy$x) ,as.vector(mxy$y))
+ mypoly  = splancs::as.points(as.vector(mxy$x) ,as.vector(mxy$y))
  
  if(TRUE)
    {
@@ -131,8 +131,8 @@ if(any(rads<RADmax) & rectoverlap(rx[1], ry[1], rx[2], ry[2], hx[1], hy[1], hx[2
 {
 
 
-      JJpoly = as.points(x, y)
-      INTEMP = inout(mypoly,JJpoly, bound=TRUE )
+      JJpoly = splancs::as.points(x, y)
+      INTEMP = splancs::inout(mypoly,JJpoly, bound=TRUE )
 
      ##    points(mxy$x[INTEMP] ,mxy$y[INTEMP], pch=".", col='red') 
   FLAGland[INTEMP] = TRUE
@@ -182,7 +182,7 @@ AZ = IZ$z
 
     AZ[(FLAGwat)!=TRUE] = NA
 
-    blues = shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
+    blues = RPMG::shade.col(100, acol=as.vector(col2rgb("darkblue")/255)   , bcol= as.vector(col2rgb("paleturquoise")/255))
 
 
 

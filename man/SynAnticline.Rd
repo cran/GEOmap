@@ -6,7 +6,8 @@
   Syncline and Anticline traces
 }
 \usage{
-SynAnticline(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2, h1 = 0, h2 = 0, endtol = 0.1, REV = FALSE, col = "black", ...)
+SynAnticline(x, y, syn = TRUE, spacing = NULL, N = 1, r1 = 1, r2 = 1.2,
+ h1 = 0, h2 = 0, endtol = 0.1, REV = FALSE, col = "black", ...)
 }
 
 \arguments{
