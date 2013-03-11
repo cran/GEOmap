@@ -1,14 +1,10 @@
-`plotusa` <- function(LATS=c(22,49.62741), LONS=c(229.29389,296.41803), add=FALSE)
+`plotusa` <- function(USAmap, LATS=c(22,49.62741), LONS=c(229.29389,296.41803), add=FALSE)
 {
-  require(geomapdata)
-
+ 
   if(missing(LATS)) { LATS=c(22,49.62741) }
   if(missing(LONS)) { LONS=c(229.29389,296.41803) }
   if(missing(add)) { add=FALSE }
 
-  
-  data('USAmap')
-  
   USALL=list()
   USALL$lat=LATS
   USALL$lon=LONS

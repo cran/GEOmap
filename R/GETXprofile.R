@@ -13,20 +13,47 @@ function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
       myloc = locator(2, type='o')
     }
 
-  dx = sign(diff(myloc$x))*mean(diff(jx))
-  dy = sign(diff(myloc$y))*mean(diff(jy))
+  delx = mean(abs(diff(jx)))
+  dely = mean(abs(diff(jy)))
+
+MDX = diff(myloc$x)
+MDY = diff(myloc$y)
+  
+  dx = sign(MDX)*delx
+  dy = sign(MDY)*dely
 
   
+  ####  this is overkill - need simply slope-intercept
   
-  Lrunvent = lm ( myloc$y ~ myloc$x )
+  ###Lrunvent = lm ( myloc$y ~ myloc$x )
+
+if(myloc$x[1]==myloc$x[2])
+  {
+
+
+    newy =  seq(from=myloc$y[1], to=myloc$y[2], by=dy)
+    JX = rep(myloc$x[1], length=length(newy))
+      allx = JX
+  ally = newy
+
+  ox = order(ally)
+  allx = allx[ox]
+  ally = ally[ox]
+  
+  }
+  else
+    {
+  slope = MDY/MDX
+  intercept = myloc$y[1] - slope*myloc$x[1]
 
   newx = seq(from=myloc$x[1], to=myloc$x[2], by=dx)
   
-  JY = Lrunvent$coefficients[1]+Lrunvent$coefficients[2]*newx
+  JY = intercept+slope*newx
 
   newy =  seq(from=myloc$y[1], to=myloc$y[2], by=dy)
 
-  JX = (newy-Lrunvent$coefficients[1])/Lrunvent$coefficients[2]
+  JX = (newy-intercept)/slope
+
 
   allx = c(newx, JX)
   ally = c(JY, newy)
@@ -34,14 +61,20 @@ function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
   ox = order(allx)
   allx = allx[ox]
   ally = ally[ox]
-  
+  }
 ###  points(jx, JY)
+#####  here we could use findIntervl -
+  ###  but it is overkill since the intervals are
+  ###  uniform.  So - go with simpler approach
+  
+  #boxx = findInterval(allx, jx)
 
-  boxx = findInterval(allx, jx)
+  #boxy =  findInterval(ally, jy, all.inside = FALSE)
+#####
 
-  boxy =  findInterval(ally, jy, all.inside = FALSE)
 
-
+  boxx = floor(allx/delx)+1
+  boxy = floor(ally/dely)+1
 
   flag = boxy>0 & boxy<length(jy)
  
@@ -61,8 +94,23 @@ function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
   pnt1 = sqrt((myloc$x[1]-LX[1])^2+    (myloc$y[1]-LY[1])^2)
   pnt2 = sqrt((myloc$x[2]-LX[1])^2+    (myloc$y[2]-LY[1])^2)
 
-  px1 = findInterval(pnt1, RX)
-  px2 = findInterval(pnt2, RX)
+
+  ###  I do not recall why this is in here 
+ ## px1 = findInterval(pnt1, RX)
+ ## px2 = findInterval(pnt2, RX)
+
+  px1 = which.min(abs(RX-pnt1))
+  px2 =  which.min(abs(RX-pnt2))
+
+
+  dist = sqrt((myloc$x[2]-myloc$x[1])^2+(myloc$y[2]-myloc$y[1])^2)
+
+BX =  myloc$x[1]  +  RX*(myloc$x[2]-myloc$x[1])/dist
+
+
+BY =  myloc$y[1]  + RX*(myloc$y[2]-myloc$y[1])/dist
+
+
 
   if(PLOT==TRUE)
     {
@@ -75,7 +123,7 @@ function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
       text(c(pnt1, pnt2),c(LZ[px1], LZ[px2] ) , labels=c(LAB, paste(sep="", LAB, "'")), col=c(2,4), pos=3 )
       dev.set(cdev)
     }
-  invisible(list(RX=RX, RZ=LZ, LOC=myloc, LAB=LAB ))
+  invisible(list(RX=RX, RZ=LZ, LOC=myloc, LOCx=BX, LOCy=BY, LAB=LAB ))
 
 }
 

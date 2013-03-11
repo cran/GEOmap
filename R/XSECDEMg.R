@@ -1,4 +1,4 @@
-XSECDEMg<-function(Data, labs, demo=FALSE)
+XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
   {
     if(missing(demo)) { demo = FALSE }
 #######   this program illustrates how to use the interactive program RPMG
@@ -9,9 +9,17 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
     #####  rainbow.colors<-function(n){ return( rainbow(n) ) }
 
     if(missing(labs)) {
-      labs = c("DONE", "REFRESH","CONT",
+      labs = c("DONE", "REFRESH","CONT","PTS", 
      "XSEC","PS" )
     }
+
+
+    if(is.null(labs))
+      {
+      labs = c("DONE", "REFRESH","CONT","PTS", 
+     "XSEC","PS" )
+      }
+    if(missing(nlevels)) { nlevels = 10  }
 
     nx = dim(Data)[1]
     ny = dim(Data)[2]
@@ -23,7 +31,7 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
     iseclab  = 0
     secmat = NULL
     ncol = 100
-
+    GENsec = vector(mode="list")
     mycol.colors<-function(n)
       {
         n2 = floor(n/2)
@@ -57,9 +65,14 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
     K =  whichbutt(zloc , buttons)
     sloc = zloc
     CONT.FLAG = FALSE
+    PTS.FLAG = FALSE
+    
     XSEC.FLAG = FALSE
     PS.FLAG =  FALSE
 
+    NSEC = 0
+    
+    
     while(TRUE)
       {
         ############   button actions
@@ -96,6 +109,11 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
             CONT.FLAG = !CONT.FLAG
             zloc = list(x=NULL, y=NULL)
           }
+        if(K[Nclick] == match("PTS", labs, nomatch = NOLAB))
+          {
+            PTS.FLAG = !PTS.FLAG
+            zloc = list(x=NULL, y=NULL)
+          }
 
         ################  make postscript file
         if(K[Nclick] == match("PS", labs, nomatch = NOLAB))
@@ -124,7 +142,7 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
             iseclab = iseclab + 1
             LAB = LETTERS[iseclab]
             secmat = rbind(secmat, c(x1, y1, x2,  y2))
-            GETXprofile(jx, jy, Data, myloc=list(x=c(x1, x2), y=c(y1, y2)), LAB=LAB, PLOT=TRUE)
+          GENsec[[iseclab]] =  GETXprofile(jx, jy, Data, myloc=list(x=c(x1, x2), y=c(y1, y2)), LAB=LAB, PLOT=TRUE)
             
             zloc = list(x=NULL, y=NULL)
           }
@@ -137,7 +155,9 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
                          paper = "special", horizontal=FALSE, onefile=TRUE,print.it=FALSE)
             }
             image(jx, jy, Data, col=pal , asp=1)
-            if(CONT.FLAG) contour(x=jx, y=jy, Data, add=TRUE)
+            if(CONT.FLAG) contour(x=jx, y=jy, Data, nlevels=nlevels ,  add=TRUE)
+            if(PTS.FLAG) points(pts$x, pts$y, pch=25, bg='gold', fg='blue' )
+            
             if(XSEC.FLAG) 
               {
                 segments(secmat[,1],secmat[,2],secmat[,3],secmat[,4])
@@ -171,6 +191,8 @@ XSECDEMg<-function(Data, labs, demo=FALSE)
         K =  whichbutt(iloc , buttons)
 ##### print(K)   
       }
+
+    invisible(GENsec)
     
   }
 

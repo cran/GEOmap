@@ -39,10 +39,11 @@ plotUTM(proj, c(ALOC$LON[1], ALOC$lat[1], ALOC$LON[2], ALOC$lat[2]))
 
 ##############  larger scale
 
+\dontrun{
 p = plotusa()
 
 plotUTM(p$PROJ, LIM=p$LIM)
-
+}
 
 }
 

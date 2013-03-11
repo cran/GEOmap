@@ -1,9 +1,7 @@
 mapTeleSeis <-
-function(sta, mylist)
+function(sta, mylist, worldmap=NULL)
   {
-    library(geomapdata)
-    data(worldmap)
-
+   
     stinfo = list(mlat=median(sta$lat), mlon=median(sta$lon) ) 
     
     plotGEOmap(worldmap ,MAPcol=grey(.75),  add=FALSE, xaxs='i')

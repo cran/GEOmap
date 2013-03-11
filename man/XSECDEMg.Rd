@@ -8,13 +8,16 @@
   with RPMG through the surface.
 }
 \usage{
-XSECDEMg(Data, labs, demo=FALSE)
+XSECDEMg(Data,  labs=NULL, pts=NULL, nlevels=10,  demo=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Data}{Structure with x, y, z components, typical of
   contoured surfaces or digital images}
 \item{labs}{Vector of labels for Buttons used in the RPMG }
+\item{pts}{Points to plot on map view }
+\item{nlevels}{Number of levels for contours }
+
 \item{demo}{Argument used to turn off interactive part.  Default is
   FALSE, but for package construction is set to TRUE so no interaction
   is required.}

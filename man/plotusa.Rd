@@ -6,10 +6,11 @@
  Quick plot of USA project with UTM.
 }
 \usage{
-plotusa(LATS=c(22,49.62741), LONS=c(229.29389,296.41803), add=FALSE)
+plotusa(USAmap, LATS=c(22,49.62741), LONS=c(229.29389,296.41803), add=FALSE)
 }
 
 \arguments{
+   \item{USAmap}{Map for the U.S. (from geomapdata) } 
   \item{LATS}{vector of latitude bounds} 
   \item{LONS}{vector of longitude bounds}
   \item{add}{  add to existing plot }
@@ -26,10 +27,13 @@ plotusa(LATS=c(22,49.62741), LONS=c(229.29389,296.41803), add=FALSE)
 
 \seealso{zebra}
 \examples{
+
+\dontrun{
 library(geomapdata)
-plotusa()
+data(package='geomapdata', "USAmap")
+plotusa(USAmap)
 
-
+}
 }
 
 \keyword{hplot}

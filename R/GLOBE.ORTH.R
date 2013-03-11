@@ -7,10 +7,10 @@ GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, plotline=TRUE, add=FALSE, ma
     if(missing( plotline))  plotline=TRUE
 
     
-    if(missing(map) & plotmap)
+    if(missing(map))
       {
-        data(coastmap)
-        map = coastmap
+        plotmap = FALSE
+   
       }
 
    if(missing( mapcol)) mapcol =grey(.2) 

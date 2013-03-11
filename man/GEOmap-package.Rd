@@ -46,7 +46,6 @@ rectGEOmapXY
 textGEOmapXY
 pointsGEOmapXY
 insideGEOmapXY
-plotusa
 plotUTM
 plotworldmap
 XSECDEM}
