@@ -1,4 +1,4 @@
-5719c0b855e2373627ca6dbea9552c1b *DESCRIPTION
+e9229b51324e738a6c77765977f8e2a3 *DESCRIPTION
 2f8b78b5ad7ddb6e91c7842a4815df1d *NAMESPACE
 4601e0dcfc1b8bdad70d4af8e93b6658 *NEWS
 708d5b023cd962cf1fb57565f6844d25 *R/BASICTOPOMAP.R
@@ -9,7 +9,7 @@ b7138f5b08fcf4bb6f97834f74c6c8b9 *R/CCcheck.R
 9157a8b3838433dc979f15308350748d *R/ExcludeGEOmap.R
 b2bcc195d062835863a278bda3a978e3 *R/ExplodeSymbols.R
 9b966ed52abd16c3243f7c277c62c6d4 *R/GCLCFR.R
-154529d962c7c98b9f7e6f887a33e40f *R/GEOTOPO.R
+0a6ecaf72ed829c2c7e62a460b51a5a2 *R/GEOTOPO.R
 15b16a7b67b3d9e66d909501e1410fd2 *R/GEOmap.CombineStrokes.R
 05d8861a7a8ed7b3f8d78c8e35d1bdd9 *R/GEOmap.Extract.R
 4219899ff1fb99a682873df97c1f6e4b *R/GEOmap.breakline.R
@@ -138,7 +138,7 @@ a565a3bf6b209c597e2a7b78347f259a *R/setplotmat.R
 018e1e33e7f92d99e88acd599b25a05d *R/sqrTICXY.R
 80988ae94ecc3e8986934039a9384150 *R/stereo.sphr.ll.R
 5b65a083239d177e148033ea67952a67 *R/stereo.sphr.xy.R
-cd0e8b7fd00f8c5d481b9e4224da9fcd *R/subsetTOPO.R
+70325e5a0d250e027a5d6afd4b82992c *R/subsetTOPO.R
 f1010ec9314cc35aa40c3125755f4c64 *R/targetLL.R
 980018c86a791274edc463407318135f *R/teeth.R
 d0bd06b841375f81c563b2f707a0f21e *R/textGEOmapXY.R
@@ -163,7 +163,7 @@ b31de7c3bf5aaf68976fc48fdcacece6 *demo/geolcoso.R
 1bfb3b3bfb66f2b98326c89d4502d635 *demo/weathermap.R
 d5ffc0cc1cea3a228ad844799d3a492e *inst/doc/GEOmap.Rnw
 cd856f3cdbf265ae5f661ac8e786c65c *inst/doc/GEOmap.pdf
-9deb86561c063f3f7dd49abf6cd7139d *man/BASICTOPOMAP.Rd
+61680f744596f79542a0d79822a9865b *man/BASICTOPOMAP.Rd
 c03017624b42fdccefdfc4cf9c7ddaa4 *man/CCcheck.Rd
 8bbc58af4915e0bb5c9f5b4bfc44d86d *man/ColorScale.Rd
 71c4c3dd0c7964ae1ba44d80504c6446 *man/DUMPLOC.Rd
@@ -171,7 +171,7 @@ c03017624b42fdccefdfc4cf9c7ddaa4 *man/CCcheck.Rd
 2c271464156b84de87f1f7af7a32b0ca *man/Ellipsoidal.Distance.Rd
 7a0414cb71d9e65247e2693e942640d5 *man/ExcludeGEOmap.Rd
 b52fb4996798ad57067028113b4524a0 *man/ExplodeSymbols.Rd
-2be6057fb0f7e5c57764d5a619503704 *man/GEOTOPO.Rd
+31d4314554421dff5587c1835247492c *man/GEOTOPO.Rd
 191ccb760cf5c4fcb724cad1f1436c9e *man/GEOmap-package.Rd
 61c1a4988e7d8cc80cadb2863ac515fb *man/GEOmap.CombineStrokes.Rd
 011f2b65fc3474c16902ed94a9eedbca *man/GEOmap.Extract.Rd
@@ -287,7 +287,7 @@ de2e7e7729d00169f5e31b5f28b1635d *man/rotdelta4.Rd
 06785a7322d1358f16b627a0a20474ac *man/settopocol.Rd
 731e2365896e0687615b333fedf4139e *man/sizelegend.Rd
 af376a14043d2028dbddf2838fc31a76 *man/sqrTICXY.Rd
-4d344a78ceb94235f155e359d906dd76 *man/subsetTOPO.Rd
+e6f90abda6df62a6009763903fb579a0 *man/subsetTOPO.Rd
 ccf0488937fa355bc7992614997c3b55 *man/targetLL.Rd
 cfaa5395a4c0ef4af40c5151b21ab989 *man/teeth.Rd
 5bd75bff768ffcb4849c794ba87db533 *man/thrust.Rd

@@ -7,7 +7,7 @@
   plot using the persp program.
 }
 \usage{
-GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
+GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, nx=500, ny=500, nb = 4, mb = 4, hb = 8, PLOT=TRUE)
 }
 
 \arguments{
@@ -15,7 +15,11 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
   \item{PLOC}{Location list, includes vectors LON and Lat}
   \item{PROJ}{projection}
   \item{calcol}{color table for coloring elevations above sea level}
-  \item{npoints}{number of points in x-y grid, default=500}
+  \item{nx}{number of points in x grid, default=500}
+  \item{ny}{number of points in y grid, default=500}
+  \item{nb}{see function mba.surf, default = 4}
+   \item{mb}{see function mba.surf, default = 4}
+   \item{hb}{see function mba.surf , default= 8}
   \item{PLOT}{ logical, TRUE=plot a map and return color map}
 }
 \details{
@@ -56,6 +60,7 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, npoints=500, PLOT=TRUE)
 
 
 \dontrun{
+
 library(geomapdata)
 
 
@@ -65,7 +70,7 @@ PLOC=list(LON=c(137.008, 141.000),LAT=c(34.000, 36.992),
 
  PROJ = setPROJ(type=2, LAT0=mean(PLOC$y) , LON0=mean(PLOC$x) )
 COLS = settopocol()
-JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol, PLOT=TRUE)
+JMAT = GEOTOPO(ETOPO5, PLOC, PROJ, COLS$calcol, nx=1000, ny=1000, nb=8, mb=8, hb=12, PLOT=TRUE)
 
 ############  this plot can be duplicated by using the output or GEOTOPO
 

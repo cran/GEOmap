@@ -37,6 +37,7 @@ BASICTOPOMAP(xo, yo, DOIMG, DOCONT, UZ, AZ, IZ, perim, PLAT, PLON, PROJ = PROJ, 
 \examples{
 
 library(geomapdata)
+library(MBA) ##  for interpolation
 #######  set up topo data
 data(fujitopo)
 #####  set up map data
@@ -70,13 +71,18 @@ topotemp$lon>+PLOC$LON[1] & topotemp$lon<=PLOC$LON[2]
 ###  project topo data
   B = GLOB.XY( topotemp$lat[selectionflag] ,topotemp$lon[selectionflag] ,  PROJ)
 
-
 ###  set up out put matrix:
- xo = seq(from=range(A$x)[1], to=range(A$x)[2], length=200)
-    yo = seq(from=range(A$y)[1], to=range(A$y)[2], length=200)
+### xo = seq(from=range(A$x)[1], to=range(A$x)[2], length=200)
+###    yo = seq(from=range(A$y)[1], to=range(A$y)[2], length=200)
 
 #######  interpolation using akima
-    IZ = interp(x=B$x , y=B$y,  z=topotemp$z[selectionflag]  , xo=xo, yo=yo)
+  ###  IZ = interp(x=B$x , y=B$y,  z=topotemp$z[selectionflag]  , xo=xo, yo=yo)
+DF = cbind(x=B$x , y=B$y ,  z=topotemp$z[selectionflag])
+ IZ = mba.surf(DF, 200, 200, extend=TRUE)$xyz.est
+
+    xo = IZ[[1]]
+    yo = IZ[[2]]
+
 
 ###  image(IZ)
 

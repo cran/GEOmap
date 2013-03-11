@@ -1,5 +1,5 @@
 `subsetTOPO` <-
-function(TOPO, ALOC)
+function(TOPO, ALOC, PROJ, nx=500, ny=500, nb = 4, mb = 4, hb = 8)
 {
   
 #################   extract topographic information from ETOPO5 data base
@@ -25,60 +25,40 @@ function(TOPO, ALOC)
   topolon = attr(TOPO, 'lon')
   topolat = attr(TOPO, 'lat')
 
-  FLON = fmod(A$lon, 360)
 
-  dlon = difflon(FLON[1], FLON[2])
-  EL1 = FLON[1]+dlon$deg
+ LLM =  meshgrid( topolon, topolat )
+
+
+
+GG =   GLOB.XY( LLM$y, LLM$x, PROJ)
+
   
+AXY =   GLOB.XY(A$lat, A$lon , PROJ)
 
-####  wlats = which( topolat>nlats[1] & topolat<nlats[2] )
-  wlats =  topolat>nlats[1] & topolat<nlats[2] 
+WXY =   (GG$x>=AXY$x[1] & GG$x<=AXY$x[2] & GG$y>=AXY$y[1] & GG$y<=AXY$y[2] )
+  
+ ex =  as.vector(GG$x[WXY])
+  why = as.vector(GG$y[WXY])
 
-  if(FLON[1]<360 & EL1>360)
-    {
-####   boundary crosses the 0-longitude and care must be taken
 
-      ##  need to glue the two parts together
+ ZIP =  t( TOPO[  ,dim(TOPO)[2]:1  ] )
 
-      mlon = fmod(mean(c(FLON[1], EL1)), 360)
-      
-      nlons = A$lon
-      
-      t1 = which(topolon>A$LON[1])
-      t2 = which( topolon<A$LON[2])
-      
-      ax = c( topolon[t1]-360 , topolon[t2])
-      ay = topolat[topolat>nlats[1]&topolat<nlats[2] ]
-      PLON  = pretty(A$lon)
-      PLON = c(min(A$lon), PLON[PLON>min(A$lon) & PLON<max(A$lon)], max(A$lon))
+  
+  zee = as.vector(ZIP[WXY])
 
-      
-      mytop = TOPO[c(t1,t2)  , rev(topolat>nlats[1] & topolat<nlats[2] ) ]
-      d = dim(mytop)
-      
-    }
+  
+    xo = seq(from=min(ex), to=max(ex), length=nx)
+   yo = seq(from=min(why), to=max(why) , length=ny)
 
-  else
-    {
+  
+## IZ = interp(x=GXY$x , y=GXY$y,  z=t(ZZ2$z)  , xo=xo, yo=yo, extrap=FALSE)
 
-      
-      mlon = mean(A$LON)
-      
-      nlons = A$LON
-      
-      PLON  = pretty(A$LON)
-      PLON = c(min(A$LON), PLON[PLON>min(A$LON) & PLON<max(A$LON)], max(A$LON))
-      L = list(x=nlons, y = nlats)
-      
-      mytop = TOPO[topolon>L$x[1]&topolon<L$x[2]  , rev(topolat>L$y[1] & topolat<L$y[2] ) ]
-      
-      ax = topolon[topolon>L$x[1]&topolon<L$x[2]]
-      ay = topolat[topolat>L$y[1]&topolat<L$y[2] ]
-      d = dim(mytop)
-      
-    }
+ DF = cbind(x=ex , y=why ,  z=zee)
 
-  return(list(z=mytop,x=ax, y=ay) )
+  
+    IZ = mba.surf(DF, nx, ny, n = nb, m = mb, h = hb, extend=TRUE)$xyz.est
+
+  return(list(z=IZ$z,x=xo, y=yo) )
   
 }
 
