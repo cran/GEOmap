@@ -14,7 +14,7 @@ Ellipsoidal.Distance<-function(olat, olon, tlat, tlon, a=6378137.0 , b=6356752.3
   ######  distance and azimuth (direction) from another point. The second (inverse) method
   ######  computes the geographical distance and azimuth between two given points.
   ######  They have been widely used in geodesy because they are
-  ######  accurate to within 0.5 mm (0.020″) on the Earth ellipsoid
+  ######  accurate to within 0.5 mm (0.020) on the Earth ellipsoid
 
   #####  default is WGS-84, these are in meters
   

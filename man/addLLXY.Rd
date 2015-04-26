@@ -38,8 +38,8 @@ LABcol = 1, BORDER = NULL, TICS = c(1, 1), xpd=TRUE)
 library(geomapdata)
 
 
-data(fujitopo)
-data(japmap)
+data('fujitopo', package='geomapdata')
+data('japmap', package='geomapdata')
 
 PLOC=list(LON=range(c( japmap$STROKES$LON1,japmap$STROKES$LON2) ),
 LAT=range(c( japmap$STROKES$LAT1,japmap$STROKES$LAT2) ))
@@ -47,8 +47,10 @@ PLOC$x = PLOC$LON
 PLOC$y = PLOC$LAT
 
 PROJ = setPROJ(type=2, LAT0=mean(PLOC$y) , LON0=mean(PLOC$x) )
+isel1 = which( japmap$STROKES$code != "i" & japmap$STROKES$num>120 )
 
-plotGEOmapXY(japmap, PROJ=PROJ, add=FALSE, axes=FALSE, xlab="", ylab="")
+
+plotGEOmapXY(japmap, PROJ=PROJ,SEL=isel1,  add=FALSE, axes=FALSE, xlab="", ylab="")
 A = PLOC
 
    PLAT =  pretty(A$LAT)

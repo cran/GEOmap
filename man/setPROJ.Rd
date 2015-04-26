@@ -7,7 +7,7 @@ Setup parameters for Map Projection
 }
 \usage{
 setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL,
- LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0)
+ LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0, IDATUM=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,8 @@ setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL,
   \item{DLON}{difference of Lons}
   \item{FE}{False Easting}
   \item{FN}{False Northing}
+  \item{IDATUM}{integer, index to the datum database}
+  
 }
 \details{
   Set up for the various projections used by GEOmap
@@ -41,8 +43,13 @@ List of values described above
 
   LONs are modified and rectified by fmod function.
 
+  The datum data base is accesses via the function DATUMinfo.
+  There are 11 different projection datums.
+  These are NAD83/WGS84, GRS 80, WGS72, Australian 1965, Krasovsky 1940, International (1924) -Hayford (1909), Clake 1880, Clarke 1866, Airy 1830, Bessel 1841, Everest 1830.
+
+
 }
-\seealso{projtype, XY.GLOB, GLOB.XY}
+\seealso{projtype, XY.GLOB, GLOB.XY, DATUMinfo}
 \examples{
 
 ######  type

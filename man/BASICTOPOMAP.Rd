@@ -37,12 +37,15 @@ PROJ = PROJ, pnts = NULL, GRIDcol = NULL)
 \seealso{DOTOPOMAPI, GEOTOPO}
 \examples{
 
+\dontrun{
+
+
 library(geomapdata)
 library(MBA) ##  for interpolation
 #######  set up topo data
 data(fujitopo)
 #####  set up map data
-data(japmap)
+data('japmap', package='geomapdata' )
 
 
 ###  target region
@@ -117,6 +120,7 @@ PROJ=PROJ, pnts=NULL, GRIDcol=NULL)
  plotGEOmapXY(japmap, LIM=c(PLOC$LON[1], PLOC$LAT[1],PLOC$LON[2],
 PLOC$LAT[2]) , PROJ=PROJ, add=TRUE )
 
+}
 
 
 }

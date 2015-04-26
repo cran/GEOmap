@@ -103,6 +103,8 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
            type='n', xlab="lon", ylab='lat', axes=FALSE,  ...)
 
       if(PLOT==FALSE) { return(0) }
+
+      
       axis(2)
       
       pp = axTicks(1)

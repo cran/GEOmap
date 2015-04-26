@@ -34,11 +34,12 @@ Vector of index values for points that satisfy geographic criteria
 \examples{
 
 \dontrun{
-library(geomapdata)
 
-data(japmap)
+data('japmap', package='geomapdata' )
+isel1 = which( japmap$STROKES$code != "i" & japmap$STROKES$num>120 )
+
  PROJfuji = setPROJ(type = 2, LAT0=35.358,LON0=138.731)
-plotGEOmapXY(japmap, PROJ=PROJfuji, add=FALSE)
+plotGEOmapXY(japmap, PROJ=PROJfuji, SEL=isel1 , add=FALSE)
 pointsGEOmapXY(gvol$lat, gvol$lon,  PROJ=PROJfuji)
 textGEOmapXY(gvol$lat, gvol$lon, gvol$name,  PROJ=PROJfuji, pos=4,
 cex=.5)

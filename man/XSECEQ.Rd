@@ -32,9 +32,10 @@ XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC",
 \seealso{XSECDEM, eqswath, XSECwin}
 \examples{
 
-library(geomapdata)
+\dontrun{
+
 ##########  get map of Japan
- data(japmap)
+ data('japmap', package='geomapdata' )
 proj = setPROJ(type = 2, LAT0=35.358,LON0=138.731)
 
 NIHON = list(lat=range(c(japmap$STROKE$LAT1, japmap$STROKE$LAT2)) , 
@@ -86,6 +87,7 @@ NSWath = XSECEQ(  MAP, EQ , labs=labs, width=30, demo=FALSE  )
 data(NSWath)
 NSWath2 = XSECEQ(  MAP, EQ ,XSECS=NSWath, labs, width=30, demo=TRUE  )   
 
+}
 
 
 }

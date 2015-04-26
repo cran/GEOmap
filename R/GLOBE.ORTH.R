@@ -1,4 +1,5 @@
-GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, plotline=TRUE, add=FALSE, map=coastmap, mapcol =grey(.2) , linecol = grey(.7), fill=FALSE )
+GLOBE.ORTH<-function(lam0, phi1, R=1, plotmap=TRUE, plotline=TRUE, add=FALSE,
+                     map='coastmap', mapcol =grey(.2) , linecol = grey(.7), fill=FALSE )
   {
     ###   use orthogonal projection to plot a global view
     if(missing(R)) R = 1

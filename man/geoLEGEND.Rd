@@ -6,7 +6,7 @@
   Create and add Geological legend from GEOmap Structure
 }
 \usage{
-geoLEGEND(names, shades, zx, zy, nx, ny)
+geoLEGEND(names, shades, zx, zy, nx, ny, side=1, cex=0.5)
 }
 
 \arguments{
@@ -15,11 +15,15 @@ geoLEGEND(names, shades, zx, zy, nx, ny)
   \item{zx}{width of box, mm}
   \item{zy}{height of box, mm}
   \item{nx}{number of boxes in x-direction}
-  \item{ny}{ number of boxes in y-direction }
+  \item{ny}{number of boxes in y-direction }
+  \item{side}{Side of the plot for the legend (1,2,3,4) }
+  \item{cex}{Character expansion for text in legend }
+
+  
 }
 \details{
   Adds geological legend based on information
-  provided.  Legend is placed in margin
+  provided.  Legend is placed in margin.
 }
 \value{
   Graphical Side Effects
@@ -38,6 +42,11 @@ geoLEGEND(names, shades, zx, zy, nx, ny)
 
 \dontrun{
 
+library(RPMG)
+library(RSEIS)
+library(GEOmap)
+library(geomapdata)
+
 data(cosogeol)
 data(cosomap)
      data(faults)
@@ -45,11 +54,7 @@ data(cosomap)
      data(owens)
 
 proj = cosomap$PROJ
-     plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
-  
-
-     plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
-  
+   
 XMCOL = setXMCOL()
 
 newcol = XMCOL[cosogeol$STROKES$col+1]
@@ -81,8 +86,49 @@ names = unlist(sapply(spucol  , "[[", 1))
 shades = unlist(sapply(spucol  , "[[", 2))
 
 ORDN = order(names)
+### example:
 
-geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 16, 6)
+
+par(mai=c(0.5, 1.5, 0.5, 0.5) )
+
+ plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+  
+
+     plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  
+geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 4, 16, side=2)
+
+####
+par(mai=c(0.5, 0.5, 1.0, 0.5) )
+
+ plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+  
+
+     plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  
+geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 16, 6, side=3)
+
+
+####
+par(mai=c(0.5, 0.5, 0.5, 1) )
+
+ plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+  
+
+     plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  
+geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 3, 16, side=4)
+
+
+####
+par(mai=c(1.5, 0.5, 0.5, 0.5) )
+
+ plotGEOmapXY(cosomap, PROJ=proj,  add=FALSE, ann=FALSE, axes=FALSE)
+  
+
+     plotGEOmapXY(cosogeol, PROJ=proj,  add=TRUE, ann=FALSE, axes=FALSE)
+  
+geoLEGEND(names[ORDN], shades[ORDN], .28, .14, 16, 3, side=1)
 
 
 }

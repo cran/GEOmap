@@ -6,7 +6,7 @@
 \alias{merc.sphr.xy}
 \alias{stereo.sphr.xy}
 \alias{utm.elps.xy}
-\alias{utm.wgs84.xy}
+
 
 \title{Map projection}
 \description{

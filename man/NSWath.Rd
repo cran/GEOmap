@@ -27,6 +27,7 @@
 }
 
 \examples{
+\dontrun{
 data(NSWath)
 for(i in 1:length(NSWath))
 {
@@ -36,6 +37,7 @@ LAB = attr(NSWath[[i]], "LAB")
 XSECwin( NSWath[[i]] , iseclab=i, xLAB=LAB , labs=NULL, demo=TRUE  )   
 }
 
-##
+}
+
 }
 \keyword{datasets}

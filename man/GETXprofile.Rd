@@ -39,6 +39,8 @@ GETXprofile(jx, jy, jz, LAB = "A", myloc = NULL, PLOT = FALSE, asp=1)
 }
 \seealso{locator, image}
 \examples{
+
+\dontrun{ 
 #######  get data 
    data(volcano)
 ####  extract dimensions of image
@@ -62,7 +64,7 @@ GETXprofile(jx, jy, jz, LAB = "A", myloc = NULL, PLOT = FALSE, asp=1)
 ## extract and plot cross section
 
  GETXprofile(jx, jy, volcano, myloc=list(x=c(x1, x2), y=c(y1, y2)), LAB=LAB, PLOT=TRUE)
-            
+            }
 }
 
 \keyword{iplot}

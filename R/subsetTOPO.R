@@ -55,8 +55,9 @@ WXY =   (GG$x>=AXY$x[1] & GG$x<=AXY$x[2] & GG$y>=AXY$y[1] & GG$y<=AXY$y[2] )
 
  DF = cbind(x=ex , y=why ,  z=zee)
 
+ 
+    IZ = fields::interp.surface(DF, list(x=xo, y=yo))
   
-    IZ = MBA::mba.surf(DF, nx, ny, n = nb, m = mb, h = hb, extend=TRUE)$xyz.est
 
   return(list(z=IZ$z,x=xo, y=yo) )
   

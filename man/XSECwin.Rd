@@ -30,9 +30,11 @@ labs = c("DONE", "REFRESH", "PS"), width = 10, demo = FALSE)
 
 \seealso{eqswath, XSECEQ}
 \examples{
+
+\dontrun{ 
 library(geomapdata)
 
- data(japmap)
+ data('japmap', package='geomapdata' )
 proj = setPROJ(type = 2, LAT0=35.358,LON0=138.731)
 
 NIHON = list(lat=range(c(japmap$STROKE$LAT1, japmap$STROKE$LAT2)) , 
@@ -51,7 +53,7 @@ MAP[[2]] = japmap
 
 ###########  load Engdahl earthquake Data base
 ########  
-data(EHB.LLZ)
+data('EHB.LLZ' )
 
 flagEHB = EHB.LLZ$lat>=NIHON$lat[1] &  EHB.LLZ$lat<=NIHON$lat[2] &
 RPMG::fmod(EHB.LLZ$lon, 360)>+NIHON$lon[1] &  RPMG::fmod(EHB.LLZ$lon,
@@ -86,13 +88,13 @@ NSWath2 = XSECEQ(  MAP, EQ ,XSECS=NSWath, labs, width=30, demo=TRUE  )
    for(i in 1:length(NSWath))
 {
 
-dev.new()
+## dev.new()
 LAB = attr(NSWath[[i]], "LAB")
 
 XSECwin( NSWath[[i]] , iseclab=i, xLAB=LAB , labs=NULL, demo=TRUE  )   
 }
 
-
+}
 }
 
 \keyword{hplot}

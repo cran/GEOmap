@@ -53,8 +53,8 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \examples{
 library(geomapdata)
 
-data(EHB.LLZ)
-data(japmap)
+data('EHB.LLZ')
+data('japmap', package='geomapdata')
 
 RLAT = range(japmap$POINTS$lat)
 RLON = range(japmap$POINTS$lon)
@@ -64,13 +64,17 @@ JLON = expandbound(RLON, .1)
 
 PROJ = japmap$PROJ
 ##############  select the events in the region
+isel1 = which( japmap$STROKES$code != "i" & japmap$STROKES$num>120 )
+
 sel = which(
 EHB.LLZ$lat > JLAT[1] &
 EHB.LLZ$lat < JLAT[2] &
 EHB.LLZ$lon  > JLON[1] &
 EHB.LLZ$lon < JLON[2])
 
-plotGEOmapXY(japmap , PROJ=PROJ,   add=FALSE, MAPcol="black") 
+sel = sel[1:200]
+
+plotGEOmapXY(japmap , PROJ=PROJ, SEL=isel1,  add=FALSE, MAPcol="black") 
 
 plothypos(EHB.LLZ$lat[sel], EHB.LLZ$lon[sel], EHB.LLZ$z[sel], PROJ,
 mag=NULL,  cex=.8)
