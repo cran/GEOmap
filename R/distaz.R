@@ -104,6 +104,8 @@
       baz = RAD2DEG*bazr;
       bazr = RPMG::fmod(bazr,360)
 
+      
+
       L$err[!wout] = 1
       L$del[!wout] = del
       L$az[!wout]  =az

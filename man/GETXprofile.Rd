@@ -8,7 +8,7 @@
   and find projected cross-sections through a surface.
 }
 \usage{
-GETXprofile(jx, jy, jz, LAB = "A", myloc = NULL, PLOT = FALSE, asp=1)
+GETXprofile(jx, jy, jz, LAB = "A", myloc = NULL, PLOT = FALSE, NEWDEV=TRUE,  asp=1)
 }
 
 \arguments{
@@ -17,6 +17,7 @@ GETXprofile(jx, jy, jz, LAB = "A", myloc = NULL, PLOT = FALSE, asp=1)
   \item{LAB}{Alphanumeric (A-Z) for labeling a cross section }
   \item{myloc}{Out put of Locator function }
   \item{PLOT}{logical. Plot is created if TRUE }
+  \item{NEWDEV}{logical. Plot is on a new device if TRUE }
   \item{asp}{aspect ration for plotting, see par }
   
 }

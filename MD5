@@ -1,5 +1,5 @@
-c3bb6d272d5c47cfba6130d960a6f105 *DESCRIPTION
-9391f480f90119989574700b748d1837 *NAMESPACE
+e5eb90600f9da9bf63e982048ddb1a6c *DESCRIPTION
+ff6c76216dd1ab0e7e928ebfbf539aa0 *NAMESPACE
 ecd9e65bf305265200f9368c82c35a46 *NEWS
 46547d6587d17556bbd692b6cf0c7e22 *R/BASICTOPOMAP.R
 b7138f5b08fcf4bb6f97834f74c6c8b9 *R/CCcheck.R
@@ -19,7 +19,7 @@ b7138f5b08fcf4bb6f97834f74c6c8b9 *R/CCcheck.R
 b7c2b69e13a15dc3ab7dd31e1426ef70 *R/GEOmap.limit.R
 cdeea5aacdd8562b5b9f8036be986658 *R/GEOmap.list.R
 e3d6a853e29f1e1f1887a42418a24510 *R/GEOsymbols.R
-d2e02321c88c2223051ce81220ee782b *R/GETXprofile.R
+98e97184c807573a0e6d7833c70a2545 *R/GETXprofile.R
 b6728c9179bd335b2b096adaa0952cf3 *R/GLOB.XY.R
 bc3168c3156c5dd11e744e290c8cdbef *R/GLOBE.ORTH.R
 83503e68e42d56bc29684dab6ad5a2bd *R/GlobeView.R
@@ -60,7 +60,7 @@ cf410c8c44e84684fb024a8289326856 *R/antipolygon.R
 4ef61f9da6f57ba8492304e45c6f4449 *R/darc.R
 27a4b4bcc5bcab5f30df70a376540d8d *R/demcmap.R
 2abb39f0dc5ba530c57305c247b5396d *R/difflon.R
-10c686d6a30da75a648f52c272d05ac4 *R/distaz.R
+2a80130831bac0c06e18b4b257522cfc *R/distaz.R
 c24d16deff9f8ad7f2c15d0a6f1597d8 *R/dms.R
 e6f1411942c68d0a8aae64ddc8e88052 *R/eqswath.R
 5c2ed30638da31fa5451f3ee5e3bab8b *R/equid.cyl.ll.R
@@ -74,6 +74,7 @@ d1497fb57a178c0e36e417ff62555149 *R/fixCoastwrap.R
 9ba5cf1afd011d8c0cf37843552b973c *R/gclc.R
 6672e1be5f75e29774d7af588b7c2c84 *R/geoLEGEND.R
 51cbeb60e391227cf22be5351a649422 *R/geoarea.R
+0a4604fbbca802307295a706e2289bb1 *R/getETOPO.R
 d466e8c22ef9d25f3d8dd7a82c324c2a *R/getGEOmap.R
 8560155e06b41d77092b689ed8dc9d91 *R/getGEOperim.R
 93edc5fb887fa30b7f677798bd861505 *R/getgreatarc.R
@@ -142,7 +143,7 @@ a565a3bf6b209c597e2a7b78347f259a *R/setplotmat.R
 f224f6060ea9c5aa3d209c2f44d9eeff *R/sqrTICXY.R
 80988ae94ecc3e8986934039a9384150 *R/stereo.sphr.ll.R
 1f2dcad5e1ccb1a395570d7977a96338 *R/stereo.sphr.xy.R
-ea79ed6e83549abf590bbe0d59beb0d0 *R/subsetTOPO.R
+0a1bf0e965fd641ee8378f05e65ffbbc *R/subsetTOPO.R
 f91f332c5fb08c4fe4be600cda824e14 *R/targetLL.R
 980018c86a791274edc463407318135f *R/teeth.R
 d0bd06b841375f81c563b2f707a0f21e *R/textGEOmapXY.R
@@ -162,7 +163,7 @@ b8cbda788f0163d68d2dc1d4722bce3c *build/vignette.rds
 4855532f7d86779923c707a263b197ca *data/NSWath.RData
 7415c5b13f0192194a37e057a0186cf6 *data/coastmap.RData
 f15045b6991d73075a0bffd676f95e44 *demo/00Index
-6881751ae8706101fd21a61867b84c84 *demo/GMAP.R
+aa4e7460dcb33cd190d86a017d5ae9f5 *demo/GMAP.R
 8ed9d2ad146c03bfb0588454b4a1d50d *demo/WMAP.R
 b31de7c3bf5aaf68976fc48fdcacece6 *demo/geolcoso.R
 dc345c7dfbf0d4165d437b24cb2e1105 *demo/weathermap.R
@@ -185,7 +186,7 @@ b52fb4996798ad57067028113b4524a0 *man/ExplodeSymbols.Rd
 67fe0bbc70f9375333ef61216cd89908 *man/GEOmap.cat.Rd
 2d355db69c30c216481f9cfa81cbdeef *man/GEOmap.list.Rd
 73fd2006dca0e5fa1691b9b3e56e7751 *man/GEOsymbols.Rd
-a91ba075d98f182cd9cc77a01f0bad85 *man/GETXprofile.Rd
+1a09c7d09b820f6cceb2e60d1d5dd61c *man/GETXprofile.Rd
 7382309ca2f91814ecd6330573cec334 *man/GLOB.XY.Rd
 8dacdc14d254bb211d1c087381c338b4 *man/GLOBE.ORTH.Rd
 ac62d5d42b1a1dae54b8ab1efb02a00c *man/GlobeView.Rd
@@ -239,6 +240,7 @@ d7f40c6dab9d3fc38a6930517e847144 *man/faultperp.Rd
 9bb399913ab400a234b169447976bf19 *man/gclc.Rd
 2a78852eee3265e7fbbda4ece50f959a *man/geoLEGEND.Rd
 f3aed217799561b3c297f126feedea43 *man/geoarea.Rd
+c442379c90338b0c94b7850a19ac232f *man/getETOPO.Rd
 7b1090bf186894d5b6fdc2d27aa1f77b *man/getGEOmap.Rd
 893ce15cd45d364ef071240079f134e4 *man/getGEOperim.Rd
 c785e2b7393e4902d2f51ab3eabbaf75 *man/getgreatarc.Rd

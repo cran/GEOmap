@@ -1,5 +1,5 @@
 `GETXprofile` <-
-function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, asp=1)
+function(jx, jy, jz, LAB="A", myloc=NULL, PLOT=FALSE, NEWDEV=TRUE,  asp=1)
 {
 ###############  get a cross section through a topographic DEM
 ############   GETXprofile : xsec  through topo
@@ -115,13 +115,13 @@ BY =  myloc$y[1]  + RX*(myloc$y[2]-myloc$y[1])/dist
   if(PLOT==TRUE)
     {
       ###screens(2)
-      cdev = dev.cur()
-      dev.new()
+      if(NEWDEV) cdev = dev.cur()
+       if(NEWDEV)  dev.new()
       plot(RX, LZ, type='l', xlab="m", ylab="m", ylim=range(jz, na.rm=TRUE), asp=asp)
       points( c(pnt1, pnt2), c(LZ[px1], LZ[px2] ), pch=c(6,8), col=c(2,4) )
 
       text(c(pnt1, pnt2),c(LZ[px1], LZ[px2] ) , labels=c(LAB, paste(sep="", LAB, "'")), col=c(2,4), pos=3 )
-      dev.set(cdev)
+      if(NEWDEV)  dev.set(cdev)
     }
   invisible(list(RX=RX, RZ=LZ, LOC=myloc, LOCx=BX, LOCy=BY, LAB=LAB ))
 
