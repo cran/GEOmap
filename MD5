@@ -1,4 +1,4 @@
-e5eb90600f9da9bf63e982048ddb1a6c *DESCRIPTION
+9208f0852b9bc759205571c1d1f90727 *DESCRIPTION
 ff6c76216dd1ab0e7e928ebfbf539aa0 *NAMESPACE
 ecd9e65bf305265200f9368c82c35a46 *NEWS
 46547d6587d17556bbd692b6cf0c7e22 *R/BASICTOPOMAP.R
@@ -158,7 +158,6 @@ a518bb040027405c7ad3f9dfdb23a278 *R/utm.sphr.ll.R
 401a4051bd46d96016df636999c8fcc4 *R/utmbox.R
 4d9c86c60047dc33506969c7b5b4efd7 *R/xyz2ll.R
 31e5350e2aab56b2fc9d0b6d10316d15 *R/zebra.R
-b8cbda788f0163d68d2dc1d4722bce3c *build/vignette.rds
 3eb6458284edc3461ec8e5ce599b8ba6 *data/EHB.LLZ.RData
 4855532f7d86779923c707a263b197ca *data/NSWath.RData
 7415c5b13f0192194a37e057a0186cf6 *data/coastmap.RData
@@ -220,7 +219,7 @@ ac170ad7410751c1018a1abbfd99dbb3 *man/XSECEQ.Rd
 6cec07ba89cc1951392cd3aa69fc436e *man/XY.GLOB.Rd
 a041e1f4b5b1adb9986ed2ab8dad8c22 *man/addLLXY.Rd
 60aa78a902be598fd1c9329327b20441 *man/addTIX.Rd
-1bf307abd54a5cde7634443ad2dad231 *man/along.great.Rd
+1d704e66b55bd1011aa79998e0f57f65 *man/along.great.Rd
 0d590af9a134a7f4b7ceea457827366a *man/antipolygon.Rd
 a9a29a58ddf69ea2583a3354b4e3cd60 *man/bcars.Rd
 84d4623666c40aac9d5169e2d100fda6 *man/boundGEOmap.Rd
@@ -307,5 +306,6 @@ ed91427214f9af10f7e6e230ca28bc27 *man/trans4.Rd
 a421bb98500749efb2e8cc1057475755 *man/utmbox.Rd
 a7b5dd925911c1ee63096c72e5ccb220 *man/xyz2ll.Rd
 1149220c8d2bf4883f87ec5e9a0a3329 *man/zebra.Rd
+2d85e3b9fc6a0d74e71372b71d625e77 *src/init.c
 bfefd263664268c3ca1087effe313ad7 *src/polyintern.c
 281a8f4cba31ef432657637eed3a6381 *src/rspline.c
