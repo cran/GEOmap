@@ -7,7 +7,7 @@
 \usage{
 GlobeView(phicen, lamcen, worldmap, MAXR, SEL = 1,
 circol = rgb(1, 0.8, 0.8), innercol = "white", linecol = rgb(0, 0, 0),
- mapcol = rgb(0, 0, 0), backcol = "white", add=FALSE)
+ mapcol = rgb(0, 0, 0), backcol = "white", add=FALSE, antip=TRUE)
 }
 \arguments{
   \item{phicen}{Latitude}
@@ -21,6 +21,7 @@ circol = rgb(1, 0.8, 0.8), innercol = "white", linecol = rgb(0, 0, 0),
   \item{mapcol}{map fill color, NA=do not fill polygon}
   \item{backcol}{background color}
   \item{add}{logical, FALSE means start a new plot}
+  \item{antip}{logical, default=TRUE means white out area outside of polygon}
   
 }
 \details{

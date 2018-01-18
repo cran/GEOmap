@@ -1,6 +1,6 @@
 `GlobeView` <-
   function(phicen, lamcen, worldmap, MAXR, SEL=1, circol=rgb(1.0, .8, .8),  innercol="white",
-           linecol=rgb(0, 0, 0),  mapcol=rgb(0, 0, 0), backcol="white" , add=FALSE )
+           linecol=rgb(0, 0, 0),  mapcol=rgb(0, 0, 0), backcol="white" , add=FALSE, antip=TRUE )
   {
     
     if(missing(mapcol)) { eqcol=rgb(0, 0, 0) }
@@ -106,7 +106,7 @@
 
 
 
-    antipolygon(BDRx, BDRy, col = backcol, corner=4)
+   if(antip) {  antipolygon(BDRx, BDRy, col = backcol, corner=4) }
     
     lines(BDRx, BDRy, col=circol , lwd=2, xpd=TRUE)
     

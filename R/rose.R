@@ -48,9 +48,12 @@ fmod<-function(k, m)
     {
      ###  plot(cx,sy,
        ###     axes = FALSE, xlab = "", ylab = "",
-      ###      main = main, type = "n", asp=1, xlim = siz * c(-1, 1), ylim = siz* c(-1, 1))
+###      main = main, type = "n", asp=1, xlim = siz * c(-1, 1), ylim = siz* c(-1, 1))
+        op <- par(no.readonly = TRUE)
+### default.mar=c(5, 4, 4, 2) +0.1
+        
       par(mar=c(0,0,0,0))
-      
+      if(main!='') { par(mar=c(0,0,1,0)) }
       plot(siz*cx, siz*sy,
            axes = FALSE, xlab = "", ylab = "",
            main = main, type = "n", asp=1)
@@ -186,7 +189,11 @@ fmod<-function(k, m)
         }
       }
     }
-  }
+}
+
+
+  ## if(add==FALSE) { par(op) }
+  
   return(list(sector=sector, radius=radius, usizx=usizx, usizy=usizy, x=x, y=y ))
 }
 

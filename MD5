@@ -1,4 +1,4 @@
-9208f0852b9bc759205571c1d1f90727 *DESCRIPTION
+c99286a22319f4d4076678d02db4c01e *DESCRIPTION
 ff6c76216dd1ab0e7e928ebfbf539aa0 *NAMESPACE
 ecd9e65bf305265200f9368c82c35a46 *NEWS
 46547d6587d17556bbd692b6cf0c7e22 *R/BASICTOPOMAP.R
@@ -22,7 +22,7 @@ e3d6a853e29f1e1f1887a42418a24510 *R/GEOsymbols.R
 98e97184c807573a0e6d7833c70a2545 *R/GETXprofile.R
 b6728c9179bd335b2b096adaa0952cf3 *R/GLOB.XY.R
 bc3168c3156c5dd11e744e290c8cdbef *R/GLOBE.ORTH.R
-83503e68e42d56bc29684dab6ad5a2bd *R/GlobeView.R
+ece6b5bf9c2255fd94ea43190026b11a *R/GlobeView.R
 0400aa96df0ddfdeb4e0228ec56a52c8 *R/KINOUT.R
 edc4f8f05375bb30269c53925b884e10 *R/LLlabel.R
 5f8f13f59618b0fed695d0e1f5820304 *R/LOCPOLIMAP.R
@@ -90,7 +90,7 @@ dd959136c6d0a07e37b44fc08d1508bc *R/insertNA.R
 fcffa10a31ebc5d34410664fc351ce5a *R/insertvec.R
 a59a6c3ae40d7efef83c88d77980bbf9 *R/inside.R
 fd7287fad03ed7ad6bf07280a4e9a9a4 *R/insideGEOmapXY.R
-fdc860e021910f085daa4531c5c12b21 *R/lamaz.eqarea.R
+beab353399de20f5d069d936c82d9c95 *R/lamaz.eqarea.R
 2a35b874c4879a13405f39e7f38170e6 *R/lambert.cc.ll.R
 d6b9b4d77ddb5ee9b8ca4ef99705ba66 *R/lambert.cc.xy.R
 eb11e9648d862c8786dc8a353a2065a8 *R/lambert.ea.ll.R
@@ -129,7 +129,7 @@ ac824de1f050f3b2b4790121c4aef970 *R/printGEOinfo.R
 a862c0b2d4547f4de0e68710e38cb937 *R/rectGEOmapXY.R
 f6b4a6434df66bf7f78649e823e0f704 *R/rectPERIM.R
 f2cc0e306ba940ff7ddefb9a61443eb9 *R/rekt2line.R
-7f0c6b27acc286d83b486e085cf799b4 *R/rose.R
+c6773c162b9c19ca396132a7259e1781 *R/rose.R
 37ddaeb56e25d0d6932b36b1323b1a6d *R/rotateGEOmap.R
 1815a40ea57eb290b25aeaf7771ab3a9 *R/rotdelta4.R
 c6f1813ef2040a109a1ba09bc9629c2d *R/rotmat2D.R
@@ -188,7 +188,7 @@ b52fb4996798ad57067028113b4524a0 *man/ExplodeSymbols.Rd
 1a09c7d09b820f6cceb2e60d1d5dd61c *man/GETXprofile.Rd
 7382309ca2f91814ecd6330573cec334 *man/GLOB.XY.Rd
 8dacdc14d254bb211d1c087381c338b4 *man/GLOBE.ORTH.Rd
-ac62d5d42b1a1dae54b8ab1efb02a00c *man/GlobeView.Rd
+ffe5c4a780b49b5ff4b698feb5392910 *man/GlobeView.Rd
 6f4ed7ecaf6bf08a20bdcd56a2b842f4 *man/KINOUT.Rd
 eb04b2e2b2a672d81002fb895cb955c7 *man/LLlabel.Rd
 c9ae323e08f106f4ffbdd50b2b65c580 *man/LOCPOLIMAP.Rd
@@ -255,7 +255,7 @@ f584ea2b213cbc1947181f48bec62af5 *man/insertNA.Rd
 1061366e301a5b4fa00f2e283b4be798 *man/insertvec.Rd
 d86b0f7631f0f61971d37e31e06e7c56 *man/inside.Rd
 1594fb9a5491ee98d3be3beb053c108c *man/insideGEOmapXY.Rd
-a2945f55bd4189f0c371a796bd3d9e2f *man/lamaz.eqarea.Rd
+6f84769bb57e0cca526461747d155a0d *man/lamaz.eqarea.Rd
 3d463189b6e65aa77f691f5c469def75 *man/lcgc.Rd
 fe922be2368d3f64a5ab6c95e0fbeb21 *man/linesGEOmapXY.Rd
 2463c7b56c72b0b61b0e72a105054acb *man/list.GEOmap.Rd
