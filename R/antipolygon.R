@@ -63,7 +63,7 @@ if( identical(tolower(corner), "lowerright") | identical(tolower(corner), "botto
   
   polygon(x,y,border=col,col=col, xpd=TRUE)
 
-  
+  invisible( list(x=x,y=y) )
   ## box()
 }
 

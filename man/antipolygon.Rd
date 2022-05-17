@@ -28,7 +28,10 @@ antipolygon(x, y, col = 0, corner=1, pct=.4)
   
 }
 \value{
- Used for graphical side effect
+List:
+ \item{x}{ x-coordinates of mask }
+ \item{y}{ y-coordinates of mask }			
+ Used for graphical side effect	  
 }
 
 \author{Jonathan M. Lees <jonathan.lees@unc.edu>}
@@ -37,6 +40,7 @@ antipolygon(x, y, col = 0, corner=1, pct=.4)
 }
 \seealso{polygon, par}
 \examples{
+set.seed(2018)
 x = runif(100)
 y = runif(100)
 

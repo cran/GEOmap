@@ -17,9 +17,16 @@ getETOPO(topo, glat = c(-90, 90), glon = c(0, 360))
 }
 }
 \details{ETOPO2 and ETOPO5 are stored in a strange way:
-the lons are okay the latitudes are upside down.
+  the lons are okay the latitudes are upside down.
+
+  ETOPO5 or ETOPO2 can be downloaded from
+  and installed using these links:
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO2.RData}
+  and
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO5.RData}
+  
 }
-\value{returns a matrix with attributes in lat-lon that are correct
+\value{Returns a matrix with attributes in lat-lon that are correct
 for usage in image or other R imaging programs.
 }
 
@@ -31,15 +38,16 @@ Jonathan M. Lees<jonathan.lees@unc.edu>
 \seealso{image
 }
 \examples{
+\dontrun{
 library(geomapdata)
-
-data(ETOPO5)
-
+###  Download and install ETOPO Data
+##    data(ETOPO5)
+load(ETOPO5)
 glat =c(45.4, 49)
 glon = c(235, 243) 
 b5 = getETOPO(ETOPO5, glat, glon)
 image(x=attr(b5, 'lon'), y=attr(b5,'lat'), z=b5, col=terrain.colors(100) )
 contour(   x=attr(b5, 'lon'), y=attr(b5,'lat'), z=b5, add=TRUE)
-
+}
 }
 \keyword{misc}

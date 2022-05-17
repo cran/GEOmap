@@ -21,7 +21,14 @@ subsetTOPO(TOPO, ALOC, PROJ, nx=500, ny=500, nb = 4, mb = 4, hb = 8)
    \item{hb}{see function mba.surf , default= 8}
 }
 \details{
-  Used for extracting a subset of ETOPO5 or ETOPO2
+  Used for extracting a subset of ETOPO5 or ETOPO2.
+  
+ ETOPO5 or ETOPO2 can be downloaded from
+  and installed using these links:
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO2.RData}
+  and
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO5.RData}
+
 }
 \value{
  
@@ -36,8 +43,10 @@ subsetTOPO(TOPO, ALOC, PROJ, nx=500, ny=500, nb = 4, mb = 4, hb = 8)
 \seealso{GEOTOPO}
 \examples{
 \dontrun{
+#### first install the ETOPO5 data package
 library(geomapdata)
-data(ETOPO5)
+load(ETOPO5)
+##   data(ETOPO5)
 PLOC=list(LON=c(137.008, 141.000),LAT=c(34.000, 36.992),
             x=c(137.008, 141.000), y=c(34.000, 36.992) )
 

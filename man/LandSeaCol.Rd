@@ -31,6 +31,14 @@ LandSeaCol(IZ, coastmap, PROJ, calcol = NULL)
   All map and pixel coordinates are
   projected with the same projection parameters.
   calculations are done in XY coordinates.
+
+   ETOPO5 or ETOPO2 can be downloaded from
+  and installed using these links:
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO2.RData}
+  and
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO5.RData}
+
+  
   
 }
 \value{
@@ -63,7 +71,11 @@ Lon.range = c(65, 117)
 
  data(coastmap)
 
-     data(ETOPO5)
+  ###    data(ETOPO5)
+
+####  need to download and install ETOPO data
+load(ETOPO5)
+
  PLOC=list(LON=Lon.range,LAT=Lat.range,lon=Lon.range,lat=Lat.range,
                  x=Lon.range, y=Lat.range )
 

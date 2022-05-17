@@ -182,12 +182,16 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   FORCE = FALSE
 
   if(!is.null(SEL))
-    {
-      if(length(SEL)<0)
+      {
+          cat('SEL is NULL\n')
+      if(length(SEL) <0)
         {
           FORCE = TRUE
           SEL = 1:length(MAP$STROKES$num)
-        }
+      }
+
+
+      
     }
 
   ###  if(exists("worldmap"))

@@ -7,7 +7,7 @@
 \usage{
 XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC",
 "MSEC"),
- width = 10, kmaxes = TRUE, pch = ".", demo = FALSE)
+ width = 10, kmaxes = TRUE, pch = ".", demo = FALSE, png=FALSE )
 }
 
 \arguments{
@@ -19,6 +19,8 @@ XSECEQ(MAP, EQ, XSECS = NULL, labs = c("DONE", "REFRESH", "XSEC",
   \item{kmaxes}{logical, TRUE=keep all cross sections same depth}
   \item{pch}{plotting character}
   \item{demo}{Logical, TRUE=not-interactive}
+  \item{png}{Logical, TRUE=create png files of the cross sections}
+   
 }
 
 \value{

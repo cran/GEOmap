@@ -25,6 +25,14 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, nx=500, ny=500, nb = 4, mb = 4, hb = 8, P
 \details{
   The return matrix PMAT is a rotation matrix used for adding
   geographic (projected) data onto the perspective plot.
+
+   ETOPO5 or ETOPO2 can be downloaded from
+  and installed using these links:
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO2.RData}
+  and
+  \url{http://leesj.sites.oasis.unc.edu/FETCH/GRAB/RPACKAGES/ETOPO5.RData}
+
+  
 }
 \value{
  
@@ -63,8 +71,9 @@ GEOTOPO(TOPO, PLOC, PROJ, calcol=NULL, nx=500, ny=500, nb = 4, mb = 4, hb = 8, P
 
 library(geomapdata)
 
-
-data(ETOPO5)
+####  need to download and install ETOPO data
+###   data(ETOPO5)
+load(ETOPO5)
 PLOC=list(LON=c(137.008, 141.000),LAT=c(34.000, 36.992),
             x=c(137.008, 141.000), y=c(34.000, 36.992) )
 

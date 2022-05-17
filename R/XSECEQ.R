@@ -1,4 +1,4 @@
-XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"), width=10, kmaxes=TRUE , pch=".", demo=FALSE)
+XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"), width=10, kmaxes=TRUE , pch=".", demo=FALSE, png=FALSE )
   {
     if(missing(demo)) { demo = FALSE }
     if(missing(width)) { width=10 }
@@ -43,10 +43,12 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     GRIDcol=1
 
 
-    ur = par("usr")
-    urx = expandbound(ur[1:2], -.05)
-    ury = expandbound(ur[3:4], -.05)
-
+    if(TRUE)
+    {
+        ur = par("usr")
+        urx = expandbound(ur[1:2], -.05)
+        ury = expandbound(ur[3:4], -.05)
+    }
     
     
     Abound = XY.GLOB(urx , ury, PROJ)
@@ -67,7 +69,13 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     
 
     
-    ##########  map function:
+##########  map function:
+
+
+     if(png==TRUE) {
+         pfile0 = RPMG::local.file("MAPxsec", "png")
+          RPMG::jpng(file = pfile0, width=12, height=14)
+         }
     plot(MAP[[1]]$x, MAP[[1]]$y, xlim=XYLIM$x, ylim= XYLIM$y,   type='n', asp=1, ann=FALSE, axes=FALSE )
 
 
@@ -144,10 +152,20 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             {
               wid = WINWIDTH
               hei = wid*ddep/dr
-             ##  print(paste(i, wid, hei, dr, ddep))
-              dev.new(width=wid, height=hei)
-               seclabs = attr(SW[[i]],"LAB")
+              ##  print(paste(i, wid, hei, dr, ddep))
+
+              if(png==TRUE) {
+                  pfile = RPMG::local.file("xsection", "png")
+                  RPMG::jpng(file = pfile, width=wid, height=hei)
+              }
+              else
+                {
+                    dev.new(width=wid, height=hei)
+                }
+              seclabs = attr(SW[[i]],"LAB")
               XSECwin( SW[[i]] , i, xLAB = seclabs,   demo=TRUE  )
+              if(png==TRUE) {dev.off() }
+              
             }
         }
       dev.set(dev1)
@@ -155,7 +173,13 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
       
     }
 
-    if(demo==TRUE)  return(NULL)
+    if(demo==TRUE) {
+        if(png==TRUE) { dev.off();  }
+        
+        return(NULL)
+
+
+        }
 
     
     cdev = dev.cur()

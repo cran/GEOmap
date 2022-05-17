@@ -38,7 +38,7 @@ g = PointsAlong(G$x, G$y, N=5)
 
 lines(G)
 
-perpen(g$x, g$y, .3, g$rot, col = "black", lwd = 1)
+perpen(g$x, g$y, 5, g$rot, col = "black", lwd = 1)
 
 }
 

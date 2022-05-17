@@ -1,5 +1,5 @@
 `plotworldmap` <-
-function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , ...)
+function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE ,PLOTALL=TRUE, Decorate=FALSE , ...)
 {
   if(missing(add)) { add=FALSE }
   if(missing(NUMB)) { NUMB=FALSE }
@@ -39,24 +39,29 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , ..
 ###  determine stroke inclusion
 
 ###  (x2>=x3)&&(x4>=x1)&& (y2>=y3)&&(y4>=y1)
+  if(PLOTALL==TRUE)
+      {
+          IN = 1:length(MAP$STROKES$LAT1)
+      }
+  else
+      {
+          y1 = MAP$STROKES$LAT1
+          y2 = MAP$STROKES$LAT2
+          x1 = RPMG::fmod(MAP$STROKES$LON1, 360)
+          x2 = RPMG::fmod(MAP$STROKES$LON2, 360)
 
-  y1 = MAP$STROKES$LAT1
-  y2 = MAP$STROKES$LAT2
-  x1 = RPMG::fmod(MAP$STROKES$LON1, 360)
-  x2 = RPMG::fmod(MAP$STROKES$LON2, 360)
+          y3 = LIM[2]
+          y4 = LIM[4]
+          
+          x3 = RPMG::fmod(LIM[1], 360)
+          x4 = RPMG::fmod(LIM[3], 360)
+          
 
-  y3 = LIM[2]
-  y4 = LIM[4]
-  
-  x3 = RPMG::fmod(LIM[1], 360)
-  x4 = RPMG::fmod(LIM[3], 360)
-  
+          
+          OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
 
-  
-  OUT = y1>=y4 | x1>=x4 | y2 <= y3 | x2 <= x3
-
-  IN = which(!OUT)
-  
+          IN = which(!OUT)
+      }
  ###   MAP$STROKES$LAT1>=LIM[1] 
 ###  print(IN)
   
@@ -69,8 +74,9 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , ..
       ##  plot(MAP$POINTS$lon, MAP$POINTS$lat, type='n')
       ##  xlab="Lon", ylab="Lat",
       ## if(is.null(xlab)) { xlab="Lon" }
+       plot(c(LIMP[1], LIMP[3]),c(LIM[2], LIM[4]) ,  type='n', xlab="lon", ylab='lat', axes=FALSE, xaxs='i',  ...)
+
       
-      plot(RPMG::fmod(MAP$POINTS$lon-shiftlon, 360), MAP$POINTS$lat, xlim=c(LIMP[1], LIMP[3])  , ylim=c(LIM[2], LIM[4]), type='n', xlab="lon", ylab='lat', axes=FALSE,  ...)
       u = par('usr')
       axis(2)
       
@@ -82,26 +88,28 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE , ..
       xlabs[xlabs>180 & xlabs<=359.99] = xlabs[xlabs>180 & xlabs<=359.99]-360
       axis(3, at=pp, labels =xlabs )
 
-      j = RPMG::fmod(seq(from=(-180), to=180, by=6)-shiftlon, 360)
-      jhalf = RPMG::fmod(seq(from=(-177), to=177, by=6)-shiftlon, 360)
-      text(jhalf , u[3], labels=1:length(jhalf), pos=3)
-      
-      segments(j,  u[3]    , j   ,      u[4]      ,     lty=2, col=rgb(.9, .9, .9) )
+       if(Decorate)
+           {
+               j = RPMG::fmod(seq(from=(-180), to=180, by=6)-shiftlon, 360)
+               jhalf = RPMG::fmod(seq(from=(-177), to=177, by=6)-shiftlon, 360)
+               text(jhalf , u[3], labels=1:length(jhalf), pos=3)
+               
+               segments(j,  u[3]    , j   ,      u[4]      ,     lty=2, col=rgb(.9, .9, .9) )
 
-      
-       abline(v=RPMG::fmod(0-shiftlon, 360), col=rgb(.8, .8, .8) )
-      abline(h=0, col=rgb(.8, .8, .8))
+               
+               abline(v=RPMG::fmod(0-shiftlon, 360), col=rgb(.8, .8, .8) )
+               abline(h=0, col=rgb(.8, .8, .8))
 
 
-       htags =  LETTERS[6:23]
-       htags = htags[-c(4, 10)]
+               htags =  LETTERS[6:23]
+               htags = htags[-c(4, 10)]
 
-      k = seq(from =-56, to =72, by=8)
-      
-      segments(u[1],  k    , u[2]   ,  k      ,     lty=2, col=rgb(.9, .9, .9) )
-       ty = k+4
-      text(u[2],ty[1:length(htags)],     labels=htags , xpd=TRUE, pos=4 )
-
+               k = seq(from =-56, to =72, by=8)
+               
+               segments(u[1],  k    , u[2]   ,  k      ,     lty=2, col=rgb(.9, .9, .9) )
+               ty = k+4
+               text(u[2],ty[1:length(htags)],     labels=htags , xpd=TRUE, pos=4 )
+           }
       
     box()
      
