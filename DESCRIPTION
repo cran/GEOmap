@@ -1,10 +1,10 @@
 Package: GEOmap
 Type: Package
 Title: Topographic and Geologic Mapping
-Version: 2.5-0
-Date: 2022-05-17
+Version: 2.5-2
+Date: 2023-08-08
 Depends: R (>= 3.0)
-Imports: RPMG, splancs, fields, MBA
+Imports: RPMG, fields, sf, MBA
 Suggests: geomapdata, maps, RFOC
 LazyData: yes
 Authors@R: c(person(given="Jonathan M.", family="Lees",
@@ -13,7 +13,7 @@ Author: Jonathan M. Lees [aut, cre]
 Maintainer: Jonathan M. Lees <jonathan.lees@unc.edu>
 Description: Set of routines for making map projections (forward and inverse), topographic maps, perspective plots, geological maps, geological map symbols, geological databases, interactive plotting and selection of focus regions.
 License: GPL (>= 2)
-Packaged: 2022-05-17 17:36:55 UTC; lees
+Packaged: 2023-08-13 10:41:42 UTC; lees
 NeedsCompilation: yes
 Repository: CRAN
-Date/Publication: 2022-05-17 18:30:02 UTC
+Date/Publication: 2023-08-13 12:40:21 UTC

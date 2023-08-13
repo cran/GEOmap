@@ -18,7 +18,7 @@ polyintern<-function(P, n=10, PLOT=FALSE)
     
    ###   I = inpoly(mg$x, mg$y , list(x=c(P$x, P$x[1]), y=c(P$y, P$y[1])))
 
-    kin = splancs::inout(cbind(as.vector(mg$x), as.vector(mg$y) ) ,cbind(x, y), bound=TRUE)
+    kin = fields::in.poly(cbind(as.vector(mg$x), as.vector(mg$y) ) ,cbind(x, y) )
  
     nx = mg$x[kin]
     ny =  mg$y[kin]

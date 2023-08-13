@@ -8,10 +8,8 @@ SELGEOmap<-function (MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
     acut = NULL
   if (missing(LIM)) 
     LIM = NULL
- # if (!require(splancs)) {
- #   print("NEED splancs")
-#    return(NULL)
-#  }
+
+
   NEWMAP = list(STROKES = list(nam = NULL, num = NULL, index = NULL, 
                   col = NULL, style = NULL, code = NULL, LAT1 = NULL, LAT2 = NULL, 
                   LON1 = NULL, LON2 = NULL), POINTS = list(lat = NULL, 
@@ -81,11 +79,12 @@ SELGEOmap<-function (MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
             LON0 = median(lon))
           
           X = GLOB.XY(lat, lon, PROJ)
-          POL = cbind(X$x, X$y)
+          POL = cbind(c(X$x, X$x[1]), c(X$y, X$y[1]) )
           
           OKnum = TRUE
           if (!is.null(acut)) {
-            cgAREA = splancs::areapl(POL)
+              
+            cgAREA = sf::st_area(sf::st_polygon(list(POL) ) )
             if (cgAREA >= acut[1] & cgAREA <= acut[2]) {
               OKarea = TRUE
             }

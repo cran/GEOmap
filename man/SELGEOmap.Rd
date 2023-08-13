@@ -18,7 +18,7 @@ SELGEOmap(MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
   \item{LIM}{vector, c(lon1, lat1, lon2, lat2)  }
 }
 \details{
-  Uses splancs function.  If proj and LIM are NULL then
+  Uses sf::st_area  function.  If proj and LIM are NULL then
   no selection on limits are used
   ncut is used to eliminate area calculations with strokes less than the
   specified number.
@@ -44,8 +44,9 @@ SELGEOmap(MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
 
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 
-\seealso{geoarea}
+\seealso{geoarea, sf::st_area}
 \examples{
+
 library(geomapdata)
 data(worldmap)
 skam = SELGEOmap(worldmap, ncut=3, acut=c(10000, Inf), proj=NULL, LIM=NULL)

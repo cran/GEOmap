@@ -16,7 +16,7 @@ geoarea(MAP, proj=NULL, ncut=10)
   
 }
 \details{
-  Uses splancs function.  If proj is NULL then the project is
+  Uses sf function.  If proj is NULL then the project is
   reset to UTM spherical for each element seperately to calculate the
   area in km.
   ncut is used to eliminate area calculations with strokes less than the
@@ -25,7 +25,7 @@ geoarea(MAP, proj=NULL, ncut=10)
 \value{
  vector of areas
 }
-
+\seealso{sf::st_area}
 \author{Jonathan M. Lees<jonathan.lees@unc.edu>}
 \note{
   areas smaller than a certain tolerance are NA
