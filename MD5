@@ -1,8 +1,7 @@
-6c6cfc78f2f6710ec65eb324a97fc309 *DESCRIPTION
+950b96742ce9b91bb669510d0560a335 *DESCRIPTION
 e9bc7add20b1d892a37d3d61bcfc883c *NAMESPACE
 46547d6587d17556bbd692b6cf0c7e22 *R/BASICTOPOMAP.R
 b7138f5b08fcf4bb6f97834f74c6c8b9 *R/CCcheck.R
-88f302f92711c50452e5e4f72bbca603 *R/ColorScale.R
 8b00ab05bd1d72b0091facbc719e7773 *R/DATUMinfo.R
 69ec4ab23685269ee37f39a3c25e4822 *R/DUMPLOC.R
 0c0b50710c0df6adf750c66f0943679d *R/Ellipsoidal.Distance.R
@@ -168,15 +167,14 @@ dc345c7dfbf0d4165d437b24cb2e1105 *demo/weathermap.R
 96a56113acac2c98024ec8c85f5cb122 *inst/doc/GEOmap.pdf
 59f2f45a651f3d78e64250ff31c0da97 *man/BASICTOPOMAP.Rd
 c03017624b42fdccefdfc4cf9c7ddaa4 *man/CCcheck.Rd
-8bbc58af4915e0bb5c9f5b4bfc44d86d *man/ColorScale.Rd
-b8544400594d7c71f779451be23eb824 *man/DATUMinfo.Rd
+b833f3e9c0ba3558d5c2d62e3fd371e4 *man/DATUMinfo.Rd
 71c4c3dd0c7964ae1ba44d80504c6446 *man/DUMPLOC.Rd
 869099834832cd6968705b64788f6595 *man/EHB.LLZ.Rd
 2c271464156b84de87f1f7af7a32b0ca *man/Ellipsoidal.Distance.Rd
 7a0414cb71d9e65247e2693e942640d5 *man/ExcludeGEOmap.Rd
 b52fb4996798ad57067028113b4524a0 *man/ExplodeSymbols.Rd
 7d94183ed05f6f2b2ec11c73a0da4797 *man/GEOTOPO.Rd
-92a7dceeb16634e41b5904b65f76c81e *man/GEOmap-package.Rd
+b6156b34092a9464e5b2b0a7b405bad6 *man/GEOmap-package.Rd
 61c1a4988e7d8cc80cadb2863ac515fb *man/GEOmap.CombineStrokes.Rd
 011f2b65fc3474c16902ed94a9eedbca *man/GEOmap.Extract.Rd
 5389e5d4f351b32c96af65ec00add359 *man/GEOmap.breakline.Rd

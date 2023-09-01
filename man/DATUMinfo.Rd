@@ -21,7 +21,7 @@ DATUMinfo()
   \item{Use}{character  usage}
 }
 \references{
-  websource = \url{https://stevedutch.net/usefuldata/utmformulas.htm}
+ stevedutch.net
 }
 \author{
 Jonathan M. Lees<jonathan.lees@unc.edu>
