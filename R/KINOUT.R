@@ -36,7 +36,7 @@ KINOUT<-function(MAP, LLlim, projtype=2)
       LLlim$y = XYLIM$y
 
 
-## print(XYLIM)
+## message(XYLIM)
 
 
     

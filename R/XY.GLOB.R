@@ -54,7 +54,7 @@ function(x, y, PROJ.DATA)
   if(is.character(PROJ.DATA$type))
         {
 #####  check to see if these functions exist locally
-           ## print(paste('Character type ', PROJ.DATA$type) )
+           ## message(paste('Character type ', PROJ.DATA$type) )
             projll = paste(PROJ.DATA$type, '.ll', sep='')
             myenv = environment()
             if (!is.null( rfun<-get0(projll, envir =myenv )) )

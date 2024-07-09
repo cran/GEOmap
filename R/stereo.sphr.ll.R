@@ -20,7 +20,7 @@ function(x,y, PROJ.DATA)
                                         #  Calc rho,theta, phi, and lambda
 
     cee = 2*atan2( rho, 2*R*k0 )                               #21-15
-    ## print(paste(sep=' ', "rho=", rho))
+    ## message(paste(sep=' ', "rho=", rho))
 
 
     phi=asin(cos(cee)*sin(phi1) +y*sin(cee)*cos(phi1)/rho)                                #20-14

@@ -49,7 +49,7 @@ function(shiftlon=0, col="brown", n=2)
      A = list(lon=lon, lat=L$y  , LON=RPMG::fmod(lon, 360), LAT=L$y, utmbox=utmbox , x=L$x, y=L$y, UTM0=list(lam=utmlam0, phi=utmphi0), shiftlon=shiftlon)
    
     
-    ## print(A)
+    ## message(A)
     return(A)
   }
 

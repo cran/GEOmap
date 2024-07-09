@@ -11,8 +11,8 @@ function(LABS=NULL, PROJ=NULL)
         for(i in 1:N)
           {
             lab = LABS[i]
-            print(paste(sep=' ', i, lab) )
-            print("click in figure pairs for arrows")
+            message(paste(sep=' ', i, lab) )
+            message("click in figure pairs for arrows")
             L = locator(2, type="p", col='red')
             segments(L$x[1], L$y[1], L$x[2], L$y[2], col='red')
             
@@ -36,7 +36,7 @@ function(LABS=NULL, PROJ=NULL)
       }
     else
       {
-        print("click in figure pairs for arrows")
+        message("click in figure pairs for arrows")
         L = locator()
         N = length(L$x) / 2
         MM = list(1)
@@ -51,7 +51,7 @@ function(LABS=NULL, PROJ=NULL)
           
                 lab = readline(prompt="Type in the label:")
              
-            print(paste(sep=' ', i, lab) )
+            message(paste(sep=' ', i, lab) )
             rot = FALSE
             apos = readline(prompt="Type in the position (0,1,2,3,4):")
             pos = as.numeric(apos)

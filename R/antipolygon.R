@@ -31,8 +31,24 @@ if( identical(tolower(corner), "lowerright") | identical(tolower(corner), "botto
   dxu = pct*(u[2]-u[1])
   dyu = pct*(u[4]-u[3])
 
+####  first check if polygon is 'positive (counter-clock-wise)
+
+  n = length(x)
+T.sum = sum( (x[2:(n)]-x[1:(n-1)])*(y[2:(n)]+y[1:(n-1)]) )
+  if(T.sum>0) {
+####  need to reverse
+      x = rev(x)
+      y = rev(y)
+  }
+
+
+  
   if(corner==1)
-    {
+  {
+      w1 = which.min(y)
+      x=c(x[w1:n], x[1:(w1-1) ])
+      y=c(y[w1:n], y[1:(w1-1) ])
+
       x <- c(x,x[1],u[1]-dxu,u[1]-dxu,u[2]+dxu,u[2]+dxu,u[1]-dxu)
       
       y <- c(y,y[1],u[3]-dyu,u[4]+dyu,u[4]+dyu,u[3]-dyu,u[3]-dyu)
@@ -41,22 +57,36 @@ if( identical(tolower(corner), "lowerright") | identical(tolower(corner), "botto
   if(corner==2)
     {
 
-      
+        w1 = which.min(x)
+      x=c(x[w1:n], x[1:(w1-1) ])
+      y=c(y[w1:n], y[1:(w1-1) ])
+  
       x <- c(x,x[1],u[1]-dxu,u[2]+dxu,u[2]+dxu,u[1]-dxu, u[1]-dxu)
       
-      y <- c(y,y[1],u[4]+dyu,u[4]+dyu,u[3]-dyu,u[3]-dyu,u[3]-dyu)
+      y <- c(y,y[1],u[4]+dyu,u[4]+dyu,u[3]-dyu,u[3]-dyu,u[4]-dyu)
 
     }
   if(corner==3)
-    {   
+  {
+      w1 = which.max(x)
+      x=c(x[w1:n], x[1:(w1-1) ])
+      y=c(y[w1:n], y[1:(w1-1) ])
+
+              
       x <- c(x,x[1],u[2]+dxu,u[2]+dxu,u[1]-dxu, u[1]-dxu,u[1]-dxu)
       y <- c(y,y[1],u[4]+dyu,u[3]-dyu,u[3]-dyu,u[3]-dyu,u[4]+dyu)
 
-    }
+  }
+
+  
   if(corner==4)
-    {
-      x <- c(x,x[1],u[2]+dxu,u[1]-dxu, u[1]-dxu,u[1]-dxu,u[2]+dxu)
-      y <- c(y,y[1],u[3]-dyu,u[3]-dyu,u[3]-dyu,u[4]+dyu,u[4]+dyu)
+  {
+       w1 = which.min(y)
+      x=c(x[w1:n], x[1:(w1-1) ])
+      y=c(y[w1:n], y[1:(w1-1) ])
+
+      x <- c(x,x[1], u[2]+dxu, u[1]-dxu, u[1]-dxu, u[2]+dxu, u[2]+dxu)
+      y <- c(y,y[1], u[3]-dyu, u[3]-dyu, u[4]+dyu, u[4]+dyu, u[3]+dyu)
 
     }
 

@@ -16,13 +16,13 @@ fixCoastwrap<-function(Z, maxdis=100)
   
   
 ###   cbind(Z$x[ww], Z$x[ww+1])
-###  print(paste("fixCoastwrap 1", nww))
+###  message(paste("fixCoastwrap 1", nww))
 ### 
   
   if(RPMG::fmod(nww, 2)==1)
     {
 
-   ###   print(paste("0 fixCoastwrap nww=", nww))
+   ###   message(paste("0 fixCoastwrap nww=", nww))
       u = par('usr')
 
       
@@ -39,7 +39,7 @@ fixCoastwrap<-function(Z, maxdis=100)
       
       if(nww>0)
         {
-          ###  print(paste("1 fixCoastwrap nww=", nww))
+          ###  message(paste("1 fixCoastwrap nww=", nww))
           H = GEOmap.breakline(Z, ww)
 
           newx  = H$newx
@@ -51,7 +51,7 @@ fixCoastwrap<-function(Z, maxdis=100)
 
           newx  = Z$x
           newy  = Z$y
-        ###  print(paste("2 fixCoastwrap nww=", nww))
+        ###  message(paste("2 fixCoastwrap nww=", nww))
           Z = list(x=c(min(Z$x) ,Z$x, max(Z$x))  ,  y=c(-89, Z$y, -89))
           return(Z)
         }
@@ -132,9 +132,9 @@ fixCoastwrap<-function(Z, maxdis=100)
 
   if(RPMG::fmod(K, 2)==0) {
 
-   ### print(paste("even K fixCoastwrap 2", K) )
+   ### message(paste("even K fixCoastwrap 2", K) )
 
- ###    print(ww)
+ ###    message(ww)
     return(list(x=c(newx[[1]], NA, newx[[2]]), y=c(newy[[1]], NA, newy[[2]]) ))
     
 
@@ -148,7 +148,7 @@ fixCoastwrap<-function(Z, maxdis=100)
   Side2.x = NULL
   Side2.y =  NULL
 
-  ### print(paste("odd  K fixCoastwrap 2", K) )
+  ### message(paste("odd  K fixCoastwrap 2", K) )
   for(k in seq(from=2, to=K, by=2))
     {
 

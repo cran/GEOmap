@@ -9,8 +9,8 @@ insertNA<-function(y, ind)
       {
         if((wdiy[j+1])<(wdiy[j]+1)) next
         dex = seq(from=(wdiy[j]+1), to=(wdiy[j+1]), by=1)
-#### print(dex)
-#### print(y[dex])
+#### message(dex)
+#### message(y[dex])
         Z = c(Z, NA, y[dex])
       }
     

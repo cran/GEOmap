@@ -90,7 +90,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
     else
       {
        # addLLXY(PLAT, PLON,  GRIDcol=GRIDcol, LABS=0, BORDER=0 , PROJ=PROJ )
-        print("sqrtix")
+        message("sqrtix")
         sqrTICXY(XYLIM, proj=PROJ)
         
       }
@@ -152,7 +152,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             {
               wid = WINWIDTH
               hei = wid*ddep/dr
-              ##  print(paste(i, wid, hei, dr, ddep))
+              ##  message(paste(i, wid, hei, dr, ddep))
 
               if(png==TRUE) {
                   pfile = RPMG::local.file("xsection", "png")
@@ -220,7 +220,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             if(zen > 3)
               {
             LEN = sqrt( (zloc$x[zen-1] - zloc$x[zen-2])^2+(zloc$y[zen-1] - zloc$y[zen-2])^2)
-            print(paste("Length=", LEN, "km"))
+            message(paste("Length=", LEN, "km"))
           }
             
           }
@@ -289,7 +289,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
           }
         if(K[Nclick] == match("width", labs, nomatch = NOLAB))
           {
-            print(paste(sep=" ", "Current width=", width))
+            message(paste(sep=" ", "Current width=", width))
             answer = readline(prompt = "type in the width (km): ")
 
             width = as.numeric(answer)
@@ -299,7 +299,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             
             if(width<=0) width=10
 
-            print(paste(sep=" ", "New width=", width))
+            message(paste(sep=" ", "New width=", width))
             
             zloc = list(x=NULL, y=NULL)
           }
@@ -314,7 +314,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             y2 = zloc$y[n-1]
 
             XSEC.FLAG = TRUE
-            print(c(x1,y1, x2,y2))
+            message(  paste(c(x1,y1, x2,y2)  , collapse=' ')  )
             iseclab = iseclab + 1
             LAB = LETTERS[iseclab]
             secmat = rbind(secmat, c(x1, y1, x2,  y2))
@@ -390,7 +390,8 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
                 y2 = zloc$y[M+1]
                 
                 
-                print(c(x1,y1, x2,y2))
+                
+                message( paste(c(x1,y1, x2,y2)  , collapse=' ')  )
                 iseclab = iseclab + 1
                 LAB = LETTERS[iseclab]
                 secmat = rbind(secmat, c(x1, y1, x2,  y2))
@@ -482,7 +483,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
               {
                 u = par("usr")
                 
-                ## print("sqrtix")
+                ## message("sqrtix")
 
 
                 ##  XYLIM
@@ -554,7 +555,7 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
             
             if(PS.FLAG) {
               dev.off();
-              cat(paste(sep=" ", "the postscript file is in: ", psname), sep="\n")
+              message(paste(sep=" ", "the postscript file is in: ", psname) )
               PS.FLAG =  FALSE
             }
 
@@ -570,12 +571,12 @@ XSECEQ<-function(MAP, EQ , XSECS=NULL, labs=c("DONE","REFRESH", "XSEC", "MSEC"),
 
 
         iloc = locator(1,type='p')
-##### print(iloc)
+##### message(iloc)
         zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
         Nclick = length(iloc$x)
         if(is.null(zloc$x)) { return(sloc) }
         K =  RPMG::whichbutt(iloc , buttons)
-##### print(K)   
+##### message(K)   
       }
 
     invisible(SW)

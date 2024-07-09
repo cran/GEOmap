@@ -11,11 +11,11 @@ function(A, POK )
 	for( i in 2:length(POK$x) )
  	{
 	lp  = list(p1=list(x=POK$x[i], y=POK$y[i]), p2=list(x=POK$x[i], y=POK$y[i]))
-	# print(paste(sep=" ", lp$p1$x, lp$p1$y))
+	# message(paste(sep=" ", lp$p1$x, lp$p1$y))
    	 if(!Lintersect(lp, lt))
      	 {
      	 lp$p2  = list(x=POK$x[j], y=POK$y[j])
- # 	print(paste(sep=" ", i, j, lp$p1$x, lp$p1$y,lp$p2$x,lp$p2$y    ))
+ # 	message(paste(sep=" ", i, j, lp$p1$x, lp$p1$y,lp$p2$x,lp$p2$y    ))
      	 j = i 
  #       /* check if last point not on line intersects */
      	 if(Lintersect(lp, lt)) count=count+1 

@@ -65,7 +65,7 @@ polyintern<-function(P, n=10, PLOT=FALSE)
 
         dis = DDOUT[[6]]
 
-        ##  print(dis)
+        ##  message(dis)
         
         ##  dis = sqrt( (nx[j]-P$x)^2 + (ny[j]-P$y)^2 )
 

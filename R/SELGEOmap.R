@@ -17,15 +17,18 @@ SELGEOmap<-function (MAP, ncut = 3, acut = c(0, 1e+05), proj = NULL, LIM = NULL)
   
   if(is.null(proj))
     {
-      proj = setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL, LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0)
+        proj = setPROJ(type = 1, LAT0 = 0, LON0 = 0, LAT1 = 0, LAT2 = 0, LATS = NULL,
+                       LONS = NULL, DLAT = NULL, DLON = NULL, FE = 0, FN = 0)
     }
 
   
    if (is.null(LIM))
      {
 
-       cat("NO GEOGRAPHIC limits provided:", sep="\n"  )
-       cat("Using Default:  LIM = c(0.0000, -70 ,  359.9167,   80 )   ", sep="\n"  )
+         warning("NO GEOGRAPHIC limits provided:\n",
+                 "Using Default:  LIM = c(0.0000, -70 ,  359.9167,   80 )")
+
+         
        
        LIM = c(0.0000, -70 ,  359.9167,   80 ) 
        

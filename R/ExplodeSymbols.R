@@ -95,26 +95,26 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
       }
 ##############################################################      
       if (K[Nclick] == match("QUIT", labs, nomatch = NOLAB)) {
-        ##  print("Pressed Quit")
+        ##  message("Pressed Quit")
          break
         zloc = list(x = NULL, y = NULL)
       }
 ##############################################################      
       if (K[Nclick] == match("HAND", labs, nomatch = NOLAB)) {
-        print("Pressed Hand")
+        message("Pressed Hand")
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to move a symbol")
+            message("Must have at least 2 clicks on screen to move a symbol")
             focsiz = EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+            message(paste(zloc, collaps=' ') )
             zloc = list(x = NULL, y = NULL)
             next
 
           }
         kloc = list(x=zloc$x[1:NP], y=zloc$y[1:NP ])
-        print(kloc)
+        message(paste(kloc, collaps=' ') )
         for(k in seq(from=1, to = length(kloc$x), by=2) )
           {
             kpoint = which.min(  (kloc$x[k]-NEWXY$x)^2  +  (kloc$y[k]-NEWXY$y)^2)
@@ -124,10 +124,11 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
 
           }
 
-        print(NEWXY)
+        message(NEWXY)
         focsiz =EXPreplot()
         buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-        print(zloc)
+        
+         message(paste(zloc, collaps=' ') )
         zloc = list(x = NULL, y = NULL)
       }
 
@@ -137,10 +138,11 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to select a set of symbols")
+            warning("Must have at least 2 clicks on screen to select a set of symbols")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+         
+             message(paste(zloc, collaps=' ') )
             zloc = list(x = NULL, y = NULL)
             next
             
@@ -157,7 +159,7 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
 
             rect(min(p1$x), min(p1$y), max(p1$x), max(p1$y), border="red", lty=2)
             
-            cat("Selection is done, choose a button to apply to selection.", sep="\n")
+            message("Selection is done, choose a button to apply to selection.")
 
            ##  zloc = list(x = NULL, y = NULL)
 
@@ -171,10 +173,11 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to select a set of symbols")
+            warning("Must have at least 2 clicks on screen to select a set of symbols")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+          
+              message(paste(zloc, collaps=' ') )
             zloc = list(x = NULL, y = NULL)
             next
             
@@ -195,22 +198,24 @@ ExplodeSymbols<-function(XY, fsiz=1, STARTXY=NULL, MAP=NULL )
 
         focsiz =EXPreplot()
         buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-        print(zloc)
+       
+          message(paste(zloc, collaps=' ') )
         zloc = list(x = NULL, y = NULL)
       }
       
 
       
       if (K[Nclick] == match("LINE", labs, nomatch = NOLAB)) {
-        print("Pressed Line")
+        message("Pressed Line")
 
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to select a set of symbols")
+            warning("Must have at least 2 clicks on screen to select a set of symbols")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+            
+             message(paste(zloc, collaps=' ') )
             zloc = list(x = NULL, y = NULL)
             next
             
@@ -317,7 +322,9 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
         
          focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-        print(zloc)
+       
+        message(paste(zloc , collapse=' ') )
+
         zloc = list(x = NULL, y = NULL)
       }
 
@@ -373,10 +380,12 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to select center and radius of circle")
+            warning("Must have at least 2 clicks on screen to select center and radius of circle")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+            
+            message(paste(zloc , collapse=' ') )
+
             zloc = list(x = NULL, y = NULL)
             next
             
@@ -419,10 +428,12 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to select center and size of box")
+            warning("Must have at least 2 clicks on screen to select center and size of box")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+            #
+            message(paste(zloc , collapse=' ') )
+
             zloc = list(x = NULL, y = NULL)
             next
             
@@ -534,7 +545,7 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
           )
 
 
-        for(kdoc in 1:length(exdoc)){ cat(exdoc[kdoc], sep="\n") }
+        for(kdoc in 1:length(exdoc)){ message(exdoc[kdoc], sep="\n") }
 
 
         
@@ -551,10 +562,12 @@ widthB  = sqrt(  (bx- (p1$x[1]+B3*V1vec$x))^2 + (by- (p1$y[1]+B3*V1vec$y))^2)
         NP = length(zloc$x)-1
         if(NP<2)
           {
-            print("Must have at least 2 clicks on screen to move a symbol")
+            warning("Must have at least 2 clicks on screen to move a symbol")
             focsiz =EXPreplot()
             buttons = RPMG::rowBUTTONS(labs, col = colabs, pch = pchlabs)
-            print(zloc)
+            
+            message(paste(zloc , collapse=' ') )
+
             zloc = list(x = NULL, y = NULL)
             next
             

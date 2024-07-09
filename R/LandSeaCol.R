@@ -59,7 +59,7 @@ LandSeaCol<-function(IZ, coastmap, PROJ, calcol=NULL)
 ##   source("LandSeaCol.R")
 
  
-    cat("Setting Colors....please wait....", file="", sep="\n")
+    message("Setting Colors....please wait....")
 
 
     ##  image(x=xo, y=yo,   z=UZ, col=blues, asp=TRUE , axes=FALSE, xlab="", ylab="" )

@@ -12,8 +12,8 @@
     wlon = grep("lon", nn, ignore.case = TRUE)
     wlat = grep("lat", nn, ignore.case = TRUE)
 
-    if(length(wlon)<1)   { print('subsetTOPO ERROR: no lon range input'); return(NULL) }
-    if(length(wlat)<1)   { print('subsetTOPO ERROR: no lat range input');  return(NULL) }
+    if(length(wlon)<1)   { warning('subsetTOPO ERROR: no lon range input'); return(NULL) }
+    if(length(wlat)<1)   { warning('subsetTOPO ERROR: no lat range input');  return(NULL) }
 
     glon = ALOC[[wlon[1] ]]
     glat = ALOC[[wlat[1] ]]

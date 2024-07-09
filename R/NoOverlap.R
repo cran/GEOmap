@@ -14,39 +14,42 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
 
 
     if( any(is.na(newx)) ) {
-      print("BAD INPUT")
+     
       ix = which(is.na(newx))
-      print(ix)
+       warning("BAD INPUT: ", ix)
        return(list(x=newx, y=newy))
       
     }
    if( any(is.na(newy)) ) {
-      print("BAD INPUT")
-      ix = which(is.na(newy))
-      print(ix)
+    
+       ix = which(is.na(newy))
+          warning("BAD INPUT: ", ix)
+   
        return(list(x=newx, y=newy))
       
     }
 
 
     if( any(is.na(OLDx)) ) {
-      print("BAD INPUT")
-      ix = which(is.na(OLDx))
-      print(ix)
+     
+        ix = which(is.na(OLDx))
+         warning("BAD INPUT: ", ix)
+     
        return(list(x=newx, y=newy))
       
     }
    if( any(is.na(OLDy)) ) {
-      print("BAD INPUT")
+    
       ix = which(is.na(OLDy))
-      print(ix)
+       warning("BAD INPUT: ", ix)
+      
        return(list(x=newx, y=newy))
       
     }
     
-###     print(paste('LEN OLDX=', length(OLDx),'LEN OLDY=', length(OLDy)   ))
+###     message(paste('LEN OLDX=', length(OLDx),'LEN OLDY=', length(OLDy)   ))
     
-###     print(SEL)
+###     message(SEL)
     
 ###  points(newx[SEL],newy[SEL],pch=6,col=grey(.8))
     
@@ -54,7 +57,7 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
       {
         i = SEL[j]
         points(newx[i],newy[i],pch=6,col="green")
-###     print(paste(sep=" ", "check", j, i, newx[i] , OLDx[i] , newy[i],  OLDy[i]))
+###     message(paste(sep=" ", "check", j, i, newx[i] , OLDx[i] , newy[i],  OLDy[i]))
         
         jx = newx[-i]
         jy = newy[-i]
@@ -71,8 +74,8 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
           }
         
         
-###     print(paste("##################     working on ", j, i, vec[1], vec[2]  ))
-###    cat(cbind(jx, jy), sep="\n")
+###     message(paste("#######  working on ", j, i, vec[1], vec[2]  ))
+###    message(cbind(jx, jy), sep="\n")
         
 ###  for each point keep looping until it is nudged away from all other points
         while(TRUE){
@@ -87,7 +90,7 @@ NoOverlap<-function(x, y, focsiz , SEL=0, OLDx=0, OLDy=0, cenx=0, ceny=0)
             {
               rdis = c(j, i, px, py, length(kdis) , length(which( is.na(kdis) ))  , range(kdis, na.rm=TRUE))
               
-              cat(paste(rdis, collapse=" "), sep="\n")
+              message(paste(rdis, collapse=" ") )
 
               ## return(list(x=newx, y=newy))
               break

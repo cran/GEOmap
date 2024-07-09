@@ -161,8 +161,8 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
     }
   
- ##  print(paste(sep=" ", "test", min(MAP$POINTS$x)))
- ##  print(LIM)
+ ##  messagepaste(sep=" ", "test", min(MAP$POINTS$x)))
+ ##  messageLIM)
 
 
       XYLIM =  GLOB.XY(LLlim$lat,LLlim$lon, PROJ)
@@ -173,7 +173,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
   xrange = abs( diff(range(LLlim$x, na.rm=TRUE)) ) 
   yrange = abs( diff(range(LLlim$y, na.rm=TRUE)) )
 
- ## print(c(xrange, yrange))
+ ## messagec(xrange, yrange))
   
 
   Kstroke = length(MAP$STROKES$num)
@@ -183,7 +183,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   if(!is.null(SEL))
       {
-          cat('SEL is NULL\n')
+          message('SEL is NULL\n')
       if(length(SEL) <0)
         {
           FORCE = TRUE
@@ -222,10 +222,10 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
   minx=Inf; maxx=-Inf; miny=Inf; maxy=-Inf;
   
-  ##  print(IN)
+  ##  messageIN)
   if(length(IN)<1)
     {
-      print("No map strokes in target")
+      warning("No map strokes in target")
       return(0)
 
     }
@@ -282,7 +282,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
       
       
 ### plot(c(MAP$STROKES$x1[IN],MAP$STROKES$x2[IN]) , c(MAP$STROKES$y1[IN], MAP$STROKES$y2[IN]), asp=TRUE, type='n', ...)
-###print(c(R1, R2))
+###message(c(R1, R2))
     }
 
   
@@ -298,7 +298,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
 
 
 
- ###cat(paste(i, "style=",  MAP$STROKES$style[i]), sep="\n")
+ ###message(paste(i, "style=",  MAP$STROKES$style[i]), sep="\n")
       
       if( (j1>0 & j2>0 & j2-j1 >=0))
         {
@@ -309,7 +309,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
           next
         }
       
-      ###  print(paste(sep=' ',"----------------------", i, j1,j2))
+      ###  message(paste(sep=' ',"----------------------", i, j1,j2))
 
       if(NUMB==TRUE)
         {
@@ -320,7 +320,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
       
       if(MAP$STROKES$style[i]==1)
         {
-         ### cat(paste(i, "***********plotting style=1"), sep="\n")
+         ### message(paste(i, "***********plotting style=1"), sep="\n")
 
           ###if(MAP$STROKES$code[i]==1) {  ptpch=6; ptcex=1  }
           
@@ -342,15 +342,15 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
           yd = abs(diff(c(y, y[1])))
           wwy = which(yd>0.80*yrange)
 
-          ###  print(wwx) 
-          ###  print(wwy) 
+          ###  message(wwx) 
+          ###  message(wwy) 
 
           
           if( (!is.null(wwx) & length(wwx)>0) | (!is.null(wwy) & length(wwy)>0) )
             {
-             ## print(paste(sep=' ', "################", i, length(x), length(ww)))
+             ## message(paste(sep=' ', "################", i, length(x), length(ww)))
               
-              ##  print(ww)
+              ##  message(ww)
               if(length(wwx)>0)
                 {
                   zy = insertNA(y, wwx)
@@ -384,9 +384,9 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
              ## x[MAP$POINTS$lon[JEC]<LLlim$lon[1] |  MAP$POINTS$lon[JEC]>LLlim$lon[2] ] = NA
              ## y[MAP$POINTS$lat[JEC]<LLlim$lat[1] |  MAP$POINTS$lat[JEC]>LLlim$lat[2] ] = NA
 
-            ##  print(LLlim)
+            ##  message(LLlim)
               
-             ## print(cbind(x,y)) 
+             ## message(cbind(x,y)) 
               
               x[MAP$POINTS$x[JEC]<LLlim$x[1] |  MAP$POINTS$x[JEC]>LLlim$x[2] ] = NA
               y[MAP$POINTS$y[JEC]<LLlim$y[1] |  MAP$POINTS$y[JEC]>LLlim$y[2] ] = NA
@@ -395,7 +395,7 @@ function(MAP, LIM=c(-180, -90, 180, 90), PROJ=list(),  PMAT=NULL,
               
               ##   lines(x, y, col='blue' )
 
-            ##  print(cbind(x,y)) 
+            ##  message(cbind(x,y)) 
               
               lines(x, y, col=MAP$STROKES$col[i], lty=linelty, lwd=linelwd)
             } 

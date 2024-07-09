@@ -142,7 +142,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
 
 ###########   quit and break loop
 
-       ##  print(Nclick)
+       ##  message(Nclick)
         
 
         if(Nclick>0)
@@ -208,7 +208,7 @@ XSECwin<-function(SW, iseclab=1, xLAB="A" , labs=c("DONE","REFRESH", "PS" ), wid
           }
         
 
-        ## print("here at end of while loop")  
+        ## message("here at end of while loop")  
       }
     
 

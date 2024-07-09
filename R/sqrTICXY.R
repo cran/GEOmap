@@ -364,13 +364,13 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
               }
 
             
-            ##   print(paste(sep=" ", LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1]) )
+            ##   message(paste(sep=" ", LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1]) )
 
             if(any(is.na(c( LL1$lat[1], LL2$lat[1] ))) ) next
             
 ##### G = getgreatcirc(min(c( B1$lat, B3$lat))   ,thelons[i], LL$lat[1] , thelons[i], 1000)
             G =getgreatarc( LL1$lat[1]  ,LL1$lon[1], LL2$lat[1] , LL2$lon[1], Klinepoints)
-            ##    print(range(G$lat))
+            ##    message(range(G$lat))
             gxy = GLOB.XY(G$lat , G$lon, proj)
             
             ## gxy = GLOB.XY(beelat$lat , rep(BLONbot[i], length=length(beelat$lat)), proj)
@@ -418,7 +418,7 @@ sqrTICXY<-function(prsurf, proj,  side=c(1,2,3,4), PMAT=NULL,  LLgrid=TRUE, col=
             
 
             ##   G = getgreatcirc(thelats[i], min(c( B1$lon, B2$lon)), thelats[i]   , max(c( B3$lon, B4$lon)) , 10)
-            ##  print(c(LL1$lon[1] , to=LL2$lon[1]))
+            ##  message(c(LL1$lon[1] , to=LL2$lon[1]))
             if(any(is.na(c(LL1$lon[1] , to=LL2$lon[1]))) ) next
             alons = seq(from=LL1$lon[1] , to=LL2$lon[1]  , length=Klinepoints)
             

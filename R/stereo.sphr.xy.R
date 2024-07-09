@@ -13,7 +13,7 @@ function(phi,lam, PROJ.DATA)
     FE = PROJ.DATA$FE
     FN = PROJ.DATA$FN
 
-    ##  print(paste(sep=' ', phi,lam, phi0, lam0,  phi1,  phi2, FE, FN))
+    ##  message(paste(sep=' ', phi,lam, phi0, lam0,  phi1,  phi2, FE, FN))
 
                                         #  
     phi =phi*pi/180
@@ -28,7 +28,7 @@ function(phi,lam, PROJ.DATA)
 
     x = R*k*cos(phi)*sin(lam-lam0)                                             #21-2
     y = R*k*(cos(phi1)*sin(phi)-sin(phi1)*cos(phi)*cos(lam-lam0))        #  21-2
-    ##  print(paste(sep=' ',rho, theta, x, y))
+    ##  message(paste(sep=' ',rho, theta, x, y))
 
     return(list(x=x, y=y))
   }

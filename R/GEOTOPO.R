@@ -13,7 +13,7 @@
 
 
 
-    cat("Extracting from Data Base....please wait....", file="", sep="\n")
+   message("Extracting from Data Base....please wait....")
     
     if(TRUE)
       {
@@ -68,11 +68,11 @@
     if(PLOT==TRUE)
       {
         
-        cat("Setting Colors....please wait....", file="", sep="\n")
+        message("Setting Colors....please wait....")
 
        Cmat  = TOPOCOL(ZZ2$z, calcol)
         Dcol  = attr(Cmat, 'Dcol') 
-        cat(".....plotting with persp....please wait....", file="", sep="\n")
+       message(".....plotting with persp....please wait...." )
         
         PMAT = persp(ZZ2$x, ZZ2$y, ZZ2$z, theta = 0, phi = 90, r=4000, col=Cmat[1:(Dcol[1]-1), 1:(Dcol[2]-1)] , scale = FALSE,
           ltheta = 120, lphi=30, shade = 0.75, border = NA, expand=0.001, box = FALSE )

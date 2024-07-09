@@ -11,17 +11,19 @@ function(sta, rdist=100)
   proj =  setPROJ(2, LAT0 =mlat, LON0 =mlon )
 
 
-  print(c(mlat, mlon))
+    
+message(paste(c(mlat, mlon) , collapse=' ') )
 
 
   Jlat = range(sta$lat)
 
-  print(Jlat)
   
+  message(paste(Jlat  , collapse=' ') )
+
   Jlon = range(sta$lon)
 
-  print(Jlon)
-  
+ 
+  message(paste(Jlon  , collapse=' ') )
   
   labs = c("LL", "LR", "UL", "UR" )
 
@@ -37,7 +39,7 @@ function(sta, rdist=100)
 
   
   write.table(A, quote = FALSE,col.names =FALSE )
-  cat("\n")
+  message("\n")
   
    write.table(B, quote = FALSE, col.names =FALSE)
 

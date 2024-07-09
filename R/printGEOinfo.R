@@ -11,8 +11,10 @@ df = data.frame(id=kstroke, nam=MAP$STROKES$nam[kstroke],
    code=MAP$STROKES$code[kstroke]
   )
 
-  print(df)
   
+  Atemp = apply(df , 1, 'paste', collapse=' ')			
+       message(paste(collapse=' ', names(df) )	)		
+        message(paste(collapse='\n', Atemp))	
 
   }
 

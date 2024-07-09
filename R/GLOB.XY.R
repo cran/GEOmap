@@ -57,7 +57,7 @@ function(LAT, LON, PROJ.DATA)
     if(is.character(PROJ.DATA$type))
         {
 #####  check to see if these functions exist locally
-           ## print(paste('Character type ', PROJ.DATA$type) )
+           ## message(paste('Character type ', PROJ.DATA$type) )
             projxy = paste(PROJ.DATA$type, '.xy', sep='')
             myenv = environment()
             if (!is.null( rfun<-get0(projxy, envir =myenv )) )

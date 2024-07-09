@@ -30,7 +30,7 @@ GEOmap.cat<-function(MAP1, MAP2)
 
   G3$LL = c(G1$LL, G2$LL)
 
-###   print(c(length(G1$LL), length(G2$LL), length(G3$LL) ))
+###   message(c(length(G1$LL), length(G2$LL), length(G3$LL) ))
 
   GOUT = list.GEOmap(G3) 
 

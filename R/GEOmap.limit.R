@@ -51,9 +51,9 @@ GEOmap.limit<-function(MAP, LLlim )
       kix = length(nix)
       if(kix>0)
         {
-        ##  print(c(i, kix, nix))
+        ##  message(c(i, kix, nix))
           Zbreak  = RPMG::breakline.index(WLL, nix)
-         ## print(length(Zbreak))
+         ## message(length(Zbreak))
           
           for(ib in 1:length(Zbreak))
             {

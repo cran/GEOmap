@@ -42,8 +42,8 @@ mypar = par("usr")
           }
 
         segments(xy$x, xy$y, txy$x, txy$y)
-        ## print(xy$x)
-        ##  print(xy$y)
+        ## message(xy$x)
+        ##  message(xy$y)
       }
 
    if(any(sides==3))

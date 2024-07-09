@@ -20,8 +20,8 @@ function(sta, mylist, worldmap=NULL)
         flon = RPMG::fmod(garc$lon, 360)
         flat = garc$lat
 
-##  print(i)
-      ##  print(flon)
+##  message(i)
+      ##  message(flon)
         
         if(any(abs(diff(flon))>100))
           {
@@ -35,12 +35,12 @@ function(sta, mylist, worldmap=NULL)
 
            ## text(flon, flat, labels=indde, pos=1)
 
-           ## print(cbind(flon, flat, indde))
+           ## message(cbind(flon, flat, indde))
           }
 
 
-     ##    print(flon)
-     ##    print(flat)
+     ##    message(flon)
+     ##    message(flat)
 
         
      #   points(flon    ,  flat , col= pcol[i] )

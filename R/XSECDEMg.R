@@ -127,8 +127,8 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
           {
             n = length(zloc$x)
             if(n<3) {
-              print("Need 2 locations on the plot to take the cross section:")
-              print("Please try again")
+              warning("Need 2 locations on the plot to take the cross section:\n Please try again")
+              
               zloc = list(x=NULL, y=NULL)
               next
             }
@@ -138,7 +138,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
             y2 = zloc$y[n-1]
 
             XSEC.FLAG = TRUE
-            print(c(x1,y1, x2,y2))
+            message(paste(c(x1,y1, x2,y2),collapse=' ') )
             iseclab = iseclab + 1
             LAB = LETTERS[iseclab]
             secmat = rbind(secmat, c(x1, y1, x2,  y2))
@@ -170,7 +170,7 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
             buttons = RPMG::rowBUTTONS(labs, col=colabs, pch=pchlabs)
             if(PS.FLAG) {
               dev.off();
-              cat("the postscript file is in: RPMGdemo.eps", sep="\n")
+              message("the postscript file is in: RPMGdemo.eps" )
               PS.FLAG =  FALSE
             }
 
@@ -184,12 +184,12 @@ XSECDEMg<-function(Data, labs=NULL, pts=NULL,  nlevels=10, demo=FALSE)
 
 
         iloc = locator(1,type='p')
-##### print(iloc)
+##### message(iloc)
         zloc  = list(x=c(zloc$x,iloc$x), y=c(zloc$y, iloc$y))
         Nclick = length(iloc$x)
         if(is.null(zloc$x)) { return(sloc) }
         K =  RPMG::whichbutt(iloc , buttons)
-##### print(K)   
+##### message(K)   
       }
 
     invisible(GENsec)

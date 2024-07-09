@@ -110,7 +110,7 @@ function(lats, lons, PROJ=PROJ, PMAT=NULL, col=gray(0.7), GRID=TRUE, GRIDcol=1, 
 
         for(k in 1:length(j))
           {
-            #print(paste(sep=' ', degs[k], mins[k]))
+            #message(paste(sep=' ', degs[k], mins[k]))
 
             
             if(mins[k]==0)

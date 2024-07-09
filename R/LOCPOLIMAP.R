@@ -5,7 +5,7 @@ function(P, MAP)
     KAPPA = rep(0, times=length(MAP$STROKES$num))
     for(i in 1:length(MAP$STROKES$num))
       {
-        ##  print(MAP[[i]]$x)
+        ##  message(MAP[[i]]$x)
         j1 = MAP$STROKES$index[i]+1
         j2 = j1+MAP$STROKES$num[i]-1
         
@@ -17,7 +17,7 @@ function(P, MAP)
 
         if(any(DL>180))
           {
-           ### print(paste(sep=' ', "flippin ",i,  MAP$STROKES$nam[i]))  
+           ### message(paste(sep=' ', "flippin ",i,  MAP$STROKES$nam[i]))  
             LONS[LONS>180] = LONS[LONS>180] -360
             if(P$lon>180) { P$lon = P$lon -360 }
           }
@@ -26,7 +26,7 @@ function(P, MAP)
 
         J = inpoly(P$lon, P$lat, POK)
         KAPPA[i] = J
-      ###  print(paste(sep=' ', J, MAP$STROKES$nam[i]))
+      ###  message(paste(sep=' ', J, MAP$STROKES$nam[i]))
       }
 
     return(KAPPA)

@@ -84,7 +84,7 @@ clam = cos(lam)
     
 sinsig = sqrt((cU2*slam)^2 + (cU1*sU2 - sU1*cU2*clam)^2)
 if(sinsig==0) {
-  print("1 aborting Ellipsoidal.Distance")
+  warning("1 aborting Ellipsoidal.Distance")
   return(GIVE) }
 cossig = sU1*sU2 + cU1*cU2*clam
 
@@ -94,7 +94,7 @@ sinalpha = (cU1*cU2*slam)/sinsig
 cossqalpha = (1-sinalpha^2)
 
 if(cossqalpha==0) {
-   print("2 aborting Ellipsoidal.Distance")
+   warning("2 aborting Ellipsoidal.Distance")
   return(GIVE) }
 
 cos2sigm = cossig - (2*sU1*sU2)/cossqalpha

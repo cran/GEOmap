@@ -25,7 +25,7 @@ niceLLtix<-function(rcoords)
              K = goodticdivs(dsec)
             secstart = K*trunc(dms1$s[1]/K)
             secend = secstart+60*(dm+1)
-            print(paste(sep=" ","sec", secstart, secend, K))
+            message(paste(sep=" ","sec", secstart, secend, K))
                   
             isec = seq(from=secstart, to=secend, by=K)
             
@@ -49,7 +49,7 @@ niceLLtix<-function(rcoords)
             minend = minstart+(dmin+1)
 
             
-             print(paste(sep=" ", "min", minstart, minend, K))
+             message(paste(sep=" ", "min", minstart, minend, K))
             imin = seq(from=minstart, to=minend, by=K)
             
             FDEGcoord = rep(dms1$d[1], times=length(imin))
@@ -74,7 +74,7 @@ niceLLtix<-function(rcoords)
             degstart = K*trunc(dms1$d[1]/K)
             degend =degstart+(ddeg+1)
 
-              print(paste(sep=" ", "deg", degstart, degend, K))
+              message(paste(sep=" ", "deg", degstart, degend, K))
             ideg = seq(from=degstart, to=degend, by=K)
             
             FDEGcoord =  ideg

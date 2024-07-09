@@ -50,7 +50,7 @@ if(!is.null(MAPcol)) {  MAP$STROKES$col = rep(MAPcol, length(MAP$STROKES$col))  
 if(!is.null(MAPstyle)) {  MAP$STROKES$style = rep(MAPstyle, length(MAP$STROKES$style))  }
 
 
-###   cat(paste(sep=" ", "###### plotGEOmap", paste(collapse=" ",LIMP) ) , sep="\n" )
+###   message(paste(sep=" ", "###### plotGEOmap", paste(collapse=" ",LIMP) ) , sep="\n" )
   
 ###  determine stroke inclusion
 
@@ -127,10 +127,10 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
 
   if(PRINT)
     {
-     ### print(IN)
-      print(paste(collapse=",", IN))
+     ### message(IN)
+      message(paste(collapse=",", IN))
  
-     ### print(sep="", "C(",  paste(collapse=",", IN), ")")
+     ### message(sep="", "C(",  paste(collapse=",", IN), ")")
 
     }
 
@@ -153,7 +153,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
           
           text( LONS[numblats], LATS[numblats] , labels=i, pos=3)
           text( LONS[1], LATS[1], labels=i, pos=4)
-          ##  cat(paste(sep=" ",i,",") )
+          ##  message(paste(sep=" ",i,",") )
         }
 
       
@@ -187,7 +187,7 @@ if( is.null(MAP$STROKES$LAT1)) { MAP = boundGEOmap(MAP)  }
          ##  mline[dline>100] = NA
           if(any(dline>100))
             {
-            ##   print(paste('plotGEOmap', i, "wrapping", length(ww)  ))
+            ##   message(paste('plotGEOmap', i, "wrapping", length(ww)  ))
               
          ## MM = fixCoastwrap(list(x=LONS, y=LATS), 100)
               if(MAP$STROKES$nam[i]=="ANTARCMAP")

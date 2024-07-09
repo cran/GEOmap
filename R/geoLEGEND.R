@@ -38,7 +38,7 @@ for(i in 1:N)
 ii = i
 ixy = RPMG::itoxyz(i, nx, ny,1)
 
-##print(paste(sep=" ", i, ixy$ix, ixy$iy))
+##message(paste(sep=" ", i, ixy$ix, ixy$iy))
 
 x1 = upperleft.x+(ixy$ix-1)*dx
 x2 = x1+dx

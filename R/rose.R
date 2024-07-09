@@ -49,7 +49,13 @@ fmod<-function(k, m)
      ###  plot(cx,sy,
        ###     axes = FALSE, xlab = "", ylab = "",
 ###      main = main, type = "n", asp=1, xlim = siz * c(-1, 1), ylim = siz* c(-1, 1))
-        op <- par(no.readonly = TRUE)
+    #    op <- par(no.readonly = TRUE)
+
+          oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
+
+
+        
 ### default.mar=c(5, 4, 4, 2) +0.1
         
       par(mar=c(0,0,0,0))

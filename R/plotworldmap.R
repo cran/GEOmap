@@ -63,7 +63,7 @@ function(MAP, LIM=c(-180, -90, 180, 90) , shiftlon=0, add=TRUE , NUMB=FALSE ,PLO
           IN = which(!OUT)
       }
  ###   MAP$STROKES$LAT1>=LIM[1] 
-###  print(IN)
+###  message(IN)
   
   Kstroke = length(MAP$STROKES$num)
   ####   for(i in 1:Kstroke)

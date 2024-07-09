@@ -4,6 +4,7 @@ maps2GEOmap<-function(zz, wx=1, mapnam="temp" )
   if(missing(wx)) wx = c(which(is.na(zz$x))) 
 
   
+  
   #########   convert maps information from a maps data base to a GEOmap data
   Kx = vector()
   Ky = vector()
@@ -34,7 +35,7 @@ iends = c(wx-1, length(zz$x))
     {
       i1 = ibegs[i]
       i2 = iends[i]
-     ## print(c(i1, i2))
+     ## message(c(i1, i2))
       el = length(i1:i2)
       Kx = c(Kx, zz$x[i1:i2])
       Ky = c(Ky, zz$y[i1:i2])

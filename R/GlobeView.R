@@ -98,7 +98,7 @@
 ###   numblats=worldmap$STROKES$num[i]
 ###    text( xy$x[numblats], xy$y[numblats] , labels=i, pos=3)
 ###    text( xy$x[1], xy$y[1], labels=i, pos=4)
-###    cat(paste(sep=" ",i,",") )
+###    message(paste(sep=" ",i,",") )
 
         
         

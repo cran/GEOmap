@@ -13,7 +13,7 @@ lam = RPMG::fmod(lam, 360)
 	FE = PROJ.DATA$FE
 	FN = PROJ.DATA$FN
 
-##  print(paste(sep=' ', phi,lam, phi0, lam0,  phi1,  phi2, FE, FN))
+##  message(paste(sep=' ', phi,lam, phi0, lam0,  phi1,  phi2, FE, FN))
 
 #  Constants:
 phi =phi*pi/180
@@ -26,7 +26,7 @@ R = MAPconstants()$A.MAPK
 ##  Az = lam
 ##  c = 
 
-## print(paste(sep=' ',R, n, F, rho0))
+## message(paste(sep=' ',R, n, F, rho0))
 
 
 ## rho = 2*R*sin(c/2)                       # 24-1
@@ -42,7 +42,7 @@ x = R*kp*cos(phi)*sin(lam-lam0) +FE         #22-4
 
 
 y = R*kp*(cos(phi1)*sin(phi)-sin(phi1)*cos(phi)*cos(lam-lam0))  + FN ## 22-5
-##  print(paste(sep=' ',rho, theta, x, y))
+##  message(paste(sep=' ',rho, theta, x, y))
 
     return(list(x=x, y=y))
   }
